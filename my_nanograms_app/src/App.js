@@ -18,7 +18,7 @@ function App() {
         <h1>Nanogram</h1>
       </header>
       <div className="GameInterface">
-        <NanoBoard size="10"/>
+        <NanoBoard size="4"/>
       </div>
     </div>
   );

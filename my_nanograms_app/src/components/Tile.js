@@ -20,10 +20,13 @@ export default class Tile extends React.Component{
   
   constructor(props) {
     super(props);
+    
     this.state = {
+      clue: props.clue? props.clue: false,
       selected: 0
     }
   }
+
 
   onClickHandler = (e)=>{
     this.toggleTileState(e.button == 2)
@@ -49,12 +52,19 @@ export default class Tile extends React.Component{
 
   render() {
     let selected = this.state.selected
+    let clue = this.state.clue 
     return (
         <div className="tile" 
           state={selected} 
-          onMouseDown={this.onClickHandler} 
-          onContextMenu={(e)=>{e.preventDefault()}}
-          onMouseEnter={this.onMouseHoverTile}
+          clue={clue} 
+          {...(clue == "true" ?{}:{
+            onMouseDown: this.onClickHandler,
+            onContextMenu: (e)=>{e.preventDefault()},
+            onMouseEnter: this.onMouseHoverTile
+          })}
+          // onMouseDown={this.onClickHandler} 
+          // onContextMenu={(e)=>{e.preventDefault()}}
+          // onMouseEnter={this.onMouseHoverTile}
           style={{minHeight: (400/this.props.size)+"px", minWidth: (400/this.props.size)+"px", fontSize: (320/this.props.size)+"px"}}
         >
           <i className="fa  fa-close" hidden></i>

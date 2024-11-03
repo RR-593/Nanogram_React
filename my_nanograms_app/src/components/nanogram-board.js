@@ -8,9 +8,10 @@ export default function NanoBoard(props){
         return []
       let boardArr = []
       let row = []
-      let i = size
+      let i = size 
       while (i --> 0)
-        row.push(new Tile(0))
+        row.push(<Tile/>)
+      row.push(new Tile({clue: true}))
       
       i = size
       while (i --> 0)
@@ -21,14 +22,14 @@ export default function NanoBoard(props){
     let nanoBoard = createNanoBoard(props.size)
 
     return (
-        <div className="nanogram-board">
-          {nanoBoard.map( (row,index) => (
-              <div key={index} className="row">
-                {row.map( (tile,index) => (<Tile size={props.size} key={index}/>))}
-              </div>
-            )
-          )}
-        </div>
+      <div className="nanogram-board">
+        {nanoBoard.map( (row,index) => (
+            <div key={index} className="row">
+              {row.map( (tile,index) => (<Tile size={props.size} key={index}/>))}
+            </div>
+          )
+        )}
+      </div>
     )
 
 }
