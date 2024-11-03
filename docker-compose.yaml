@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  api:
+    build: ./api
+    container_name: api_c
+    ports:
+      - '4000:4000'
+    volumes:
+      - ./api:/app
+      - /app/node_modules
+  my_nanograms_app:
+    build: ./my_nanograms_app
+    container_name: nanograms_c
+    ports:
+      - '3000:3000'
+    stdin_open: true
+    volumes:
+      - ./my_nanograms_app:/app
+      - /app/node_modules

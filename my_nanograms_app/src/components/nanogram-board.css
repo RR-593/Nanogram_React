@@ -1,0 +1,9 @@
+.nanogram-board{
+    background-color: #417A80;
+    border: 8px solid #001319;
+    border-radius: 8px; 
+    width: fit-content;
+  }
+  .row{
+    display: flex;
+  }
