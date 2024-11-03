@@ -8,6 +8,8 @@
 }
 .clue[btmRow="true"]{
 	border-radius: 8px 8px 0px 0px; 
+	text-orientation: upright;
+
 }
 .clue[index="0"]{
 	border-radius: 0px 8px 0px 8px; 

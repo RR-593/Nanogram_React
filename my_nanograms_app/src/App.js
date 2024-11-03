@@ -6,7 +6,7 @@ import NanoBoard from './components/nanogram-board';
 function BoardButtons(props){
   return(
     <div className="boardButtBox">
-      <button onClick></button>
+      <button ></button>
     </div>
   )
 }
@@ -26,8 +26,8 @@ function App() {
         <h1>Nanogram</h1>
       </header>
       <div className="GameInterface">
-        <BoardButtons />
-        <NanoBoard size="4"/>
+        {/* <BoardButtons /> */}
+        <NanoBoard size="5"/>
       </div>
     </div>
   );

@@ -14,21 +14,22 @@
 			super(props);
 	
 			this.state = {
-				clueNumber: 0
+				clueNumber: []
 			}
 		}
 	
 	
 		render() {
-			let clueNumber = this.state.clueNumber
+			let clueNumber = typeof this.props.clueNumber === "undefined"? [] : this.props.clueNumber
 			return (
 				<div className={"clue " + (Number(this.props.index)%2 == 0?"odd":"even")}
 					index={this.props.index}
 				 	style={{minHeight: (400/this.props.size)+"px", minWidth: (400/this.props.size)+"px", fontSize: (320/this.props.size)+"px"}}
-					clue={clueNumber}
+					clue={clueNumber.join(",")}
 					onContextMenu={(e)=>{e.preventDefault()}}
 					btmrow={this.props.vert}
 				>
+					<span>{clueNumber.join(", ")}</span>
 				</div>
 			)
 		}
