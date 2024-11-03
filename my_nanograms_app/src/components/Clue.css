@@ -1,0 +1,18 @@
+
+.clue{
+	border-radius: 8px 0px 0px 8px; 
+	min-height: 10vh;
+	min-width: 10vh;
+	border: 4px solid #19424e;
+	background-color:#19424e
+}
+.clue[btmRow="true"]{
+	border-radius: 8px 8px 0px 0px; 
+}
+.clue[index="0"]{
+	border-radius: 0px 8px 0px 8px; 
+}
+.clue.odd{
+	border-color: #417A80;
+	background-color:#417A80
+}

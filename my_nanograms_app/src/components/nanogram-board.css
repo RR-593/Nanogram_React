@@ -1,7 +1,7 @@
 .nanogram-board{
     background-color: #417A80;
     border: 8px solid #001319;
-    border-radius: 8px; 
+    border-radius: 12px; 
     width: fit-content;
   }
   .row{

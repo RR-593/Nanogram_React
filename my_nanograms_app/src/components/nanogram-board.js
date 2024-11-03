@@ -1,35 +1,25 @@
+import { useEffect, useState, createContext } from 'react'
 import './nanogram-board.css';
 import Tile from './Tile'
+import Clue from './Clue'
 
 export default function NanoBoard(props){
-
-    const createNanoBoard = size => {
-      if (size <= 0)
-        return []
-      let boardArr = []
-      let row = []
-      let i = size 
-      while (i --> 0)
-        row.push(<Tile/>)
-      row.push(new Tile({clue: true}))
-      
-      i = size
-      while (i --> 0)
-        boardArr.push(row)
-      return boardArr
-    }
+  const [boardOfRows, setRows] = useState()
     
-    let nanoBoard = createNanoBoard(props.size)
-
-    return (
-      <div className="nanogram-board">
-        {nanoBoard.map( (row,index) => (
-            <div key={index} className="row">
-              {row.map( (tile,index) => (<Tile size={props.size} key={index}/>))}
-            </div>
-          )
-        )}
+  var boardSize =  Number(props.size)
+  
+  return (
+    <div className="nanogram-board">
+      {Array.from(Array(boardSize)).map( (row,index) => (
+        <div key={index} className="row">
+          {Array.from(Array(boardSize)).map((x,index) => (<Tile key={index} size={boardSize}/>))}
+          <Clue size={boardSize} index={index}/>
+        </div>
+      ))}
+      <div className="row">
+        {Array.from(Array(boardSize)).map((x,index) => (<Clue key={index} size={boardSize} index={index} vert="true"/>))}
       </div>
-    )
+    </div>
+  )
 
 }

@@ -3,6 +3,14 @@ import './App.css';
 
 import NanoBoard from './components/nanogram-board';
 
+function BoardButtons(props){
+  return(
+    <div className="boardButtBox">
+      <button onClick></button>
+    </div>
+  )
+}
+
 function App() {
   const [blogs, setBlogs] = useState([])
   useEffect(() => {
@@ -18,6 +26,7 @@ function App() {
         <h1>Nanogram</h1>
       </header>
       <div className="GameInterface">
+        <BoardButtons />
         <NanoBoard size="4"/>
       </div>
     </div>

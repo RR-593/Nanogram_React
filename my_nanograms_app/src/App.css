@@ -38,7 +38,9 @@
 }
 
 .GameInterface{
-
+  display: flex;
+  justify-content: center;
+	min-width: 120vh;
   background-color: #001319;
   border: 0px solid #001319;
   border-radius: 8px;

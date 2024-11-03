@@ -22,7 +22,6 @@ export default class Tile extends React.Component{
     super(props);
     
     this.state = {
-      clue: props.clue? props.clue: false,
       selected: 0
     }
   }
@@ -52,20 +51,13 @@ export default class Tile extends React.Component{
 
   render() {
     let selected = this.state.selected
-    let clue = this.state.clue 
     return (
         <div className="tile" 
-          state={selected} 
-          clue={clue} 
-          {...(clue == "true" ?{}:{
-            onMouseDown: this.onClickHandler,
-            onContextMenu: (e)=>{e.preventDefault()},
-            onMouseEnter: this.onMouseHoverTile
-          })}
-          // onMouseDown={this.onClickHandler} 
-          // onContextMenu={(e)=>{e.preventDefault()}}
-          // onMouseEnter={this.onMouseHoverTile}
-          style={{minHeight: (400/this.props.size)+"px", minWidth: (400/this.props.size)+"px", fontSize: (320/this.props.size)+"px"}}
+          style = {{minHeight: (400/this.props.size)+"px", minWidth: (400/this.props.size)+"px", fontSize: (320/this.props.size)+"px"}}
+          state = {selected} 
+          onMouseDown = { this.onClickHandler}
+          onContextMenu = {(e)=>{e.preventDefault()}}
+          onMouseEnter = {this.onMouseHoverTile}
         >
           <i className="fa  fa-close" hidden></i>
         </div>
