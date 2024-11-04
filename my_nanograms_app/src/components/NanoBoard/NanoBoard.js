@@ -7,6 +7,7 @@ import Clue from '../Clue/Clue'
 export default function NanoBoard(props){
   const [game_stats, updateGStats] = useStatsContext();
   const boardSize = Number(props.size);
+  const clueRows = props.clueRows;
   
   const [board, setBoard] = useState([]);
   const [colClues, setColClues] = useState([]);
@@ -23,7 +24,7 @@ export default function NanoBoard(props){
     // Reinitialize after clearing
     if (boardSize > 0) {
       setColClues([[1, 1, 1], [4], [3], [1, 1], [0]]);
-      setRowClues([[2], [1], [1, 2, 1], [1], [0]]);
+      setRowClues(clueRows);
 
       setBoard([...Array(boardSize)].map((_, index) => <Tile key={index} size={boardSize} clear={game_stats.board_count} />));
     }
@@ -36,11 +37,11 @@ export default function NanoBoard(props){
       {[...Array(boardSize)].map((_, index) =>
         <div key={index} className="row">
           {board}
-          <Clue size={boardSize} index={index} clueNumber={colClues[index]}/>
+          <Clue size={boardSize} index={index} clueNumber={rowClues[index]}/>
         </div>
       )}
       <div className="row">
-        {[...Array(boardSize)].map((x,index) => (<Clue key={index} size={boardSize} index={index} clueNumber={rowClues[index]} vert="true"/>))}
+        {[...Array(boardSize)].map((x,index) => (<Clue key={index} size={boardSize} index={index} clueNumber={colClues[index]} vert="true"/>))}
       </div>
     </div>
   )
