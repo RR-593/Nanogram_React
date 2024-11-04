@@ -8,6 +8,7 @@ import "./Tile.css"
 import React, { useState, useEffect } from 'react';
 import {useStatsContext} from '../StatsProvider'
 import {useNanogramContext} from '../NanogramProvider'
+import {useActiveBoardContext} from '../ActiveBoardProvider'
 
 let MouseDrawTileStateContext = 0;
 let mouseDown = false;
@@ -19,7 +20,7 @@ document.body.onmouseup = () => {
 };
 
 export default function Tile(props){
-
+  const [board, updateBoard] = useActiveBoardContext();
   const [nanogram, setNewNanogram] = useNanogramContext();
   const [game_stats, updateGStats] = useStatsContext();
   const [selectedState, setSelect] = useState(0)
@@ -27,7 +28,6 @@ export default function Tile(props){
 
   var onClickHandler = (e)=>{
     toggleTileState(e.button == 2)
-    console.log(props.id)
   }
 
   var toggleTileState = (isRightClick) =>{
@@ -35,11 +35,18 @@ export default function Tile(props){
     -1 :
     selectedState == 1 ? 0 : selectedState + 1 
 
-    setSelect(MouseDrawTileStateContext)
+    updateSelect()
   }
 
   var onMouseHoverTile = (e) => {
     if (!mouseDown) return
+    updateSelect()
+  }
+
+  var updateSelect = () =>{
+    let boardCopy = board
+    boardCopy[props.id[0]][props.id[1]] = MouseDrawTileStateContext == 1 ? 1 : 0
+    updateBoard(boardCopy)
     setSelect(MouseDrawTileStateContext)
   }
 

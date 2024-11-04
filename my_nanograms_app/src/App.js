@@ -5,6 +5,7 @@ import DisplayNanoBoard from './components/NanoBoard/DisplayNanoBoard';
 import BoardButtons from './components/BoardButtons/BoardButtons';
 import StatsProvider from './components/StatsProvider'
 import NanogramProvider from './components/NanogramProvider';
+import ActiveBoardProvider from './components/ActiveBoardProvider'
 
 function App() {
   const [blogs, setBlogs] = useState([])
@@ -25,8 +26,10 @@ function App() {
       <div className="GameInterface">
         <StatsProvider >
           <NanogramProvider>
+            <ActiveBoardProvider>
               <BoardButtons />
               <DisplayNanoBoard />
+            </ActiveBoardProvider>
           </NanogramProvider>
         </StatsProvider>
       </div>

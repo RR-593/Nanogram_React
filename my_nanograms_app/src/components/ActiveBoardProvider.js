@@ -1,13 +1,20 @@
-import { useState, createContext, useContext } from 'react'
+import { useState, createContext, useContext,useEffect } from 'react'
+import {useNanogramContext} from './NanogramProvider'
 
 const ActiveBoardContext = createContext()
 
 const StatsProvider = ({ children }) => {
-	const [board, setBoard] = useState([]);
+  const [nanogram, setNewNanogram] = useNanogramContext();
+	const [board, setBoard] = useState();
 
-  const updateBoard = (newValue) => {
-    setBoard([...Array(boardSize)].map((_, index) => <Tile key={index} size={boardSize} clear={game_stats.board_count} />));
+  const updateBoard = (board) => {
+    setBoard(board);
   };
+
+	useEffect(()=>{
+
+		setBoard(Array.from({ length: nanogram.size }, () => Array.from({ length: nanogram.size }, () => 0)))
+	},[nanogram])
 
 	return (
 		<ActiveBoardContext.Provider value={[board, updateBoard]}>

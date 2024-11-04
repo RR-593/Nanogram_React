@@ -7,6 +7,7 @@ const NanogramProvider = ({ children }) => {
   const [game_stats, updateGStats] = useStatsContext();
 	const [nanogram, setNanogram] = useState({
 		size: 0,
+		nanogramArr: [],
 		clue: {
 			rows: [],
 			cols: []
@@ -21,6 +22,7 @@ const NanogramProvider = ({ children }) => {
 
     setNanogram({...nanogram, ...{
 			size: size,
+			nanogramArr: nanogramArr,
 			clue: {
 				rows: clueRows,
 				cols: clueCols

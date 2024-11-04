@@ -5,7 +5,7 @@ const StatsContext = createContext()
 const StatsProvider = ({ children }) => {
 	const [game_stats, setGStats] = useState({
     clear: false,
-		default_board_size: 4
+		default_board_size: 3
   })
   const updateGStats = (newValue) => {
     setGStats(newValue);

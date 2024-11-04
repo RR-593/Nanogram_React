@@ -2,18 +2,39 @@ import { useEffect, useState, useContext } from 'react'
 import $ from 'jquery'
 import {useStatsContext} from '../StatsProvider'
 import {useNanogramContext} from '../NanogramProvider'
+import {useActiveBoardContext} from '../ActiveBoardProvider'
 import './BoardButtons.css'
 
 const BoardButtons = (props) => {
+  
   const [game_stats, updateGStats] = useStatsContext();
   const [nanogram, setNewNanogram] = useNanogramContext();
+  const [board, updateBoard] = useActiveBoardContext();
 
   let clearBoardAction = ()=>{
     updateGStats({...game_stats, clear: !game_stats.clear})
   }
 
   let submitBoardAction = ()=>{
-    
+    var compareArr2D = (array1, array2) => {
+      if (array1.length !== array2.length) return false; // Different number of rows
+  
+      return array1.every((row, rowIndex) => (
+          row.length !== array2[rowIndex].length) ? 
+          false: // Different number of columns in a row
+          row.every((value, colIndex) => value === array2[rowIndex][colIndex]
+        )
+      );
+    }
+
+    var array2dToString = (array) => {
+      // Convert the 2D array to the desired string format
+      const arrayString = array.map(row => row.join('')).join('\n');
+      return `${arrayString}`;
+    }
+
+    console.log(compareArr2D(board,nanogram.nanogramArr)?"Correcct!":"Incorrect")
+    console.log(array2dToString(board)+"\n\n"+array2dToString(nanogram.nanogramArr))
   }
 
   let newBoardAction = ()=>{
