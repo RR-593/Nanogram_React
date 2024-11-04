@@ -14,7 +14,25 @@ const nanogram = {
 }
 
 const generateNanogramArr = (size) => Array.from({ length: size }, () => Array.from({ length: size }, () => Math.round(Math.random())))
-const generateNanogramClueForRowsArr = (nanogramArr) => nanogramArr.map( row => {
+const generateClueForCollumnsArr = (nanogramArr) => {
+  return nanogramArr[0].map((_, col) => {
+      const counts = [];
+      let count = 0;
+
+      for (const row of nanogramArr) 
+        count = row[col] === 1 ? 
+        count + 1 : 
+        (count ? 
+          (counts.push(count), 0) : 
+          count
+        )
+      
+
+      if (count) counts.push(count);
+      return counts;
+  });
+}
+const generateClueForRowsArr = (nanogramArr) => nanogramArr.map( row => {
   const counts = [];
   let count = 0;
 
@@ -38,9 +56,10 @@ function App() {
       .then(data => setBlogs(data))
   }, [])
 
-  let size = 4
+  let size = 8
   let nanogramArr = generateNanogramArr(size)
-  let clueRows = generateNanogramClueForRowsArr(nanogramArr)
+  let clueRows = generateClueForRowsArr(nanogramArr)
+  let clueCols = generateClueForCollumnsArr(nanogramArr)
   
   
   return (
@@ -51,7 +70,7 @@ function App() {
       <div className="GameInterface">
         <StatsProvider >
           <BoardButtons />
-          <NanoBoard size={size} clueRows={clueRows} />
+          <NanoBoard size={size} clueRows={clueRows} clueCols={clueCols} />
         </StatsProvider>
         
       </div>

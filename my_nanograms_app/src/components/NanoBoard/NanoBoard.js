@@ -8,6 +8,7 @@ export default function NanoBoard(props){
   const [game_stats, updateGStats] = useStatsContext();
   const boardSize = Number(props.size);
   const clueRows = props.clueRows;
+  const clueCols = props.clueCols;
   
   const [board, setBoard] = useState([]);
   const [colClues, setColClues] = useState([]);
@@ -23,7 +24,7 @@ export default function NanoBoard(props){
 
     // Reinitialize after clearing
     if (boardSize > 0) {
-      setColClues([[1, 1, 1], [4], [3], [1, 1], [0]]);
+      setColClues(clueCols);
       setRowClues(clueRows);
 
       setBoard([...Array(boardSize)].map((_, index) => <Tile key={index} size={boardSize} clear={game_stats.board_count} />));
