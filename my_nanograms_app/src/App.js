@@ -1,12 +1,28 @@
-import { useEffect, useState, createContext } from 'react'
+import { useEffect, useState, createContext, useContext } from 'react'
 import './App.css';
 
 import NanoBoard from './components/nanogram-board';
 
+const statsContext = createContext()
+
+const nanogram = {
+  size: 0,
+  clues: {
+    row: [],
+    col: []
+  }
+}
+
+
 function BoardButtons(props){
+  const [game_stats, updateGStats] = useContext(statsContext);
+
+  let clearBoard = ()=>{
+    updateGStats({...game_stats, board_count: game_stats.board_count+1})
+  }
   return(
     <div className="boardButtBox">
-      <button ></button>
+      <button onClick={clearBoard}>    </button>
     </div>
   )
 }
@@ -19,15 +35,25 @@ function App() {
       .then(data => setBlogs(data))
   }, [])
 
-
+  const [game_stats, setGStats] = useState({
+    board_count: 0
+  })
+  const updateGStats = (newValue) => {
+    setGStats(newValue);
+  };
+  
+  
   return (
     <div className="App">
       <header className="App-header">
         <h1>Nanogram</h1>
       </header>
       <div className="GameInterface">
-        {/* <BoardButtons /> */}
-        <NanoBoard size="5"/>
+        <statsContext.Provider value={[game_stats, updateGStats]}>
+          <BoardButtons />
+          <NanoBoard size="5" count={game_stats.board_count}/>
+        </statsContext.Provider>
+        
       </div>
     </div>
   );

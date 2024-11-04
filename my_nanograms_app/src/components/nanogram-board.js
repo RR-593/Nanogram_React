@@ -4,32 +4,45 @@ import Tile from './Tile'
 import Clue from './Clue'
 
 export default function NanoBoard(props){
-  var boardSize =  Number(props.size)
-  let bArr = Array.from(Array(boardSize))
-  const [boardRows, setRows] = useState(bArr)
-  const [boardCols, setCols] = useState(bArr)
-  // const [colClues, setColClues] = useState(Array.from(Array(boardSize)))
-  // const [rowClues, setRowClues] = useState(bArr)
+  const boardSize = Number(props.size);
+  
+  const [boardRows, setRows] = useState([]);
+  const [boardCols, setCols] = useState([]);
+  const [colClues, setColClues] = useState([]);
+  const [rowClues, setRowClues] = useState([]);
 
+  // Effect to clear and reset the board when count changes
   useEffect(() => {
-    setRows(bArr)
-    setCols(bArr)
-  }, [props.size]);
+    console.log("Clear");
+    // Clear the board
+    setRows([]);
+    setCols([]);
+    setColClues([]);
+    setRowClues([]);
 
-  let colClues = [[1,1,1],[4],[3],[1,1],[0]]
-  let rowClues = [[2],[1],[1,2,1],[1],[0]]
+    // Reinitialize after clearing
+    if (boardSize > 0) {
+      const bArr = Array.from({ length: boardSize });
+      setRows(bArr);
+      setCols([...Array(5)].map((_, index) => <Tile key={index} size={boardSize} />));
+      setColClues([[1, 1, 1], [4], [3], [1, 1], [0]]);
+      setRowClues([[2], [1], [1, 2, 1], [1], [0]]);
+    }
+  }, [props.count, boardSize]);
+  
   
   
   return (
-    <div className="nanogram-board">
+    <div className="nanogram-board" count={props.count}>
       {boardRows.map( (row,index) => (
         <div key={index} className="row">
-          {boardCols.map((x,index) => (<Tile key={index} size={boardSize}/>))}
+          {boardCols}
           <Clue size={boardSize} index={index} clueNumber={colClues[index]}/>
+          {console.log(boardCols)}
         </div>
       ))}
       <div className="row">
-        {Array.from(Array(boardSize)).map((x,index) => (<Clue key={index} size={boardSize} index={index} clueNumber={rowClues[index]} vert="true"/>))}
+        {[...Array(boardSize)].map((x,index) => (<Clue key={index} size={boardSize} index={index} clueNumber={rowClues[index]} vert="true"/>))}
       </div>
     </div>
   )
