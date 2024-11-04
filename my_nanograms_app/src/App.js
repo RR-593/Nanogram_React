@@ -24,12 +24,12 @@ function App() {
         <h1>Nanogram</h1>
       </header>
       <div className="GameInterface">
-        <NanogramProvider>
-          <StatsProvider >
-            <BoardButtons />
-            <NanoBoard />
-          </StatsProvider>
-        </NanogramProvider>
+        <StatsProvider >
+          <NanogramProvider>
+              <BoardButtons />
+              <NanoBoard />
+          </NanogramProvider>
+        </StatsProvider>
       </div>
     </div>
   );

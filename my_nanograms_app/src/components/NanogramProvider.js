@@ -1,8 +1,10 @@
-import { useState, createContext, useContext } from 'react'
+import { useState, createContext, useContext, useEffect } from 'react'
+import {useStatsContext} from './StatsProvider'
 
 const NanogramContext = createContext()
 
 const NanogramProvider = ({ children }) => {
+  const [game_stats, updateGStats] = useStatsContext();
 	const [nanogram, setNanogram] = useState({
 		size: 0,
 		clue: {
@@ -60,7 +62,10 @@ const NanogramProvider = ({ children }) => {
 		if (count) counts.push(count);
 		return counts;
 	})
-
+	useEffect(() => {
+		setNewNanogram({size: game_stats.default_board_size})
+	}, []);
+	
 	return (
 		<NanogramContext.Provider value={[nanogram, setNewNanogram]}>
 			{children}

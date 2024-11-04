@@ -8,8 +8,7 @@ import Clue from '../Clue/Clue'
 export default function NanoBoard(props){
   const [game_stats, updateGStats] = useStatsContext();
   const [nanogram, setNewNanogram] = useNanogramContext();
-  var boardSize = nanogram.size? nanogram.size : 4
-  
+  var boardSize = nanogram.size? nanogram.size : game_stats.default_board_size
 
   const [board, setBoard] = useState([]);
   const [colClues, setColClues] = useState([]);
@@ -18,7 +17,7 @@ export default function NanoBoard(props){
 
   // Effect to clear and reset the board when count changes
   useEffect(() => {
-    // boardSize = nanogram.size
+    
     // Clear the board
     setBoard([]);
     setColClues([]);
@@ -29,9 +28,9 @@ export default function NanoBoard(props){
       setColClues(nanogram.clue.cols);
       setRowClues(nanogram.clue.rows);
 
-      setBoard([...Array(boardSize)].map((_, index) => <Tile key={index} size={boardSize} clear={game_stats.clear} />));
+      setBoard([...Array(boardSize)].map((_, index) => <Tile key={index} />));
     }
-  }, [game_stats.clear,nanogram]);
+  }, [nanogram]);
   
   
   

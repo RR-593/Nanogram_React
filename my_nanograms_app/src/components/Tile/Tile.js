@@ -6,9 +6,11 @@
   */
 import "./Tile.css"
 import React, { useState, useEffect } from 'react';
+import {useStatsContext} from '../StatsProvider'
+import {useNanogramContext} from '../NanogramProvider'
 
-export let MouseDrawTileStateContext = 0;
-export let mouseDown = false;
+let MouseDrawTileStateContext = 0;
+let mouseDown = false;
 document.body.onmousedown = () => {
   mouseDown = true;
 };
@@ -17,6 +19,9 @@ document.body.onmouseup = () => {
 };
 
 export default function Tile(props){
+
+  const [nanogram, setNewNanogram] = useNanogramContext();
+  const [game_stats, updateGStats] = useStatsContext();
   const [selectedState, setSelect] = useState(0)
 
 
@@ -40,12 +45,12 @@ export default function Tile(props){
 
   useEffect(()=>{
     setSelect(0)
-  },[props.clear])
+  },[game_stats.clear,nanogram])
 
 
 
   let selected = selectedState
-  let size = Number(props.size) > 0 ? props.size : 6
+  let size = Number(nanogram.size) > 0 ? nanogram.size : game_stats.default_board_size
   return (
     <div className="tile" 
       style = {{minHeight: (400/size)+"px", minWidth: (400/size)+"px", fontSize: (320/size)+"px"}}
