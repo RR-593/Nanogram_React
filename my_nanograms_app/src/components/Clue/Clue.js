@@ -1,42 +1,31 @@
-  /*
-  * tile
-  * -1 = x
-  * 0  = clean
-  * 1  = Selected
-  */
-	import "./Clue.css"
-	import React, { useState, createContext } from 'react';
+import "./Clue.css"
+import React, { useState, createContext, useEffect } from 'react';
+import {useNanogramContext} from '../NanogramProvider'
+
+
+export default function Clue(props){
+	const [nanogram, setNewNanogram] = useNanogramContext();
+
+	let clueNumber = props.direction == "row" ? nanogram.clue.rows[props.index] : nanogram.clue.cols[props.index] 
+	clueNumber = typeof clueNumber === "undefined" ? Array.from({ length: nanogram.size }, () => Array.from({ length: nanogram.size }, () => 0)) : clueNumber
+	let isBtmRow = props.direction == "col"? true : false
+	let displayedClue = clueNumber.map((num,i)=>{return(<div key={i}>{num}<br /></div>)})
+
+
+	return (
+		<div className={"clue " + (Number(props.index)%2 == 0?"odd":"even")}
+			index={props.index}
+		 	style={{minHeight: (400/props.size)+"px", minWidth: (400/props.size)+"px", fontSize: (320/props.size)+"px"}}
+			clue={clueNumber.join(",")}
+			onContextMenu={(e)=>{e.preventDefault()}}
+			btmrow={isBtmRow+""}
+		>
+			<span className="number" btmrow={isBtmRow+""}>
+				{displayedClue}
+			</span>
+			
+		</div>
+	)
 	
-	
-	export default class Clue extends React.Component{
-		
-		constructor(props) {
-			super(props);
-	
-			this.state = {
-				clueNumber: []
-			}
-		}
-	
-	
-		render() {
-			let clueNumber = typeof this.props.clueNumber === "undefined"? [] : this.props.clueNumber
-			let isBtmRow = this.props.vert == "true"? true : false
-			let displayedClue = clueNumber.map((num,i)=>{return(<div key={i}>{num}<br /></div>)})
-			return (
-				<div className={"clue " + (Number(this.props.index)%2 == 0?"odd":"even")}
-					index={this.props.index}
-				 	style={{minHeight: (400/this.props.size)+"px", minWidth: (400/this.props.size)+"px", fontSize: (320/this.props.size)+"px"}}
-					clue={clueNumber.join(",")}
-					onContextMenu={(e)=>{e.preventDefault()}}
-					btmrow={isBtmRow+""}
-				>
-					<span className="number" btmrow={isBtmRow+""}>
-						{displayedClue}
-					</span>
-					
-				</div>
-			)
-		}
-	}
+}
 	

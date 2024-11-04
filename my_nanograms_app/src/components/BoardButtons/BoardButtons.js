@@ -33,8 +33,8 @@ const BoardButtons = (props) => {
       return `${arrayString}`;
     }
 
-    console.log(compareArr2D(board,nanogram.nanogramArr)?"Correcct!":"Incorrect")
-    console.log(array2dToString(board)+"\n\n"+array2dToString(nanogram.nanogramArr))
+    console.log(compareArr2D(board,nanogram.nanogramArr)?"Correct!":"Incorrect")
+    // console.log(array2dToString(board)+"\n\n"+array2dToString(nanogram.nanogramArr))
   }
 
   let newBoardAction = ()=>{

@@ -20,9 +20,9 @@ document.body.onmouseup = () => {
 };
 
 export default function Tile(props){
-  const [board, updateBoard] = useActiveBoardContext();
-  const [nanogram, setNewNanogram] = useNanogramContext();
   const [game_stats, updateGStats] = useStatsContext();
+  const [nanogram, setNewNanogram] = useNanogramContext();
+  const [board, updateBoard] = useActiveBoardContext();
   const [selectedState, setSelect] = useState(0)
 
 

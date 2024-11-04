@@ -39,7 +39,7 @@ const NanogramProvider = ({ children }) => {
 			count = row[col] === 1 ? 
 			count + 1 : 
 			(count ? 
-				counts.push(count) : 
+				(counts.push(count), 0): 
 				count
 			)
 		
