@@ -29,14 +29,14 @@ export default function NanoBoard(props){
       setColClues(nanogram.clue.cols);
       setRowClues(nanogram.clue.rows);
 
-      setBoard([...Array(boardSize)].map((_, index) => <Tile key={index} size={boardSize} clear={game_stats.board_count} />));
+      setBoard([...Array(boardSize)].map((_, index) => <Tile key={index} size={boardSize} clear={game_stats.clear} />));
     }
-  }, [game_stats.board_count,nanogram]);
+  }, [game_stats.clear,nanogram]);
   
   
   
   return (
-    <div className="nanogram-board" count={game_stats.board_count}>
+    <div className="nanogram-board">
       {[...Array(boardSize)].map((_, index) =>
         <div key={index} className="row">
           {board}
@@ -44,7 +44,7 @@ export default function NanoBoard(props){
         </div>
       )}
       <div className="row">
-        {[...Array(boardSize)].map((x,index) => (<Clue key={index} size={boardSize} index={index} clueNumber={colClues[index]} vert="true"/>))}
+        {[...Array(boardSize)].map((_,index) => (<Clue key={index} size={boardSize} index={index} clueNumber={colClues[index]} vert="true"/>))}
       </div>
     </div>
   )

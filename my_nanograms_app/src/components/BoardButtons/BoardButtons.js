@@ -9,7 +9,7 @@ const BoardButtons = (props) => {
   const [nanogram, setNewNanogram] = useNanogramContext();
 
   let clearBoardAction = ()=>{
-    updateGStats({...game_stats, board_count: game_stats.board_count+1})
+    updateGStats({...game_stats, clear: !game_stats.clear})
   }
 
   let submitBoardAction = ()=>{

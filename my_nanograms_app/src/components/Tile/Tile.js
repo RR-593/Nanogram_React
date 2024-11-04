@@ -22,6 +22,7 @@ export default function Tile(props){
 
   var onClickHandler = (e)=>{
     toggleTileState(e.button == 2)
+    
   }
 
   var toggleTileState = (isRightClick) =>{
