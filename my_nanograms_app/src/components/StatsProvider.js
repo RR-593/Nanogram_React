@@ -11,9 +11,9 @@ const StatsProvider = ({ children }) => {
   };
 
 	return (
-			<StatsContext.Provider value={[game_stats, updateGStats]}>
-					{children}
-			</StatsContext.Provider>
+		<StatsContext.Provider value={[game_stats, updateGStats]}>
+			{children}
+		</StatsContext.Provider>
 	);
 };
 

@@ -13,6 +13,22 @@ const BoardButtons = (props) => {
     
   }
 
+  let newBoardAction = ()=>{
+    let new_size = $("intput[name='input_board_size']")
+    console.log(new_size)
+  }
+
+  let newBoardB = (
+    <div>
+    <input name="input_board_size" type="text"></input>
+    <button onClick={newBoardAction}>
+      <span>
+        New Board
+      </span>
+    </button>
+    </div>
+  )
+
   let clearBoardB = (
     <button onClick={clearBoardAction}>
       <span>
@@ -30,6 +46,7 @@ const BoardButtons = (props) => {
   )
   return(
     <div className="boardButtBox">
+      {newBoardB}
       {clearBoardB}
       {submitBoardB}
     </div>

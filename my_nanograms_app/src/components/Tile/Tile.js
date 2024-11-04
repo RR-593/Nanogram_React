@@ -26,8 +26,8 @@ export default function Tile(props){
 
   var toggleTileState = (isRightClick) =>{
     MouseDrawTileStateContext = isRightClick?
-    selectedState == -1 ? 1 : selectedState - 1 :
-    selectedState == 1 ? -1 : selectedState + 1 
+    -1 :
+    selectedState == 1 ? 0 : selectedState + 1 
 
     setSelect(MouseDrawTileStateContext)
   }

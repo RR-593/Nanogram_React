@@ -1,22 +1,25 @@
 import { useEffect, useState, useContext } from 'react'
 import './NanoBoard.css';
 import {useStatsContext} from '../StatsProvider'
+import {useNanogramContext} from '../NanogramProvider'
 import Tile from '../Tile/Tile'
 import Clue from '../Clue/Clue'
 
 export default function NanoBoard(props){
   const [game_stats, updateGStats] = useStatsContext();
-  const boardSize = Number(props.size);
-  const clueRows = props.clueRows;
-  const clueCols = props.clueCols;
+  const [nanogram, setNewNanogram] = useNanogramContext();
+  const boardSize = props.size
   
+
   const [board, setBoard] = useState([]);
   const [colClues, setColClues] = useState([]);
   const [rowClues, setRowClues] = useState([]);
 
+
   // Effect to clear and reset the board when count changes
   useEffect(() => {
-
+    setNewNanogram({size: boardSize})
+    // boardSize = nanogram.size
     // Clear the board
     setBoard([]);
     setColClues([]);
@@ -24,12 +27,12 @@ export default function NanoBoard(props){
 
     // Reinitialize after clearing
     if (boardSize > 0) {
-      setColClues(clueCols);
-      setRowClues(clueRows);
+      setColClues(nanogram.clue.cols);
+      setRowClues(nanogram.clue.rows);
 
       setBoard([...Array(boardSize)].map((_, index) => <Tile key={index} size={boardSize} clear={game_stats.board_count} />));
     }
-  }, [game_stats.board_count, boardSize]);
+  }, [game_stats.board_count]);
   
   
   

@@ -4,49 +4,8 @@ import './App.css';
 import NanoBoard from './components/NanoBoard/NanoBoard';
 import BoardButtons from './components/BoardButtons/BoardButtons';
 import StatsProvider from './components/StatsProvider'
-
-const nanogram = {
-  size: 0,
-  clues: {
-    row: [],
-    col: []
-  }
-}
-
-const generateNanogramArr = (size) => Array.from({ length: size }, () => Array.from({ length: size }, () => Math.round(Math.random())))
-const generateClueForCollumnsArr = (nanogramArr) => {
-  return nanogramArr[0].map((_, col) => {
-      const counts = [];
-      let count = 0;
-
-      for (const row of nanogramArr) 
-        count = row[col] === 1 ? 
-        count + 1 : 
-        (count ? 
-          (counts.push(count), 0) : 
-          count
-        )
-      
-
-      if (count) counts.push(count);
-      return counts;
-  });
-}
-const generateClueForRowsArr = (nanogramArr) => nanogramArr.map( row => {
-  const counts = [];
-  let count = 0;
-
-  row.forEach(value => {
-      if (value === 1) count++;
-      else if (count) {
-        counts.push(count)
-        count = 0;
-      }
-  });
-
-  if (count) counts.push(count);
-  return counts;
-})
+import NanogramProvider from './components/NanogramProvider';
+import {useNanogramContext} from './components/NanogramProvider';
 
 function App() {
   const [blogs, setBlogs] = useState([])
@@ -56,23 +15,21 @@ function App() {
       .then(data => setBlogs(data))
   }, [])
 
-  let size = 8
-  let nanogramArr = generateNanogramArr(size)
-  let clueRows = generateClueForRowsArr(nanogramArr)
-  let clueCols = generateClueForCollumnsArr(nanogramArr)
-  
-  
+
+  let size = 12
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>Nanogram</h1>
       </header>
       <div className="GameInterface">
-        <StatsProvider >
-          <BoardButtons />
-          <NanoBoard size={size} clueRows={clueRows} clueCols={clueCols} />
-        </StatsProvider>
-        
+        <NanogramProvider>
+          <StatsProvider >
+            <BoardButtons />
+            <NanoBoard size={size}/>
+          </StatsProvider>
+        </NanogramProvider>
       </div>
     </div>
   );

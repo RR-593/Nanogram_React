@@ -3,3 +3,7 @@
 	flex-direction: column;
   gap: 15px;
 }
+
+input[name="input_board_size"]{
+	width: 2em
+}
