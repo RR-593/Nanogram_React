@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
 import './App.css';
 
-import NanoBoard from './components/NanoBoard/NanoBoard';
+import DisplayNanoBoard from './components/NanoBoard/DisplayNanoBoard';
 import BoardButtons from './components/BoardButtons/BoardButtons';
 import StatsProvider from './components/StatsProvider'
 import NanogramProvider from './components/NanogramProvider';
-import {useNanogramContext} from './components/NanogramProvider';
 
 function App() {
   const [blogs, setBlogs] = useState([])
@@ -27,7 +26,7 @@ function App() {
         <StatsProvider >
           <NanogramProvider>
               <BoardButtons />
-              <NanoBoard />
+              <DisplayNanoBoard />
           </NanogramProvider>
         </StatsProvider>
       </div>

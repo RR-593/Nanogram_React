@@ -1,25 +1,22 @@
 import { useEffect, useState, useContext } from 'react'
-import './NanoBoard.css';
+import './DisplayNanoBoard.css';
 import {useStatsContext} from '../StatsProvider'
 import {useNanogramContext} from '../NanogramProvider'
 import Tile from '../Tile/Tile'
 import Clue from '../Clue/Clue'
 
-export default function NanoBoard(props){
+export default function DisplayNanoBoard(){
   const [game_stats, updateGStats] = useStatsContext();
   const [nanogram, setNewNanogram] = useNanogramContext();
   var boardSize = nanogram.size? nanogram.size : game_stats.default_board_size
 
-  const [board, setBoard] = useState([]);
   const [colClues, setColClues] = useState([]);
   const [rowClues, setRowClues] = useState([]);
-
 
   // Effect to clear and reset the board when count changes
   useEffect(() => {
     
     // Clear the board
-    setBoard([]);
     setColClues([]);
     setRowClues([]);
 
@@ -27,19 +24,16 @@ export default function NanoBoard(props){
     if (boardSize > 0) {
       setColClues(nanogram.clue.cols);
       setRowClues(nanogram.clue.rows);
-
-      setBoard([...Array(boardSize)].map((_, index) => <Tile key={index} />));
     }
   }, [nanogram]);
   
   
-  
   return (
     <div className="nanogram-board">
-      {[...Array(boardSize)].map((_, index) =>
-        <div key={index} className="row">
-          {board}
-          <Clue size={boardSize} index={index} clueNumber={rowClues[index]}/>
+      {[...Array(boardSize)].map((_, rowIndex) =>
+        <div key={rowIndex} className="row">
+          {[...Array(boardSize)].map((_, colIndex) => <Tile key={colIndex} id={[rowIndex,colIndex]}/>)}
+          <Clue size={boardSize} index={rowIndex} clueNumber={rowClues[rowIndex]}/>
         </div>
       )}
       <div className="row">
