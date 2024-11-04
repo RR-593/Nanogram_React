@@ -24,11 +24,11 @@ const BoardButtons = (props) => {
   }
 
   let newBoardB = (
-    <div>
+    <div className="newBoardInputs">
     <input name="input_board_size" type="text" placeholder={game_stats.default_board_size}></input>
     <button onClick={newBoardAction}>
       <span>
-        New Board
+        <i className="fa fa-plus fa-1x"></i>
       </span>
     </button>
     </div>
@@ -36,8 +36,9 @@ const BoardButtons = (props) => {
 
   let clearBoardB = (
     <button onClick={clearBoardAction}>
-      <span>
-        Clear Board
+      <span style={{ display: "flex", justifyContent: "center", gap: "20px"}} >
+        {/* <i class="fa fa-file-o fa-1x" ></i> */}
+        Clear
       </span>
     </button>
   )
@@ -45,7 +46,7 @@ const BoardButtons = (props) => {
   let submitBoardB = (
     <button onClick={submitBoardAction}>
       <span>
-        Check Board
+        Check
       </span>
     </button>
   )

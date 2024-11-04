@@ -2,8 +2,32 @@
 	display: flex;
 	flex-direction: column;
   gap: 15px;
+	margin: 20px;
 }
 
+.boardButtBox button{
+	border-radius: 8px; 
+	min-height: 7vh;
+  min-width: 12vh;
+	border: 0px solid #19424e;
+	background-color:#19424e;
+
+	font-size: 28px;
+	color: #F3FCFF;
+
+	
+}
+.newBoardInputs{
+	display: flex;
+}
 input[name="input_board_size"]{
-	width: 2em
+	text-align: center;
+	width: 3em;
+	min-height: 7vh;
+	margin-right: 10px;
+
+	background-color:#f3fcff64;
+	border-radius: 8px; 
+	border: 0px solid #19424e;
+	font-size: 28px;
 }

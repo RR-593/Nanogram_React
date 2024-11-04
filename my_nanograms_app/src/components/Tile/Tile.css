@@ -15,10 +15,3 @@
 .tile[state="1"]{
     background-color:#001319
 }
-
-.tile[state="-1"]>i{
-    visibility: visible;
-}
-:not(.tile[state="-1"])>i{
-    visibility: hidden;
-}

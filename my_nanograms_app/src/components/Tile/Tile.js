@@ -59,7 +59,7 @@ export default function Tile(props){
       onContextMenu = {(e)=>{e.preventDefault()}}
       onMouseEnter = {onMouseHoverTile}
     >
-      <i className="fa  fa-close" hidden></i>
+      <i className="fa  fa-close" hidden={!(selected == -1)}></i>
     </div>
   )
   

@@ -45,3 +45,7 @@
   border: 0px solid #001319;
   border-radius: 8px;
 }
+
+i[hidden=""]{
+  visibility: hidden;
+}
