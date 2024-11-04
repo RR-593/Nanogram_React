@@ -21,15 +21,20 @@
 	
 		render() {
 			let clueNumber = typeof this.props.clueNumber === "undefined"? [] : this.props.clueNumber
+			let isBtmRow = this.props.vert == "true"? true : false
+			let displayedClue = clueNumber.map((num,i)=>{return(<div key={i}>{num}<br /></div>)})
 			return (
 				<div className={"clue " + (Number(this.props.index)%2 == 0?"odd":"even")}
 					index={this.props.index}
 				 	style={{minHeight: (400/this.props.size)+"px", minWidth: (400/this.props.size)+"px", fontSize: (320/this.props.size)+"px"}}
 					clue={clueNumber.join(",")}
 					onContextMenu={(e)=>{e.preventDefault()}}
-					btmrow={this.props.vert}
+					btmrow={isBtmRow+""}
 				>
-					<span>{clueNumber.join(", ")}</span>
+					<span className="number" btmrow={isBtmRow+""}>
+						{displayedClue}
+					</span>
+					
 				</div>
 			)
 		}

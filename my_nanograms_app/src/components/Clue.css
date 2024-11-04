@@ -2,11 +2,12 @@
 .clue{
 	border-radius: 8px 0px 0px 8px; 
 	min-height: 10vh;
-	min-width: 10vh;
+	width: -moz-available;
 	border: 4px solid #19424e;
 	background-color:#19424e
 }
 .clue[btmRow="true"]{
+	width: auto;
 	border-radius: 8px 8px 0px 0px; 
 	text-orientation: upright;
 
@@ -17,4 +18,23 @@
 .clue.odd{
 	border-color: #417A80;
 	background-color:#417A80
+}
+.number:not([btmRow="true"]){
+	display: flex;
+	justify-content: flex-start;
+	gap: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
+
+}
+.number[btmRow="true"]{
+	display: block;
+
+}
+
+.number{
+	user-select: none; /* Standard syntax */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none;
 }
