@@ -24,6 +24,9 @@ export default function DisplayNanoBoard(){
     if (boardSize > 0) {
       setColClues(nanogram.clue.cols);
       setRowClues(nanogram.clue.rows);
+
+      console.log(nanogram.clue.cols)
+      console.log(nanogram.clue.rows)
     }
   }, [nanogram]);
   

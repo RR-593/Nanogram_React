@@ -31,24 +31,23 @@ const NanogramProvider = ({ children }) => {
   };
 
 	const generateNanogramArr = (size) => Array.from({ length: size }, () => Array.from({ length: size }, () => Math.round(Math.random())))
-	const generateClueForCollumnsArr = (nanogramArr) => {
-		return nanogramArr[0].map((_, col) => {
-				const counts = [];
-				let count = 0;
+	const generateClueForCollumnsArr = (nanogramArr) => nanogramArr[0].map((_, col) => {
+		const counts = [];
+		let count = 0;
+
+		for (const row of nanogramArr) 
+			count = row[col] === 1 ? 
+			count + 1 : 
+			(count ? 
+				counts.push(count) : 
+				count
+			)
+		
+		if (count) counts.push(count);
+		if (counts.length == 0) return [0]
+		return counts;
+	});
 	
-				for (const row of nanogramArr) 
-					count = row[col] === 1 ? 
-					count + 1 : 
-					(count ? 
-						(counts.push(count), 0) : 
-						count
-					)
-				
-	
-				if (count) counts.push(count);
-				return counts;
-		});
-	}
 	const generateClueForRowsArr = (nanogramArr) => nanogramArr.map( row => {
 		const counts = [];
 		let count = 0;
@@ -62,6 +61,7 @@ const NanogramProvider = ({ children }) => {
 		});
 	
 		if (count) counts.push(count);
+		if (counts.length == 0) return [0]
 		return counts;
 	})
 	useEffect(() => {
