@@ -8,6 +8,8 @@ RUN npm install
 
 RUN npm install gh-pages --save-dev
 
+RUN npm install jquery --save
+
 COPY . .
 
 EXPOSE 3000

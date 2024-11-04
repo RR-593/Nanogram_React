@@ -16,7 +16,7 @@ function App() {
   }, [])
 
 
-  let size = 12
+  let size = 4
 
   return (
     <div className="App">
@@ -27,7 +27,7 @@ function App() {
         <NanogramProvider>
           <StatsProvider >
             <BoardButtons />
-            <NanoBoard size={size}/>
+            <NanoBoard />
           </StatsProvider>
         </NanogramProvider>
       </div>
