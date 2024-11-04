@@ -1,32 +1,28 @@
 import { useEffect, useState, createContext } from 'react'
-import './nanogram-board.css';
-import Tile from './Tile'
-import Clue from './Clue'
+import './NanoBoard.css';
+import Tile from '../Tile/Tile'
+import Clue from '../Clue/Clue'
 
 export default function NanoBoard(props){
   const boardSize = Number(props.size);
   
-  const [boardRows, setRows] = useState([]);
-  const [boardCols, setCols] = useState([]);
+  const [board, setBoard] = useState([]);
   const [colClues, setColClues] = useState([]);
   const [rowClues, setRowClues] = useState([]);
 
   // Effect to clear and reset the board when count changes
   useEffect(() => {
-    console.log("Clear");
     // Clear the board
-    setRows([]);
-    setCols([]);
+    setBoard([]);
     setColClues([]);
     setRowClues([]);
 
     // Reinitialize after clearing
     if (boardSize > 0) {
-      const bArr = Array.from({ length: boardSize });
-      setRows(bArr);
-      setCols([...Array(5)].map((_, index) => <Tile key={index} size={boardSize} />));
       setColClues([[1, 1, 1], [4], [3], [1, 1], [0]]);
       setRowClues([[2], [1], [1, 2, 1], [1], [0]]);
+
+      setBoard([...Array(boardSize)].map((_, index) => <Tile key={index} size={boardSize} clear={props.count} />));
     }
   }, [props.count, boardSize]);
   
@@ -34,13 +30,12 @@ export default function NanoBoard(props){
   
   return (
     <div className="nanogram-board" count={props.count}>
-      {boardRows.map( (row,index) => (
+      {[...Array(boardSize)].map((_, index) =>
         <div key={index} className="row">
-          {boardCols}
+          {board}
           <Clue size={boardSize} index={index} clueNumber={colClues[index]}/>
-          {console.log(boardCols)}
         </div>
-      ))}
+      )}
       <div className="row">
         {[...Array(boardSize)].map((x,index) => (<Clue key={index} size={boardSize} index={index} clueNumber={rowClues[index]} vert="true"/>))}
       </div>

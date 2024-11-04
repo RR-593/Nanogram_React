@@ -1,7 +1,7 @@
 import { useEffect, useState, createContext, useContext } from 'react'
 import './App.css';
 
-import NanoBoard from './components/nanogram-board';
+import NanoBoard from './components/NanoBoard/NanoBoard';
 
 const statsContext = createContext()
 
@@ -22,7 +22,11 @@ function BoardButtons(props){
   }
   return(
     <div className="boardButtBox">
-      <button onClick={clearBoard}>    </button>
+      <button onClick={clearBoard}>
+        <span>
+          Clear Board
+        </span>
+      </button>
     </div>
   )
 }
