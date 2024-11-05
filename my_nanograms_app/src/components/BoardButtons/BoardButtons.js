@@ -14,10 +14,11 @@ const BoardButtons = (props) => {
   const [board, updateBoard] = useActiveBoardContext();
 
   let clearBoardAction = ()=>{
-    updateGStats({...game_stats, clear: !game_stats.clear})
+    updateGStats({...game_stats, clear: !game_stats.clear, complete_puzzle: false})
   }
 
   let submitBoardAction = ()=>{
+    updateGStats({...game_stats, complete_puzzle: compareNanograms(board,nanogram.nanogramArr)})
     console.log(compareNanograms(board,nanogram.nanogramArr)?"Correct!":"Incorrect")
     // console.log(toString2DArray(board)+"\n\n"+toString2DArray(nanogram.nanogramArr))
   }
@@ -26,6 +27,7 @@ const BoardButtons = (props) => {
     let getInput = Number($("input[name='input_board_size']").val())
     let new_size = getInput > game_stats.default_board_size ? getInput : game_stats.default_board_size
 
+    updateGStats({...game_stats, complete_puzzle: false})
     setNewNanogram({size: new_size})
   }
 

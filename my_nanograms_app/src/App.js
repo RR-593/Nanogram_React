@@ -6,6 +6,7 @@ import BoardButtons from './components/BoardButtons/BoardButtons';
 import StatsProvider from './components/StatsProvider'
 import NanogramProvider from './components/NanogramProvider';
 import ActiveBoardProvider from './components/ActiveBoardProvider'
+import Confetti_Cone from './components/Confetti/Confetti_Cone'
 
 function App() {
   const [blogs, setBlogs] = useState([])
@@ -29,6 +30,7 @@ function App() {
             <ActiveBoardProvider>
               <BoardButtons />
               <DisplayNanoBoard />
+              <Confetti_Cone />
             </ActiveBoardProvider>
           </NanogramProvider>
         </StatsProvider>
