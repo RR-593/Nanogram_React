@@ -28,14 +28,14 @@ export default function Tile(props){
 
 
   var onClickHandler = (e)=>{
-    toggleTileState(e.button == 2,e.shiftKey)
+    toggleTileState(e.button === 2,e.shiftKey)
   }
 
   var toggleTileState = (isRightClick,isShift) =>{
     MouseDrawTileStateContext = isRightClick?
-    selectedState ==  0 ? -1 : 0 :
+    selectedState ===  0 ? -1 : 0 :
     isShift? -2:
-    selectedState ==  1 ?  0 : 1
+    selectedState ===  1 ?  0 : 1
 
     updateSelect()
   }
@@ -47,7 +47,7 @@ export default function Tile(props){
 
   var updateSelect = () =>{
     let boardCopy = board
-    boardCopy[props.id[0]][props.id[1]] = MouseDrawTileStateContext == 1 ? 1 : 0
+    boardCopy[props.id[0]][props.id[1]] = MouseDrawTileStateContext === 1 ? 1 : 0
     updateBoard(boardCopy)
     setSelect(MouseDrawTileStateContext)
   }
@@ -68,7 +68,7 @@ export default function Tile(props){
       onContextMenu = {(e)=>{e.preventDefault()}}
       onMouseEnter = {onMouseHoverTile}
     >
-      <i className={("fa  fa-"+(selected == -1 ? "close" : "question"))} hidden={!(selected <= -1)}></i>
+      <i className={("fa  fa-"+(selected === -1 ? "close" : "question"))} hidden={!(selected <= -1)}></i>
     </div>
   )
   

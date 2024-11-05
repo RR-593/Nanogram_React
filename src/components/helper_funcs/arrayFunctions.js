@@ -27,7 +27,7 @@ export const createColumnClues = (nanogramArr) => nanogramArr[0].map((_, col) =>
 		)
 	
 	if (count) counts.push(count);
-	if (counts.length == 0) return [0]
+	if (counts.length === 0) return [0]
 	return counts;
 });
 
@@ -51,7 +51,7 @@ export const createRowClues = (nanogramArr) => nanogramArr.map( row => {
 	});
 
 	if (count) counts.push(count);
-	if (counts.length == 0) return [0]
+	if (counts.length === 0) return [0]
 	return counts;
 })
 
