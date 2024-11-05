@@ -5,7 +5,7 @@ import {useNanogramContext} from '../NanogramProvider'
 import {useActiveBoardContext} from '../ActiveBoardProvider'
 import './BoardButtons.css'
 
-import {compare2DArrays, toString2DArray} from '../helper_funcs/arrayFunctions.js'
+import {compareNanograms, toString2DArray} from '../helper_funcs/arrayFunctions.js'
 
 const BoardButtons = (props) => {
   
@@ -18,8 +18,8 @@ const BoardButtons = (props) => {
   }
 
   let submitBoardAction = ()=>{
-    console.log(compare2DArrays(board,nanogram.nanogramArr)?"Correct!":"Incorrect")
-    console.log(toString2DArray(board)+"\n\n"+toString2DArray(nanogram.nanogramArr))
+    console.log(compareNanograms(board,nanogram.nanogramArr)?"Correct!":"Incorrect")
+    // console.log(toString2DArray(board)+"\n\n"+toString2DArray(nanogram.nanogramArr))
   }
 
   let newBoardAction = ()=>{

@@ -72,6 +72,19 @@ export const compare2DArrays = (array1, array2) => {
 	);
 }
 
+export const compareNanograms = (nanoArr1, nanoArr2) => {
+	let clueSet1 = {
+		rows: createRowClues(nanoArr1), 
+		cols: createColumnClues(nanoArr1)
+	}
+	let clueSet2 = {
+		rows: createRowClues(nanoArr2), 
+		cols: createColumnClues(nanoArr2)
+	}
+	
+	return compare2DArrays(clueSet1.rows,clueSet2.rows) && compare2DArrays(clueSet1.cols,clueSet2.cols)
+}
+
 /**
  * Converts a 2D array into a string representation where each row is joined into a string.
  * The rows are then concatenated with a newline character.
