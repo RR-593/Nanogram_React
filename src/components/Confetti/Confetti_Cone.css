@@ -4,6 +4,7 @@
 	top: 11em;
   right: 44em;
 	width: 15em;
+  height: 15em;
 	pointer-events: none;
 
 	--animation-dur: 1s
