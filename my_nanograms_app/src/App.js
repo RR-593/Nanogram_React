@@ -9,12 +9,12 @@ import ActiveBoardProvider from './components/ActiveBoardProvider'
 import Confetti_Cone from './components/Confetti/Confetti_Cone'
 
 function App() {
-  const [blogs, setBlogs] = useState([])
-  useEffect(() => {
-    fetch('http://localhost:4000/')
-      .then(res => res.json())
-      .then(data => setBlogs(data))
-  }, [])
+  // const [blogs, setBlogs] = useState([])
+  // useEffect(() => {
+  //   fetch('http://localhost:4000/')
+  //     .then(res => res.json())
+  //     .then(data => setBlogs(data))
+  // }, [])
 
 
   let size = 4
