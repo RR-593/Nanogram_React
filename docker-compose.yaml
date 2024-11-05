@@ -1,7 +1,7 @@
 services:
   my_nanograms_app:
     build: ./
-    container_name: nanograms_c
+    container_name: nanograms_app
     ports:
       - '3000:3000'
     stdin_open: true
