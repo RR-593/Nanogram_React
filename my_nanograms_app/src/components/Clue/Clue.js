@@ -2,12 +2,13 @@ import "./Clue.css"
 import React, { useState, createContext, useEffect } from 'react';
 import {useNanogramContext} from '../NanogramProvider'
 
+import {create2DArray} from '../helper_funcs/arrayFunctions'
 
 export default function Clue(props){
 	const [nanogram, setNewNanogram] = useNanogramContext();
 
 	let clueNumber = props.direction == "row" ? nanogram.clue.rows[props.index] : nanogram.clue.cols[props.index] 
-	clueNumber = typeof clueNumber === "undefined" ? Array.from({ length: nanogram.size }, () => Array.from({ length: nanogram.size }, () => 0)) : clueNumber
+	clueNumber = typeof clueNumber === "undefined" ? create2DArray(nanogram.size,0) : clueNumber
 	let isBtmRow = props.direction == "col"? true : false
 	let displayedClue = clueNumber.map((num,i)=>{return(<div key={i}>{num}<br /></div>)})
 

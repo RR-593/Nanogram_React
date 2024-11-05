@@ -1,6 +1,8 @@
 import { useState, createContext, useContext, useEffect } from 'react'
 import {useStatsContext} from './StatsProvider'
 
+import {create2DArray, createColumnClues, createRowClues, compare2DArrays, toString2DArray} from './helper_funcs/arrayFunctions'
+
 const NanogramContext = createContext()
 
 const NanogramProvider = ({ children }) => {
@@ -16,9 +18,9 @@ const NanogramProvider = ({ children }) => {
 	
   const setNewNanogram = (nanogramValues) => {
 		let size = nanogramValues.size
-		let nanogramArr = generateNanogramArr(size)
-		let clueRows = generateClueForRowsArr(nanogramArr)
-		let clueCols = generateClueForCollumnsArr(nanogramArr)
+		let nanogramArr = create2DArray(size,()=>Math.round(Math.random()))
+		let clueRows = createRowClues(nanogramArr)
+		let clueCols = createColumnClues(nanogramArr)
 
     setNanogram({...nanogram, ...{
 			size: size,
@@ -30,40 +32,7 @@ const NanogramProvider = ({ children }) => {
 		}});
   };
 
-	const generateNanogramArr = (size) => Array.from({ length: size }, () => Array.from({ length: size }, () => Math.round(Math.random())))
-	const generateClueForCollumnsArr = (nanogramArr) => nanogramArr[0].map((_, col) => {
-		const counts = [];
-		let count = 0;
 
-		for (const row of nanogramArr) 
-			count = row[col] === 1 ? 
-			count + 1 : 
-			(count ? 
-				(counts.push(count), 0): 
-				count
-			)
-		
-		if (count) counts.push(count);
-		if (counts.length == 0) return [0]
-		return counts;
-	});
-	
-	const generateClueForRowsArr = (nanogramArr) => nanogramArr.map( row => {
-		const counts = [];
-		let count = 0;
-	
-		row.forEach(value => {
-				if (value === 1) count++;
-				else if (count) {
-					counts.push(count)
-					count = 0;
-				}
-		});
-	
-		if (count) counts.push(count);
-		if (counts.length == 0) return [0]
-		return counts;
-	})
 	useEffect(() => {
 		setNewNanogram({size: game_stats.default_board_size})
 	}, []);

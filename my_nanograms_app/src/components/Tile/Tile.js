@@ -10,6 +10,7 @@ import {useStatsContext} from '../StatsProvider'
 import {useNanogramContext} from '../NanogramProvider'
 import {useActiveBoardContext} from '../ActiveBoardProvider'
 
+
 let MouseDrawTileStateContext = 0;
 let mouseDown = false;
 document.body.onmousedown = () => {

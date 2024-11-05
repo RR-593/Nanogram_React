@@ -1,6 +1,8 @@
 import { useState, createContext, useContext,useEffect } from 'react'
 import {useNanogramContext} from './NanogramProvider'
 
+import {create2DArray} from './helper_funcs/arrayFunctions'
+
 const ActiveBoardContext = createContext()
 
 const StatsProvider = ({ children }) => {
@@ -13,7 +15,7 @@ const StatsProvider = ({ children }) => {
 
 	useEffect(()=>{
 
-		setBoard(Array.from({ length: nanogram.size }, () => Array.from({ length: nanogram.size }, () => 0)))
+		setBoard(create2DArray(nanogram.size,0))
 	},[nanogram])
 
 	return (

@@ -5,6 +5,8 @@ import {useNanogramContext} from '../NanogramProvider'
 import {useActiveBoardContext} from '../ActiveBoardProvider'
 import './BoardButtons.css'
 
+import {compare2DArrays, toString2DArray} from '../helper_funcs/arrayFunctions.js'
+
 const BoardButtons = (props) => {
   
   const [game_stats, updateGStats] = useStatsContext();
@@ -16,25 +18,8 @@ const BoardButtons = (props) => {
   }
 
   let submitBoardAction = ()=>{
-    var compareArr2D = (array1, array2) => {
-      if (array1.length !== array2.length) return false; // Different number of rows
-  
-      return array1.every((row, rowIndex) => (
-          row.length !== array2[rowIndex].length) ? 
-          false: // Different number of columns in a row
-          row.every((value, colIndex) => value === array2[rowIndex][colIndex]
-        )
-      );
-    }
-
-    var array2dToString = (array) => {
-      // Convert the 2D array to the desired string format
-      const arrayString = array.map(row => row.join('')).join('\n');
-      return `${arrayString}`;
-    }
-
-    console.log(compareArr2D(board,nanogram.nanogramArr)?"Correct!":"Incorrect")
-    // console.log(array2dToString(board)+"\n\n"+array2dToString(nanogram.nanogramArr))
+    console.log(compare2DArrays(board,nanogram.nanogramArr)?"Correct!":"Incorrect")
+    console.log(toString2DArray(board)+"\n\n"+toString2DArray(nanogram.nanogramArr))
   }
 
   let newBoardAction = ()=>{
