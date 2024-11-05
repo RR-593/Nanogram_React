@@ -25,6 +25,8 @@ const BoardButtons = (props) => {
 
   let newBoardAction = ()=>{
     let getInput = Number($("input[name='input_board_size']").val())
+    getInput  = getInput > 25 ? 25 : getInput
+    $("input[name='input_board_size']").val(getInput)
     let new_size = getInput > game_stats.default_board_size ? getInput : game_stats.default_board_size
 
     updateGStats({...game_stats, complete_puzzle: false})

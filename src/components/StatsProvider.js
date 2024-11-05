@@ -6,7 +6,8 @@ const StatsProvider = ({ children }) => {
 	const [game_stats, setGStats] = useState({
     clear: false,
 		complete_puzzle: false,
-		default_board_size: 4
+		default_board_size: 4,
+		max_board_size: 25
   })
   const updateGStats = (newValue) => {
     setGStats(newValue);
