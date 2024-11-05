@@ -1,9 +1,9 @@
 .confetti-cone-box{
 	display: block;
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 20em;
+	position: relative;
+	top: 11em;
+  right: 49em;
+	width: 15em;
 
 	--animation-dur: 1s
 
