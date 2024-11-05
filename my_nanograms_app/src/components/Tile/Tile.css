@@ -4,11 +4,15 @@
     min-height: 10vh;
     min-width: 10vh;
     font-size:63px;
+    
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 .tile[state="0"]{
     background-color: #F3FCFF;
 }
-.tile[state="-1"]{
+.tile[state="-1"],.tile[state="-2"]{
     color: #001319;
     background-color: #F3FCFF;
 }

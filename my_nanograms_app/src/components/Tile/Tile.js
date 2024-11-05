@@ -28,13 +28,14 @@ export default function Tile(props){
 
 
   var onClickHandler = (e)=>{
-    toggleTileState(e.button == 2)
+    toggleTileState(e.button == 2,e.shiftKey)
   }
 
-  var toggleTileState = (isRightClick) =>{
+  var toggleTileState = (isRightClick,isShift) =>{
     MouseDrawTileStateContext = isRightClick?
-    selectedState == -1 ? 0 : -1 :
-    selectedState == 1 ? 0 : selectedState + 1 
+    selectedState ==  0 ? -1 : 0 :
+    isShift? -2:
+    selectedState ==  1 ?  0 : 1
 
     updateSelect()
   }
@@ -67,7 +68,7 @@ export default function Tile(props){
       onContextMenu = {(e)=>{e.preventDefault()}}
       onMouseEnter = {onMouseHoverTile}
     >
-      <i className="fa  fa-close" hidden={!(selected == -1)}></i>
+      <i className={("fa  fa-"+(selected == -1 ? "close" : "question"))} hidden={!(selected <= -1)}></i>
     </div>
   )
   
