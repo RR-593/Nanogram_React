@@ -1,5 +1,5 @@
 <h1 align="center">
-     <img src=https://github.com/RR-593/Nanogram_React/blob/main/public/logo192.png" width="30" height="30">
+     <img src="https://github.com/RR-593/Nanogram_React/blob/main/public/favicon.ico" width="30" height="30">
     <b>Nanogram Web App</b>
     <br>
 </h1>
