@@ -1,8 +1,18 @@
-# Nanogram Game
+<h1 align="center">
+     <img src=https://github.com/RR-593/Nanogram_React/blob/main/public/logo192.png" width="30" height="30">
+    <b>Nanogram Web App</b>
+    <br>
+</h1>
 
-[Play it now here <-](https://rr-593.github.io/Nanogram_React/)
+<p align="center">
+  <b>A simple and interactive Nanogram</b> <br />
+  <b>Built with React • Really fun to play.</b> <br />
+</p>
 
-A simple and interactive Nanogram game built with React. This web app allows users to solve puzzles by filling in cells based on number clues provided on the rows and columns. The goal is to uncover a random hidden picture.
+<h3 align="center">
+ &bull;
+  <a href="https://rr-593.github.io/Nanogram_React/">Play</a>  &bull;
+</h3>
 
 ## Features
 
