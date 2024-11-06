@@ -18,13 +18,28 @@ const NanogramProvider = ({ children }) => {
 	
   const setNewNanogram = (nanogramValues) => {
 		let size = nanogramValues.size
-		let nanogramArr = create2DArray(size,()=>Math.round(Math.random()))
-		let clueRows = createRowClues(nanogramArr)
-		let clueCols = createColumnClues(nanogramArr)
+
+		let createNanogramArr = () => create2DArray(size,()=>Math.round(Math.random()))
+
+		let nanoArr = createNanogramArr()
+		let clueRows = createRowClues(nanoArr)
+		let clueCols = createColumnClues(nanoArr)
+
+		//Return true if a number greater than target exists in 2d array
+		let isCluesEasy = (array2D, intToFind) => array2D.some(subArray => subArray.some(num => num >= intToFind))
+		
+		let minimumClueTarget = Math.ceil(size/2)
+
+		while(!(isCluesEasy(clueRows, minimumClueTarget) && isCluesEasy(clueCols,minimumClueTarget))){
+			nanoArr = createNanogramArr()
+			clueRows = createRowClues(nanoArr)
+			clueCols = createColumnClues(nanoArr)
+		}
+		console.log(isCluesEasy(clueRows,Math.floor(size/2)+1) && isCluesEasy(clueCols,Math.floor(size/2)+1))
 
     setNanogram({...nanogram, ...{
 			size: size,
-			nanogramArr: nanogramArr,
+			nanogramArr: nanoArr,
 			clue: {
 				rows: clueRows,
 				cols: clueCols

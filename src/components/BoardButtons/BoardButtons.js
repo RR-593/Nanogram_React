@@ -26,8 +26,8 @@ const BoardButtons = (props) => {
   let newBoardAction = ()=>{
     let getInput = Number($("input[name='input_board_size']").val())
     getInput = getInput > 25 ? 25 : 
-    getInput > game_stats.default_board_size ? getInput : 
-    game_stats.default_board_sizes
+    typeof getInput !== "undefined" && getInput > game_stats.default_board_size ? getInput : 
+    game_stats.default_board_size
 
     $("input[name='input_board_size']").val(getInput)
 
