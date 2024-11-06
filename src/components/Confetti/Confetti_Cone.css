@@ -1,14 +1,37 @@
-.confetti-cone-box{
-	display: block;
-	position: relative;
-	top: 11em;
+.confetti-cone-box {
+  display: block;
+  position: relative;
+  top: 11em;
   right: 44em;
-	width: 15em;
+  width: 15em;
   height: 15em;
-	pointer-events: none;
+  pointer-events: none;
 
-	--animation-dur: 1s
+  /* Custom CSS Variables */
+  --animation-dur: 1.3s; /* Base duration of a single iteration */
+  --animation-iteration-count: 4; /* Number of iterations */
+  --animation-delay: 0s; /* Delay before animation starts */
 
+  /* Set the animation using CSS variables */
+  animation: increase-opacity calc(var(--animation-dur) * var(--animation-iteration-count)) linear 2 var(--animation-delay);
+
+  /* Initial opacity is 0 (invisible) */
+  opacity: 0;
+}
+
+@keyframes increase-opacity {
+  0% {
+    opacity: 0; /* Start as invisible */
+  }
+  10% {
+    opacity: 1; /* Quickly fade in */
+  }
+  90% {
+    opacity: 1; /* Stay fully visible */
+  }
+  100% {
+    opacity: 0; /* Fade out again */
+  }
 }
 
 
@@ -25,7 +48,10 @@
 
 .confetti-cone{
   transform-origin: 200px 50px;
-  animation:confetti-cone1 var(--animation-dur) ease infinite;
+  animation:confetti-cone1 var(--animation-dur) ease;
+  animation-iteration-count: var(--animation-iteration-count);
+  animation-delay: var(--animation-delay);
+  transform:translate(40px, 95px)  rotate(45deg) scale(1, 1);
 }
 @keyframes confetti-cone1{
 0%{
@@ -46,7 +72,9 @@
   stroke-width:9;
   stroke-linecap:round;
   stroke-miterlimit:10;
-  animation: confdash var(--animation-dur) ease infinite;
+  animation: confdash var(--animation-dur) ease;
+  animation-iteration-count: var(--animation-iteration-count);
+  animation-delay: var(--animation-delay);
 }
 
 
@@ -94,12 +122,16 @@ opacity:1;
 
 #a2{
   transform-origin: 310.9px 241px;
-  animation: confa var(--animation-dur) ease-out infinite;
+  animation: confa var(--animation-dur) ease-out;
+  animation-iteration-count: var(--animation-iteration-count);
+  animation-delay: var(--animation-delay);
 }
 
 #a1
 {transform-origin: 276px 246px;
-  animation: confa var(--animation-dur) ease-out infinite;
+  animation: confa var(--animation-dur) ease-out;
+  animation-iteration-count: var(--animation-iteration-count);
+  animation-delay: var(--animation-delay);
 }
 
 @keyframes confa {
@@ -124,23 +156,33 @@ opacity:1;
 
 #b1{
   transform-origin: 195.2px 232.6px;
-  animation: confb var(--animation-dur) ease-out infinite;
+  animation: confb var(--animation-dur) ease-out;
+  animation-iteration-count: var(--animation-iteration-count);
+  animation-delay: var(--animation-delay);
 }
 
 #b2{
   transform-origin: 230.8px 219.8px;
-  animation: confb var(--animation-dur) ease-out infinite;
+  animation: confb var(--animation-dur) ease-out;
+  animation-iteration-count: var(--animation-iteration-count);
+  animation-delay: var(--animation-delay);
 }
 #b3 {transform-origin: 222.8px 190.6px;
-  animation: confb var(--animation-dur) ease-out infinite;
+  animation: confb var(--animation-dur) ease-out;
+  animation-iteration-count: var(--animation-iteration-count);
+  animation-delay: var(--animation-delay);
 }
 
 #b4 {transform-origin: 262px 188.5px;
-  animation: confb var(--animation-dur) ease-out infinite;
+  animation: confb var(--animation-dur) ease-out;
+  animation-iteration-count: var(--animation-iteration-count);
+  animation-delay: var(--animation-delay);
 }
 
 #b5 {transform-origin: 282.3px 170.6px;
-  animation: confb var(--animation-dur) ease-out infinite;
+  animation: confb var(--animation-dur) ease-out;
+  animation-iteration-count: var(--animation-iteration-count);
+  animation-delay: var(--animation-delay);
 }
 
 
@@ -164,21 +206,29 @@ opacity:1;
 }
 
 #c1 {transform-origin: 174.8px 183.4px;
-  animation: confc var(--animation-dur) ease-out infinite;
+  animation: confc var(--animation-dur) ease-out;
+  animation-iteration-count: var(--animation-iteration-count);
+  animation-delay: var(--animation-delay);
 }
 #c2{
   transform-origin: 178.9px 156.2px;
-  animation: confc var(--animation-dur) ease-out infinite;
+  animation: confc var(--animation-dur) ease-out;
+  animation-iteration-count: var(--animation-iteration-count);
+  animation-delay: var(--animation-delay);
 }
 
 #c3{
   transform-origin: 206.7px 140px;
-  animation: confc var(--animation-dur) ease-out infinite;
+  animation: confc var(--animation-dur) ease-out;
+  animation-iteration-count: var(--animation-iteration-count);
+  animation-delay: var(--animation-delay);
 }
 
 #c4{
   transform-origin: 213.5px 120.2px;
-  animation: confc var(--animation-dur) ease-out infinite;
+  animation: confc var(--animation-dur) ease-out;
+  animation-iteration-count: var(--animation-iteration-count);
+  animation-delay: var(--animation-delay);
 }
 
 @keyframes confc {
@@ -202,13 +252,19 @@ opacity:1;
 
 #d1{
   transform-origin: 127px 176px;
-  animation: confd var(--animation-dur) ease-out infinite;
+  animation: confd var(--animation-dur) ease-out;
+  animation-iteration-count: var(--animation-iteration-count);
+  animation-delay: var(--animation-delay);
 }
 #d2 {transform-origin: 133px 118px;
-  animation: confd var(--animation-dur) ease-out infinite;
+  animation: confd var(--animation-dur) ease-out;
+  animation-iteration-count: var(--animation-iteration-count);
+  animation-delay: var(--animation-delay);
 }
 #d3{ transform-origin: 152px 100px;
-  animation: confd var(--animation-dur) ease-out infinite;
+  animation: confd var(--animation-dur) ease-out;
+  animation-iteration-count: var(--animation-iteration-count);
+  animation-delay: var(--animation-delay);
 }
 
 @keyframes confd {

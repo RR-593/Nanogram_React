@@ -10,11 +10,11 @@
     user-select: none; /* Standard syntax */
 }
 .tile[state="0"]{
-    background-color: #F3FCFF;
+    background-color: #d8ebf2;
 }
 .tile[state="-1"],.tile[state="-2"]{
     color: #001319;
-    background-color: #F3FCFF;
+    background-color: #d8ebf2;
 }
 .tile[state="1"]{
     background-color:#001319

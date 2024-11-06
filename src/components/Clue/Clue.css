@@ -4,7 +4,8 @@
 	min-height: 10vh;
 	width: -moz-available;
 	border: 4px solid #19424e;
-	background-color:#19424e
+	background-color:#19424e;
+	color: #cce7f0;
 }
 .clue[btmRow="true"]{
 	width: auto;
