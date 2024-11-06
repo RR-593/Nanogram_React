@@ -35,7 +35,7 @@ const NanogramProvider = ({ children }) => {
 			clueRows = createRowClues(nanoArr)
 			clueCols = createColumnClues(nanoArr)
 		}
-		console.log(isCluesEasy(clueRows,Math.floor(size/2)+1) && isCluesEasy(clueCols,Math.floor(size/2)+1))
+		// console.log(isCluesEasy(clueRows,minimumClueTarget) && isCluesEasy(clueCols,minimumClueTarget))
 
     setNanogram({...nanogram, ...{
 			size: size,

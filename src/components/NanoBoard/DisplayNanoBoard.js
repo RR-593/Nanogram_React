@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from 'react'
 import './DisplayNanoBoard.css';
 import {useStatsContext} from '../StatsProvider'
 import {useNanogramContext} from '../NanogramProvider'
+import $ from 'jquery'
 import Tile from '../Tile/Tile'
 import Clue from '../Clue/Clue'
 
@@ -10,6 +11,11 @@ export default function DisplayNanoBoard(){
   const [nanogram, setNewNanogram] = useNanogramContext();
 
   var boardSize = nanogram.size? nanogram.size : game_stats.default_board_size
+
+  useEffect(()=>{
+    $(".tile, .clue").css("border-width", 4 - (nanogram.size >= 10 ? parseInt(nanogram.size.toString()[0]) : 0));
+  },[nanogram])
+  
   
   return (
     <div className="nanogram-board">
