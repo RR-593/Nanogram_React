@@ -11,11 +11,10 @@
   --animation-dur: 1.3s; /* Base duration of a single iteration */
   --animation-iteration-count: 4; /* Number of iterations */
   --animation-delay: 0s; /* Delay before animation starts */
+}
 
-  /* Set the animation using CSS variables */
-  animation: increase-opacity calc(var(--animation-dur) * var(--animation-iteration-count)) linear 2 var(--animation-delay);
-
-  /* Initial opacity is 0 (invisible) */
+.confetti-cone-box #Layer_1 {
+  animation: increase-opacity calc(var(--animation-dur) * var(--animation-iteration-count)) linear 1 var(--animation-delay);
   opacity: 0;
 }
 
