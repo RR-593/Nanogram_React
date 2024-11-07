@@ -1,6 +1,6 @@
 .confetti-cone-box {
   display: block;
-  position: relative;
+  position: absolute;
   top: 11em;
   right: 44em;
   width: 15em;

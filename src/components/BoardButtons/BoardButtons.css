@@ -2,10 +2,9 @@
 	display: flex;
 	flex-direction: column;
   gap: 15px;
-	margin: 20px;
 }
 
-.boardButtBox button{
+button{
 	border-radius: 8px; 
 	min-height: 7vh;
   min-width: 12vh;

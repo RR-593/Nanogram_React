@@ -1,3 +1,16 @@
+.versionBox{
+	width: 14em;
+}
+
 .versionDiv{
 	text-align: left;
 }
+
+.versionDiv h3{
+	text-align: center;
+}
+
+.versionDiv ul{
+	padding-left: 1.5em;
+}
+

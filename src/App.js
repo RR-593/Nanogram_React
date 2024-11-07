@@ -28,8 +28,8 @@ function App() {
                 <BoardButtons />
                 <DisplayNanoBoard />
                 <Version/>
-                <Confetti_Cone />
               </div>
+              <Confetti_Cone />
             </div>
           </ActiveBoardProvider>
         </NanogramProvider>

@@ -23,6 +23,9 @@
 .App-header {
   font-size: calc(10px + 2vmin);
 }
+.App-header h1{
+  margin: 14px 0px;
+}
 
 .App-link {
   color: #61dafb;
@@ -40,9 +43,10 @@
 .GameInterface{
   display: flex;
   justify-content: center;
-	min-width: 120vh;
+	width: min-content;
   background-color: #001319;
-  border: 0px solid #001319;
+  border: 20px solid #001319;
+  /* border-width: 10px 25px; */
   border-radius: 8px;
 }
 

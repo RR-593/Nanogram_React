@@ -30,7 +30,7 @@ const Version = () => {
 
 		setversionDiv(
 			<div className="versionDiv">
-				<h3>V1.1</h3>
+				<h3>---  V1.1  ---</h3>
 				<p>
 					New fetures:
 				</p>

@@ -69,7 +69,7 @@ const NanogramProvider = ({ children }) => {
 
 		const updatedCurrencies = {...game_stats.currencies}
 		updatedCurrencies["basicMonies"] = updatedCurrencies["basicMonies"]? updatedCurrencies["basicMonies"] : 0
-		updatedCurrencies["basicMonies"] += 1
+		updatedCurrencies["basicMonies"] += nanogram.size - game_stats.default_board_size + 1
 
 		updated_stats.currencies = {...updatedCurrencies}
 		// updateGStats({...game_stats, currencies:{...updatedCurrencies}})
