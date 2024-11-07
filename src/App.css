@@ -55,8 +55,3 @@ i[hidden=""]{
   flex-direction: column;
   justify-content: flex-start;
 }
-
-.currencyBox{
-  align-self: flex-start;
-  margin: 5px 30px;
-}

@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useStatsContext, save_stats } from '../StatsProvider'
 
+import './Version.css'
+
 const Version = () => {
 	const [game_stats, updateGStats] = useStatsContext();
 	const [versionDiv, setversionDiv] = useState(<></>);
 
 	let buyVersionDisplay = () => {
-		const updated_stats = {...game_stats}
-
-		console.log(updated_stats);
+		const updated_stats = JSON.parse(localStorage.getItem('stats'));
 		if (!(updated_stats.currencies.basicMonies >= 3)) return
 
 		updated_stats.currencies.basicMonies -= 3
-		updated_stats.unlocks.unlocks = true
+		updated_stats.unlocks.version = true
 
 		updateGStats({...updated_stats})
 
@@ -35,8 +35,8 @@ const Version = () => {
 					New fetures:
 				</p>
 				<ul>
-					<li>- Currency apon completeing Nonogram</li>
-					<li>- Unlockable Version Display</li>
+					<li>Gain currency apon completeing Nonogram</li>
+					<li>Unlockable Version Display</li>
 				</ul>
 			</div>
 		)

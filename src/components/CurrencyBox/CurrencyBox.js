@@ -3,6 +3,8 @@ import {useStatsContext} from '../StatsProvider'
 import {useNanogramContext} from '../NanogramProvider'
 import {useActiveBoardContext} from '../ActiveBoardProvider'
 
+import './CurrencyBox.css'
+
 
 const CurrencyBox = () => {
 
