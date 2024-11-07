@@ -15,6 +15,6 @@ input[name="input_board_size"]{
 
 	background-color:#f3fcff64;
 	border-radius: 8px; 
-	border: 0px solid #19424e;
+	border: 0px solid var(--color-accent-1);
 	font-size: 28px;
 }
