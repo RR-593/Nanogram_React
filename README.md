@@ -10,8 +10,8 @@
 </p>
 
 <h3 align="center">
- &bull;
   <a href="https://rr-593.github.io/Nanogram_React/">Play</a>  &bull;
+  <a href="https://ravewraith.itch.io/nonograms">itch.io Page</a>
 </h3>
 
 ## Features
