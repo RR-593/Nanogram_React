@@ -12,8 +12,6 @@ import BoardButtons from './components/BoardButtons/BoardButtons';
 import Confetti_Cone from './components/Confetti/Confetti_Cone'
 
 function App() {
-  let size = 4
-
   return (
     <div className="App">
       <header className="App-header">
