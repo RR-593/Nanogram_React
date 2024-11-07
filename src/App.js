@@ -7,6 +7,7 @@ import ActiveBoardProvider from './components/ActiveBoardProvider'
 
 import CurrencyBox from './components/CurrencyBox/CurrencyBox';
 import DisplayNanoBoard from './components/NanoBoard/DisplayNanoBoard';
+import Version from './components/Version/Version';
 import BoardButtons from './components/BoardButtons/BoardButtons';
 import Confetti_Cone from './components/Confetti/Confetti_Cone'
 
@@ -26,6 +27,7 @@ function App() {
               <div className="GameInterface">
                 <BoardButtons />
                 <DisplayNanoBoard />
+                <Version/>
                 <Confetti_Cone />
               </div>
             </div>
