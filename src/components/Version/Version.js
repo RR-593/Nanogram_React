@@ -21,9 +21,10 @@ const Version = () => {
 
 	useEffect(() => {
 		if (game_stats.unlocks.version === false) {
-			setversionDiv(<button onClick={buyVersionDisplay}>
-				<span>💰 3 : Unlock</span>
-			</button>
+			setversionDiv(
+				<button onClick={buyVersionDisplay}>
+					<span>💰 3 : Unlock</span>
+				</button>
 			)
 			return
 		}
