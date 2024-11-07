@@ -3,7 +3,9 @@ import { useState, createContext, useContext, useEffect } from 'react'
 const StatsContext = createContext()
 
 const StatsProvider = ({ children }) => {
-	const [game_stats, setGStats] = useState({
+	const game_ver = "V1.1" // this is used to reset people data so nothing breaks, increment number for fresh reset
+	const defualt_game_stats = {
+		version: game_ver,
 		save: false,
     clear: false,
 		complete_puzzle: false,
@@ -17,7 +19,8 @@ const StatsProvider = ({ children }) => {
 		currencies: {
 			basicMonies: 0
 		}
-  })
+  }
+	const [game_stats, setGStats] = useState(defualt_game_stats)
   const updateGStats = (newValue) => {
     setGStats(newValue);
   };
@@ -25,7 +28,7 @@ const StatsProvider = ({ children }) => {
 	useEffect(() => {
 		const got_stats = JSON.parse(localStorage.getItem('stats'));
 		got_stats.complete_puzzle = false
-		if (got_stats) setGStats(got_stats);
+		if (got_stats && got_stats.version === game_ver) setGStats(got_stats);
 	}, []);
 
 	return (
