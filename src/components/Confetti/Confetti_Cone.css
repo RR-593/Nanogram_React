@@ -22,7 +22,7 @@
   0% {
     opacity: 0; /* Start as invisible */
   }
-  10% {
+  1% {
     opacity: 1; /* Quickly fade in */
   }
   90% {
