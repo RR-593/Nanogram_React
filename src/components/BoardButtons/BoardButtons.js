@@ -1,8 +1,8 @@
 import { useEffect, useState, useContext } from 'react'
 import $ from 'jquery'
-import {useStatsContext} from '../StatsProvider'
-import {useNanogramContext} from '../NanogramProvider'
-import {useActiveBoardContext} from '../ActiveBoardProvider'
+import {useStatsContext} from '../Providers/StatsProvider.js'
+import {useNanogramContext} from '../Providers/NanogramProvider.js'
+import {useActiveBoardContext} from '../Providers/ActiveBoardProvider.js'
 import './BoardButtons.css'
 
 import {compareNanograms, toString2DArray} from '../helper_funcs/arrayFunctions.js'
