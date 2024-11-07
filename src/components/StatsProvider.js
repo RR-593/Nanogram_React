@@ -3,7 +3,7 @@ import { useState, createContext, useContext, useEffect } from 'react'
 const StatsContext = createContext()
 
 const StatsProvider = ({ children }) => {
-	const game_ver = "V1.1" // this is used to reset people data so nothing breaks, increment number for fresh reset
+	const game_ver = "V1.1.1" // this is used to reset people data so nothing breaks, increment number for fresh reset
 	const defualt_game_stats = {
 		version: game_ver,
 		save: false,
