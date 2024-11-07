@@ -7,7 +7,7 @@ const ActiveBoardContext = createContext()
 
 const StatsProvider = ({ children }) => {
   const [nanogram, setNewNanogram] = useNanogramContext();
-	const [board, setBoard] = useState();
+	const [board, setBoard] = useState([[]]);
 
   const updateBoard = (board) => {
     setBoard(board);

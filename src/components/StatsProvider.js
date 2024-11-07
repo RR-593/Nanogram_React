@@ -4,11 +4,19 @@ const StatsContext = createContext()
 
 const StatsProvider = ({ children }) => {
 	const [game_stats, setGStats] = useState({
+		save: false,
     clear: false,
 		complete_puzzle: false,
 		default_board_size: 4,
 		max_board_size: 25,
-		numberOfCompletions: {}
+		unlocks: {
+			version: false,
+			currencies: []
+		},
+		numberOfCompletions: {},
+		currencies: {
+			basicMonies: 0
+		}
   })
   const updateGStats = (newValue) => {
     setGStats(newValue);
@@ -20,12 +28,6 @@ const StatsProvider = ({ children }) => {
 		if (got_stats) setGStats(got_stats);
 	}, []);
 
-	useEffect(() => {
-		console.log(game_stats)
-		console.log("stored")
-		localStorage.setItem('stats', JSON.stringify(game_stats));
-	}, [game_stats.numberOfCompletions]);
-
 	return (
 		<StatsContext.Provider value={[game_stats, updateGStats]}>
 			{children}
@@ -36,5 +38,10 @@ const StatsProvider = ({ children }) => {
 export const useStatsContext = () => {
 	return useContext(StatsContext);
 };
+
+export const save_stats = (game_stats) => {
+	console.log(game_stats);
+	localStorage.setItem('stats', JSON.stringify(game_stats));
+}
 
 export default StatsProvider

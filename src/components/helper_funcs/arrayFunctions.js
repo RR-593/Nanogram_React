@@ -72,6 +72,13 @@ export const compare2DArrays = (array1, array2) => {
 	);
 }
 
+/**
+ * Compares two Nonograms and checks if they comply with the same clues.
+ * 
+ * @param {Array<Array<any>>} nanoArr1 
+ * @param {Array<Array<any>>} nanoArr2 
+ * @returns {boolean} Returns `true` if both nonos make up the same clues.
+ */
 export const compareNanograms = (nanoArr1, nanoArr2) => {
 	let clueSet1 = {
 		rows: createRowClues(nanoArr1), 

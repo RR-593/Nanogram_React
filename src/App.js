@@ -1,22 +1,16 @@
 import { useEffect, useState } from 'react'
 import './App.css';
 
-import DisplayNanoBoard from './components/NanoBoard/DisplayNanoBoard';
-import BoardButtons from './components/BoardButtons/BoardButtons';
 import StatsProvider from './components/StatsProvider'
 import NanogramProvider from './components/NanogramProvider';
 import ActiveBoardProvider from './components/ActiveBoardProvider'
+
+import CurrencyBox from './components/CurrencyBox/CurrencyBox';
+import DisplayNanoBoard from './components/NanoBoard/DisplayNanoBoard';
+import BoardButtons from './components/BoardButtons/BoardButtons';
 import Confetti_Cone from './components/Confetti/Confetti_Cone'
 
 function App() {
-  // const [blogs, setBlogs] = useState([])
-  // useEffect(() => {
-  //   fetch('http://localhost:4000/')
-  //     .then(res => res.json())
-  //     .then(data => setBlogs(data))
-  // }, [])
-
-
   let size = 4
 
   return (
@@ -24,17 +18,20 @@ function App() {
       <header className="App-header">
         <h1>Nonograms</h1>
       </header>
-      <div className="GameInterface">
-        <StatsProvider >
-          <NanogramProvider>
-            <ActiveBoardProvider>
-              <BoardButtons />
-              <DisplayNanoBoard />
-              <Confetti_Cone />
-            </ActiveBoardProvider>
-          </NanogramProvider>
-        </StatsProvider>
-      </div>
+      <StatsProvider >
+        <NanogramProvider>
+          <ActiveBoardProvider>
+            <div className="gameBox">
+              <CurrencyBox />
+              <div className="GameInterface">
+                <BoardButtons />
+                <DisplayNanoBoard />
+                <Confetti_Cone />
+              </div>
+            </div>
+          </ActiveBoardProvider>
+        </NanogramProvider>
+      </StatsProvider>
     </div>
   );
 }

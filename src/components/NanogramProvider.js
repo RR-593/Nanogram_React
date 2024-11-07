@@ -1,5 +1,5 @@
 import { useState, createContext, useContext, useEffect } from 'react'
-import {useStatsContext} from './StatsProvider'
+import {useStatsContext, save_stats} from './StatsProvider'
 
 import {create2DArray, createColumnClues, createRowClues, compare2DArrays, toString2DArray} from './helper_funcs/arrayFunctions'
 
@@ -19,13 +19,15 @@ const NanogramProvider = ({ children }) => {
   const setNewNanogram = (nanogramValues) => {
 		let size = nanogramValues.size
 
-		let createNanogramArr = () => create2DArray(size,()=>Math.round(Math.random()))
+		const createNanogramArr = () => create2DArray(size,()=>Math.round(Math.random()))
 
+		//Create Nonogram
 		let nanoArr = createNanogramArr()
 		let clueRows = createRowClues(nanoArr)
 		let clueCols = createColumnClues(nanoArr)
 
-		//Return true if a number greater than target exists in 2d array
+		//Make Nonos easir
+		//Difficulty checker. intToFind = to minium number must exsist in 2d array
 		let isCluesEasy = (array2D, intToFind) => array2D.some(subArray => subArray.some(num => num >= intToFind))
 		
 		let minimumClueTarget = Math.ceil(size/2)
@@ -51,14 +53,29 @@ const NanogramProvider = ({ children }) => {
 		setNewNanogram({size: game_stats.default_board_size})
 	}, []);
 
+	//Update Stats on completion
 	useEffect(()=>{
 		if(game_stats.complete_puzzle === false) return
-		let newCompletions = {...game_stats.numberOfCompletions}
+
+		const updated_stats = {...game_stats}
+
+		const newCompletions = {...game_stats.numberOfCompletions}
 		let key = nanogram.size +""
 		newCompletions[key] = newCompletions[key]? newCompletions[key] : 0
 		newCompletions[key] += 1
 
-		updateGStats({...game_stats, numberOfCompletions:{...newCompletions}})
+		updated_stats.numberOfCompletions = {...newCompletions}
+		// updateGStats({...game_stats, numberOfCompletions:{...newCompletions}})
+
+		const updatedCurrencies = {...game_stats.currencies}
+		updatedCurrencies["basicMonies"] = updatedCurrencies["basicMonies"]? updatedCurrencies["basicMonies"] : 0
+		updatedCurrencies["basicMonies"] += 1
+
+		updated_stats.currencies = {...updatedCurrencies}
+		// updateGStats({...game_stats, currencies:{...updatedCurrencies}})
+
+		updateGStats({...updated_stats})
+		save_stats(updated_stats)
 		
 	},[game_stats.complete_puzzle])
 	
