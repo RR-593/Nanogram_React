@@ -2,6 +2,18 @@
 	width: 14em;
 }
 
+.versionBox button{
+	opacity: 0.6;
+}
+
+.versionBox button:hover{
+	opacity: 1;
+}
+
+.versionBox span{
+	margin: 5px;
+}
+
 .versionDiv{
 	text-align: left;
 }
