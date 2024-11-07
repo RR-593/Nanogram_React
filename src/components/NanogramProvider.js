@@ -47,10 +47,20 @@ const NanogramProvider = ({ children }) => {
 		}});
   };
 
-
 	useEffect(() => {
 		setNewNanogram({size: game_stats.default_board_size})
 	}, []);
+
+	useEffect(()=>{
+		if(game_stats.complete_puzzle === false) return
+		let newCompletions = {...game_stats.numberOfCompletions}
+		let key = nanogram.size +""
+		newCompletions[key] = newCompletions[key]? newCompletions[key] : 0
+		newCompletions[key] += 1
+
+		updateGStats({...game_stats, numberOfCompletions:{...newCompletions}})
+		
+	},[game_stats.complete_puzzle])
 	
 	return (
 		<NanogramContext.Provider value={[nanogram, setNewNanogram]}>
