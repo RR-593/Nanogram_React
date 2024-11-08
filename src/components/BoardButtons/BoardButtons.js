@@ -28,7 +28,7 @@ const BoardButtons = (props) => {
           tempDiffs.easy = (
             <label>
               <input type="radio" name="difficulty" className="easy" />
-              <span></span><div id="text">🥞</div>
+              <span></span><div id="text">🙂</div>
             </label>
           )
           break;
@@ -36,7 +36,7 @@ const BoardButtons = (props) => {
           tempDiffs.normal = (
             <label>
               <input type="radio" name="difficulty" className="normal" />
-              <span></span><div id="text">🌗</div>
+              <span></span><div id="text">🔶</div>
             </label>
           )
           break;
@@ -136,6 +136,7 @@ const BoardButtons = (props) => {
       {newBoardB}
       {clearBoardB}
       {submitBoardB}
+      <span>Difficulty</span>
       <div className="difficultyButts">
         {difficulties.easy}
         {difficulties.normal}

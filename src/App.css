@@ -132,11 +132,11 @@ label span:after {
 label span:before, .unlockDifficulty {
   position: absolute;
   border-radius: var(--border-radius);
-  min-height: var(--min-height-vh);
+  height: var(--min-height-vh);
   min-width: var(--min-height-vh);
   border: 0 solid var(--color-accent-1);
   background-color: var(--color-accent-1);
-  font-size: var(--font-size-base);
+  font-size: calc(var(--font-size-base)-2);
   display: inline-block;
   vertical-align: top;
 }
@@ -151,7 +151,7 @@ label span:after {
   position: absolute;
   display: inline-block;
   border-radius: var(--border-radius);
-  min-height: var(--min-height-vh);
+  height: var(--min-height-vh);
   min-width: var(--min-height-vh);
   border: 0 solid var(--color-light-bg);
   background-color: var(--color-light-bg);
