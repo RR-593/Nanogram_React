@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Nanogram_React/static/css/main.40bc1668.css",
-    "main.js": "/Nanogram_React/static/js/main.67f07093.js",
+    "main.css": "/Nanogram_React/static/css/main.46a640e5.css",
+    "main.js": "/Nanogram_React/static/js/main.9dadda69.js",
     "index.html": "/Nanogram_React/index.html",
-    "main.40bc1668.css.map": "/Nanogram_React/static/css/main.40bc1668.css.map",
-    "main.67f07093.js.map": "/Nanogram_React/static/js/main.67f07093.js.map"
+    "main.46a640e5.css.map": "/Nanogram_React/static/css/main.46a640e5.css.map",
+    "main.9dadda69.js.map": "/Nanogram_React/static/js/main.9dadda69.js.map"
   },
   "entrypoints": [
-    "static/css/main.40bc1668.css",
-    "static/js/main.67f07093.js"
+    "static/css/main.46a640e5.css",
+    "static/js/main.9dadda69.js"
   ]
 }
