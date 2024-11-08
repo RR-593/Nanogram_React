@@ -25,20 +25,23 @@ const Version = () => {
 		<div className="versionDiv">
 			<button className="verLogButt" onClick={()=>{ $('.versions').toggle() }}>Version Log</button>
 			<div className="versions">
-				<div className="version" id="1.1.1">
-					<h3>---  V1.1.1  ---</h3>
+			<div className="version" id="1.2">
+					<h3>---  V1.1.2  ---</h3>
 					<p>
 						New fetures:
 					</p>
 					<ul>
-						<li>Fix devastating null bug :( </li>
+						<li>Difficulty choice buttons </li>
 					</ul>
 				</div>
 				<div className="version" id="1.1.1">
+					<h3>---  V1.1.1  ---</h3>
+					<ul>
+						<li>Fix devastating null bug :( </li>
+					</ul>
+				</div>
+				<div className="version" id="1.1">
 					<h3>---  V1.1  ---</h3>
-					<p>
-						Fetures:
-					</p>
 					<ul>
 						<li>Gain currency apon completeing Nonogram</li>
 						<li>Unlockable Version Display</li>

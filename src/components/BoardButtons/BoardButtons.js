@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react'
 import $ from 'jquery'
-import { useStatsContext } from '../Providers/StatsProvider.js'
+import { useStatsContext , save_stats} from '../Providers/StatsProvider.js'
 import { useNanogramContext } from '../Providers/NanogramProvider.js'
 import { useActiveBoardContext } from '../Providers/ActiveBoardProvider.js'
 import './BoardButtons.css'
@@ -65,12 +65,35 @@ const BoardButtons = (props) => {
     </button>
   )
 
-  let difficultyButts = (
-    <div className="difficultyButts">
+  let easyButton = (<></>)
+
+  let unlockDifficulty = (difficulty,cost) =>{
+    const updated_stats = {...game_stats}
+    
+		if (!(updated_stats.currencies.basicMonies >= cost)) return
+    if(!game_stats.difficulty.includes(difficulty)) updated_stats.difficulty.push(difficulty)
+
+		updated_stats.currencies.basicMonies -= cost
+
+    updateGStats({ ...updated_stats})
+
+    save_stats(updated_stats)
+
+    easyButton = (
       <label>
         <input type="radio" name="difficulty" className="easy" />
         <span></span><div id="text">🥞</div>
       </label>
+    )
+  }
+
+  easyButton = (<button className="unlockDifficulty" onClick={unlockDifficulty("easy",9)}></button>)
+
+
+
+  let difficultyButts = (
+    <div className="difficultyButts">
+      {easyButton}
       <label>
         <input type="radio" name="difficulty" className="normal" />
         <span></span><div id="text">🌗</div>
