@@ -54,6 +54,7 @@ const BoardButtons = (props) => {
 
   useEffect(() => {
     const updated_stats = JSON.parse(localStorage.getItem('stats'));
+    if(!updated_stats) return
     updateUnlockDifficulty(updated_stats.unlocks.difficulty)
   }, []);
 
