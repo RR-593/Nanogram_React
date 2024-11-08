@@ -31,7 +31,7 @@ const Version = () => {
 						New fetures:
 					</p>
 					<ul>
-						<li>Fix devstating null bug :( </li>
+						<li>Fix devastating null bug :( </li>
 					</ul>
 				</div>
 				<div className="version" id="1.1.1">
