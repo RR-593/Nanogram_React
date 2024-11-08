@@ -29,10 +29,11 @@ const StatsProvider = ({ children }) => {
 
 	useEffect(() => {
 		const got_stats = JSON.parse(localStorage.getItem('stats'));
-		if (got_stats && got_stats.version == game_ver) {
+		if (got_stats && got_stats.version === game_ver) {
 			got_stats.complete_puzzle = false
 			setGStats(got_stats);
 		}
+		setGStats(defualt_game_stats);
 	}, []);
 
 	return (
