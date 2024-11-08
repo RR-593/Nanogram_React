@@ -106,6 +106,9 @@ label {
   position:relative;
   /* padding: 5px 10px; */
   cursor: pointer;
+
+  min-height: var(--min-height-vh);
+  min-width: var(--min-height-vh);
 }
 
 label span {
@@ -126,7 +129,7 @@ label span:after {
   content: '';
 }
 
-label span:before {
+label span:before, .unlockDifficulty {
   position: absolute;
   border-radius: var(--border-radius);
   min-height: var(--min-height-vh);
@@ -136,6 +139,12 @@ label span:before {
   font-size: var(--font-size-base);
   display: inline-block;
   vertical-align: top;
+}
+
+.unlockDifficulty{
+
+  display: inline-block;
+  position: relative;
 }
 
 label span:after {

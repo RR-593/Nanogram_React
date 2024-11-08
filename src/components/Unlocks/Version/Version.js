@@ -17,7 +17,7 @@ const Version = () => {
 
 		updateGStats({ ...updated_stats })
 
-		save_stats(game_stats)
+		save_stats(updated_stats)
 	}
 
 

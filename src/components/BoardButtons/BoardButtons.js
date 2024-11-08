@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react'
 import $ from 'jquery'
-import { useStatsContext , save_stats} from '../Providers/StatsProvider.js'
+import { useStatsContext, save_stats } from '../Providers/StatsProvider.js'
 import { useNanogramContext } from '../Providers/NanogramProvider.js'
 import { useActiveBoardContext } from '../Providers/ActiveBoardProvider.js'
 import './BoardButtons.css'
@@ -12,6 +12,45 @@ const BoardButtons = (props) => {
   const [game_stats, updateGStats] = useStatsContext();
   const [nanogram, setNewNanogram] = useNanogramContext();
   const [board, updateBoard] = useActiveBoardContext();
+
+  const [difficulties, setdifficulties] = useState({
+    easy: (<button className="unlockDifficulty" onClick={() => { unlockDifficulty("easy", 9) }}>💰9</button>),
+    normal: (<button className="unlockDifficulty" onClick={() => { unlockDifficulty("easy", 15) }}>💰15</button>),
+    hard: (<button className="unlockDifficulty" onClick={() => { unlockDifficulty("easy", 30) }}>💰30</button>)
+  });
+
+  let updateUnlockDifficulty = (unlocked_difficulties) => {
+    for (let diff in unlocked_difficulties)
+      switch (diff) {
+        case "easy":
+          setdifficulties({
+            ...difficulties, easy: (
+              <label>
+                <input type="radio" name="difficulty" className="easy" />
+                <span></span><div id="text">🥞</div>
+              </label>
+            )
+          })
+          break;
+        case "normal":
+          <label>
+            <input type="radio" name="difficulty" className="normal" />
+            <span></span><div id="text">🌗</div>
+          </label>
+          break;
+        case "hard":
+          <label>
+            <input type="radio" name="difficulty" className="hard" />
+            <span></span><div id="text">🔥</div>
+          </label>
+          break;
+      }
+  }
+
+  useEffect(() => {
+    const updated_stats = JSON.parse(localStorage.getItem('stats'));
+    updateUnlockDifficulty(updated_stats.unlocks.difficulty)
+  }, []);
 
   let clearBoardAction = () => {
     updateGStats({ ...game_stats, clear: !game_stats.clear })
@@ -65,51 +104,36 @@ const BoardButtons = (props) => {
     </button>
   )
 
-  let easyButton = (<></>)
+  let unlockDifficulty = (difficulty, cost) => {
+    const updated_stats = JSON.parse(localStorage.getItem('stats'));
+    console.log(updated_stats);
+    console.log(updated_stats.unlocks.difficulty.includes(difficulty));
 
-  let unlockDifficulty = (difficulty,cost) =>{
-    const updated_stats = {...game_stats}
-    
-		if (!(updated_stats.currencies.basicMonies >= cost)) return
-    if(!game_stats.difficulty.includes(difficulty)) updated_stats.difficulty.push(difficulty)
+    if (!(updated_stats.currencies.basicMonies >= cost)) return
+    if (updated_stats.unlocks.difficulty.includes(difficulty)) return
+    updated_stats.unlocks.difficulty.push(difficulty)
 
-		updated_stats.currencies.basicMonies -= cost
+    updated_stats.currencies.basicMonies -= cost
 
-    updateGStats({ ...updated_stats})
+    updateGStats({ ...updated_stats })
 
     save_stats(updated_stats)
 
-    easyButton = (
-      <label>
-        <input type="radio" name="difficulty" className="easy" />
-        <span></span><div id="text">🥞</div>
-      </label>
-    )
+    updateUnlockDifficulty(updated_stats.unlocks.difficulty)
+
   }
 
-  easyButton = (<button className="unlockDifficulty" onClick={unlockDifficulty("easy",9)}></button>)
-
-
-
-  let difficultyButts = (
-    <div className="difficultyButts">
-      {easyButton}
-      <label>
-        <input type="radio" name="difficulty" className="normal" />
-        <span></span><div id="text">🌗</div>
-      </label>
-      <label>
-        <input type="radio" name="difficulty" className="hard" />
-        <span></span><div id="text">🔥</div>
-      </label>
-    </div>)
 
   return (
     <div className="boardButtBox">
       {newBoardB}
       {clearBoardB}
       {submitBoardB}
-      {difficultyButts}
+      <div className="difficultyButts">
+        {difficulties.easy}
+        {difficulties.normal}
+        {difficulties.hard}
+      </div>
     </div>
   )
 }

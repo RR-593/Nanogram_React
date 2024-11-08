@@ -21,5 +21,5 @@ input[name="input_board_size"]{
 
 .difficultyButts{
 	display: flex;
-	gap: 72px;
+	justify-content: space-between;
 }
