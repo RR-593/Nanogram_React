@@ -1,7 +1,7 @@
 import { useState, createContext, useContext,useEffect } from 'react'
 import {useNanogramContext} from './NanogramProvider'
 
-import {create2DArray} from './helper_funcs/arrayFunctions'
+import {create2DArray} from '../helper_funcs/arrayFunctions'
 
 const ActiveBoardContext = createContext()
 

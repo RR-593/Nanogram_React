@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react'
-import {useStatsContext} from '../StatsProvider'
+import {useStatsContext} from '../Providers/StatsProvider'
 import './Confetti_Cone.css'
 
 const Confetti_Cone = () => {

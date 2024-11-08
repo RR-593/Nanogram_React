@@ -6,9 +6,9 @@
   */
 import "./Tile.css"
 import React, { useState, useEffect } from 'react';
-import {useStatsContext} from '../StatsProvider'
-import {useNanogramContext} from '../NanogramProvider'
-import {useActiveBoardContext} from '../ActiveBoardProvider'
+import {useStatsContext} from '../../Providers/StatsProvider'
+import {useNanogramContext} from '../../Providers/NanogramProvider'
+import {useActiveBoardContext} from '../../Providers/ActiveBoardProvider'
 
 
 let MouseDrawTileStateContext = 0;
