@@ -1,36 +1,6 @@
-:root {
-  /* Colors */
-  --color-dark-bg: #282c34;
-  --color-dark-bg-2: #001319;
-  --color-accent-1: #19424e;
-  --color-accent-2: #417A80;
-  --color-light-bg: #d8ebf2;
-
-  /* Font Sizes */
-  --font-size-base: 28px;
-  --font-size-large: 63px;
-  --font-size-small: calc(10px + 2vmin);
-
-  /* Spacing and Dimensions */
-  --spacing-small: 10px;
-  --spacing-medium: 15px;
-  --spacing-large: 20px;
-  --border-radius: 8px;
-  --min-height-vh: 7vh;
-  --min-width-vh: 12vh;
-  --height-vmin: 40vmin;
-
-  /* Animations */
-  --animation-duration: 1.3s;
-  --animation-iteration-count: 4;
-  --animation-delay: 0s;
-}
-
-/* Now using variables in the rest of the CSS */
-
 .App {
-  color: var(--color-light-bg);
-  background-color: var(--color-dark-bg);
+  color: whitesmoke;
+  background-color: #282c34;
   min-height: 100vh;
   align-items: center;
   text-align: center;
@@ -40,7 +10,7 @@
 }
 
 .App-logo {
-  height: var(--height-vmin);
+  height: 40vmin;
   pointer-events: none;
 }
 
@@ -51,13 +21,15 @@
 }
 
 .App-header {
-  font-size: var(--font-size-small);
+  font-size: calc(10px + 2vmin);
+}
+.App-header h1{
+  margin: 10px 0px;
 }
 
-.App-header h1 {
-  margin: var(--spacing-small) 0;
+.App-link {
+  color: #61dafb;
 }
-
 
 @keyframes App-logo-spin {
   from {
@@ -68,31 +40,33 @@
   }
 }
 
-.GameInterface {
+.GameInterface{
   display: flex;
   justify-content: center;
-  width: min-content;
-  background-color: var(--color-dark-bg-2);
-  border: var(--spacing-large) solid var(--color-dark-bg-2);
-  border-radius: var(--border-radius);
+	width: min-content;
+  background-color: #001319;
+  border: 20px solid #001319;
+  /* border-width: 10px 25px; */
+  border-radius: 8px;
 }
 
-i[hidden=""] {
+i[hidden=""]{
   visibility: hidden;
 }
 
-.gameBox {
+.gameBox{
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
-button {
-  border-radius: var(--border-radius);
-  min-height: var(--min-height-vh);
-  min-width: var(--min-width-vh);
-  border: 0 solid var(--color-accent-1);
-  background-color: var(--color-accent-1);
-  font-size: var(--font-size-base);
-  color: var(--color-light-bg);
+button{
+	border-radius: 8px; 
+	min-height: 7vh;
+  min-width: 12vh;
+	border: 0px solid #19424e;
+	background-color:#19424e;
+
+	font-size: 28px;
+	color: #F3FCFF;
 }
