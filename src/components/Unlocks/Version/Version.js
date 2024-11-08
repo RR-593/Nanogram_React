@@ -14,7 +14,7 @@ const Version = () => {
 		updated_stats.currencies.basicMonies -= 3
 		updated_stats.unlocks.version = true
 
-		updateGStats({...updated_stats})
+		updateGStats({ ...updated_stats })
 
 		save_stats(game_stats)
 	}
@@ -31,14 +31,25 @@ const Version = () => {
 
 		setversionDiv(
 			<div className="versionDiv">
-				<h3>---  V1.1  ---</h3>
-				<p>
-					New fetures:
-				</p>
-				<ul>
-					<li>Gain currency apon completeing Nonogram</li>
-					<li>Unlockable Version Display</li>
-				</ul>
+				<div className="version" id="1.1.1">
+					<h3>---  V1.1.1  ---</h3>
+					<p>
+						New fetures:
+					</p>
+					<ul>
+						<li>Fix devstating null bug :( </li>
+					</ul>
+				</div>
+				<div className="version" id="1.1.1">
+					<h3>---  V1.1  ---</h3>
+					<p>
+						Fetures:
+					</p>
+					<ul>
+						<li>Gain currency apon completeing Nonogram</li>
+						<li>Unlockable Version Display</li>
+					</ul>
+				</div>
 			</div>
 		)
 	}, [game_stats.unlocks.version]);
