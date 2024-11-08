@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import $ from 'jquery'
 import { useStatsContext, save_stats } from '../../Providers/StatsProvider'
 
 import './Version.css'
@@ -19,18 +20,11 @@ const Version = () => {
 		save_stats(game_stats)
 	}
 
-	useEffect(() => {
-		if (game_stats.unlocks.version === false) {
-			setversionDiv(
-				<button onClick={buyVersionDisplay}>
-					<span>💰 3 : Unlock</span>
-				</button>
-			)
-			return
-		}
 
-		setversionDiv(
-			<div className="versionDiv">
+	const vLog = (
+		<div className="versionDiv">
+			<button className="verLogButt" onClick={()=>{ $('.versions').toggle() }}>Version Log</button>
+			<div className="versions">
 				<div className="version" id="1.1.1">
 					<h3>---  V1.1.1  ---</h3>
 					<p>
@@ -51,7 +45,21 @@ const Version = () => {
 					</ul>
 				</div>
 			</div>
-		)
+		</div>
+	)
+
+	useEffect(() => {
+		if (game_stats.unlocks.version === false) {
+			setversionDiv(
+				<button onClick={buyVersionDisplay}>
+					<span>💰 3 : Unlock</span>
+				</button>
+			)
+			return
+		}
+
+
+		setversionDiv(vLog)
 	}, [game_stats.unlocks.version]);
 
 	return (

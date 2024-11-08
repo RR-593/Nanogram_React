@@ -14,8 +14,16 @@
 	margin: 5px;
 }
 
+.versionDiv .verLogButt{
+	opacity: 1;
+	align-self: center;
+	width: -moz-available;
+}
+
 .versionDiv{
 	text-align: left;
+	display: flex;
+	flex-direction: column;
 }
 
 .versionDiv h3{
