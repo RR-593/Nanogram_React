@@ -1,10 +1,10 @@
 import { useEffect, useState, useContext } from 'react'
 import './DisplayNanoBoard.css';
-import {useStatsContext} from '../Providers/StatsProvider'
-import {useNanogramContext} from '../Providers/NanogramProvider'
+import {useStatsContext} from '../StatsProvider'
+import {useNanogramContext} from '../NanogramProvider'
 import $ from 'jquery'
-import Tile from './Tile/Tile'
-import Clue from './Clue/Clue'
+import Tile from '../Tile/Tile'
+import Clue from '../Clue/Clue'
 
 export default function DisplayNanoBoard(){
   const [game_stats, updateGStats] = useStatsContext();

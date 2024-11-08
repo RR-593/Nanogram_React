@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useStatsContext, save_stats } from '../../Providers/StatsProvider'
+import { useStatsContext, save_stats } from '../StatsProvider'
 
 import './Version.css'
 

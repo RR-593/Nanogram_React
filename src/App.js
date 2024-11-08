@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import './App.css';
 
-import StatsProvider from './components/Providers/StatsProvider'
-import NanogramProvider from './components/Providers/NanogramProvider';
-import ActiveBoardProvider from './components/Providers/ActiveBoardProvider'
+import StatsProvider from './components/StatsProvider'
+import NanogramProvider from './components/NanogramProvider';
+import ActiveBoardProvider from './components/ActiveBoardProvider'
 
 import CurrencyBox from './components/CurrencyBox/CurrencyBox';
 import DisplayNanoBoard from './components/NanoBoard/DisplayNanoBoard';
-import Version from './components/Unlocks/Version/Version';
+import Version from './components/Version/Version';
 import BoardButtons from './components/BoardButtons/BoardButtons';
 import Confetti_Cone from './components/Confetti/Confetti_Cone'
 

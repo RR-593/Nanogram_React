@@ -1,7 +1,7 @@
 import { useState, createContext, useContext, useEffect } from 'react'
 import {useStatsContext, save_stats} from './StatsProvider'
 
-import {create2DArray, createColumnClues, createRowClues, compare2DArrays, toString2DArray} from '../helper_funcs/arrayFunctions'
+import {create2DArray, createColumnClues, createRowClues, compare2DArrays, toString2DArray} from './helper_funcs/arrayFunctions'
 
 const NanogramContext = createContext()
 
