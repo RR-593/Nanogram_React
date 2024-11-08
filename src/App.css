@@ -16,8 +16,8 @@
   --spacing-medium: 15px;
   --spacing-large: 20px;
   --border-radius: 8px;
-  --min-height-vh: 7vh;
-  --min-width-vh: 12vh;
+  --min-height-vh: 5vh;
+  --min-width-vh: 10vh;
   --height-vmin: 40vmin;
 
   /* Animations */
@@ -95,4 +95,62 @@ button {
   background-color: var(--color-accent-1);
   font-size: var(--font-size-base);
   color: var(--color-light-bg);
+}
+
+input[type="radio"]{
+  display: none;
+}
+
+label {
+  display: inline-block;
+  position:relative;
+  /* padding: 5px 10px; */
+  cursor: pointer;
+}
+
+label span {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+label div#text{
+  position: absolute;
+  top: 13px;
+  left: 14px;
+}
+
+
+label span:before,
+label span:after {
+  content: '';
+}
+
+label span:before {
+  position: absolute;
+  border-radius: var(--border-radius);
+  min-height: var(--min-height-vh);
+  min-width: var(--min-height-vh);
+  border: 0 solid var(--color-accent-1);
+  background-color: var(--color-accent-1);
+  font-size: var(--font-size-base);
+  display: inline-block;
+  vertical-align: top;
+}
+
+label span:after {
+  position: absolute;
+  display: inline-block;
+  border-radius: var(--border-radius);
+  min-height: var(--min-height-vh);
+  min-width: var(--min-height-vh);
+  border: 0 solid var(--color-light-bg);
+  background-color: var(--color-light-bg);
+  font-size: var(--font-size-base);
+  transition: 300ms;
+  opacity: 0;
+}
+
+label input:checked+span:after {
+  opacity: 1;
 }

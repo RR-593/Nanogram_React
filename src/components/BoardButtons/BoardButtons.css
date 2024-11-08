@@ -10,11 +10,16 @@
 input[name="input_board_size"]{
 	text-align: center;
 	width: 3em;
-	min-height: 7vh;
+	min-height: var(--min-height-vh);
 	margin-right: 10px;
 
 	background-color:#f3fcff64;
 	border-radius: 8px; 
 	border: 0px solid var(--color-accent-1);
 	font-size: 28px;
+}
+
+.difficultyButts{
+	display: flex;
+	gap: 72px;
 }
