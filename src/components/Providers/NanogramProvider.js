@@ -51,7 +51,7 @@ const NanogramProvider = ({ children }) => {
 
 	useEffect(() => {
 		setNewNanogram({size: game_stats.default_board_size})
-	}, []);
+	}, [game_stats.load]);
 
 	//Update Stats on completion
 	useEffect(()=>{

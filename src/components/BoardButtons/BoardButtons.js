@@ -20,6 +20,7 @@ const BoardButtons = (props) => {
   });
 
   let updateUnlockDifficulty = (unlocked_difficulties) => {
+    if(!(unlocked_difficulties.constructor === Array)) return
     const tempDiffs = { ...difficulties }
     for (let diff of unlocked_difficulties) {
       switch (diff) {
@@ -56,7 +57,7 @@ const BoardButtons = (props) => {
     const updated_stats = JSON.parse(localStorage.getItem('stats'));
     if(!updated_stats) return
     updateUnlockDifficulty(updated_stats.unlocks.difficulty)
-  }, []);
+  }, [game_stats.load]);
 
   let clearBoardAction = () => {
     updateGStats({ ...game_stats, clear: !game_stats.clear })

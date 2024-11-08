@@ -6,6 +6,7 @@ const StatsProvider = ({ children }) => {
 	const game_ver = "V1.2.1" // this is used to reset people data so nothing breaks, increment number for fresh reset
 	const defualt_game_stats = {
 		version: game_ver,
+		load: false,
 		save: false,
     clear: false,
 		complete_puzzle: false,
@@ -28,12 +29,15 @@ const StatsProvider = ({ children }) => {
   };
 
 	useEffect(() => {
+
 		const got_stats = JSON.parse(localStorage.getItem('stats'));
+		console.log(got_stats)
 		if (got_stats && got_stats.version === game_ver) {
 			got_stats.complete_puzzle = false
 			setGStats(got_stats);
 		}
 		setGStats(defualt_game_stats);
+		save_stats(defualt_game_stats);
 	}, []);
 
 	return (
