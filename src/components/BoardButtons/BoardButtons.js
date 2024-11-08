@@ -15,36 +15,41 @@ const BoardButtons = (props) => {
 
   const [difficulties, setdifficulties] = useState({
     easy: (<button className="unlockDifficulty" onClick={() => { unlockDifficulty("easy", 9) }}>💰9</button>),
-    normal: (<button className="unlockDifficulty" onClick={() => { unlockDifficulty("easy", 15) }}>💰15</button>),
-    hard: (<button className="unlockDifficulty" onClick={() => { unlockDifficulty("easy", 30) }}>💰30</button>)
+    normal: (<button className="unlockDifficulty" onClick={() => { unlockDifficulty("normal", 15) }}>💰15</button>),
+    hard: (<button className="unlockDifficulty" onClick={() => { unlockDifficulty("hard", 30) }}>💰30</button>)
   });
 
   let updateUnlockDifficulty = (unlocked_difficulties) => {
-    for (let diff in unlocked_difficulties)
+    const tempDiffs = { ...difficulties }
+    for (let diff of unlocked_difficulties) {
       switch (diff) {
         case "easy":
-          setdifficulties({
-            ...difficulties, easy: (
-              <label>
-                <input type="radio" name="difficulty" className="easy" />
-                <span></span><div id="text">🥞</div>
-              </label>
-            )
-          })
+          tempDiffs.easy = (
+            <label>
+              <input type="radio" name="difficulty" className="easy" />
+              <span></span><div id="text">🥞</div>
+            </label>
+          )
           break;
         case "normal":
-          <label>
-            <input type="radio" name="difficulty" className="normal" />
-            <span></span><div id="text">🌗</div>
-          </label>
+          tempDiffs.normal = (
+            <label>
+              <input type="radio" name="difficulty" className="normal" />
+              <span></span><div id="text">🌗</div>
+            </label>
+          )
           break;
         case "hard":
-          <label>
-            <input type="radio" name="difficulty" className="hard" />
-            <span></span><div id="text">🔥</div>
-          </label>
+          tempDiffs.hard = (
+            <label>
+              <input type="radio" name="difficulty" className="hard" />
+              <span></span><div id="text">🔥</div>
+            </label>
+          )
           break;
       }
+    }
+    setdifficulties(tempDiffs)
   }
 
   useEffect(() => {
