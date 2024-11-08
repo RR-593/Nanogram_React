@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Nanogram_React/static/css/main.d7a5f8bb.css",
+    "main.js": "/Nanogram_React/static/js/main.6eaf3c43.js",
+    "index.html": "/Nanogram_React/index.html",
+    "main.d7a5f8bb.css.map": "/Nanogram_React/static/css/main.d7a5f8bb.css.map",
+    "main.6eaf3c43.js.map": "/Nanogram_React/static/js/main.6eaf3c43.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d7a5f8bb.css",
+    "static/js/main.6eaf3c43.js"
+  ]
+}
