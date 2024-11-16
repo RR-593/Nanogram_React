@@ -7,6 +7,7 @@ import {
 import "./index.css";
 import App from './App';
 import TitlePage from "./pages/TitlePage";
+import Game from './pages/Game'
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
     element: <App/>,
     children: [
       { index: true, element: <TitlePage /> },
+      {
+        path: "/game",
+        element: <Game/>,
+      }
     ],
   }
 ]);

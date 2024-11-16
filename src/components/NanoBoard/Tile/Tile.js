@@ -6,9 +6,7 @@
   */
 import "./Tile.css"
 import React, { useState, useEffect } from 'react';
-import {useStatsContext} from '../../Providers/StatsProvider'
-import {useNanogramContext} from '../../Providers/NanogramProvider'
-import {useActiveBoardContext} from '../../Providers/ActiveBoardProvider'
+import useGameContext from '../../../contexts/GameContext'
 
 
 let MouseDrawTileStateContext = 0;
@@ -21,9 +19,20 @@ document.body.onmouseup = () => {
 };
 
 export default function Tile(props){
-  const [game_stats, updateGStats] = useStatsContext();
-  const [nanogram, setNewNanogram] = useNanogramContext();
-  const [board, updateBoard] = useActiveBoardContext();
+	const {
+		gameState,
+		setGameState,
+		score,
+		setScore,
+		globalSettings,
+		nonogram,
+		currentBoard,
+		setCurrentBoard,
+		startNewGame,
+		clearGame,
+		clearBoard
+	} = useGameContext();
+
   const [selectedState, setSelect] = useState(0)
   // -2 ?
   // -1 X
@@ -50,20 +59,21 @@ export default function Tile(props){
   }
 
   var updateSelect = () =>{
-    let boardCopy = board
+    let boardCopy = currentBoard
     boardCopy[props.id[0]][props.id[1]] = MouseDrawTileStateContext === 1 ? 1 : 0
-    updateBoard(boardCopy)
+    setCurrentBoard(boardCopy)
     setSelect(MouseDrawTileStateContext)
   }
 
   useEffect(()=>{
+    if(gameState !== "blank") return;
     setSelect(0)
-  },[game_stats.clear,nanogram])
+  },[gameState,nonogram])
 
 
 
   let selected = selectedState
-  let size = Number(nanogram.size) > 0 ? nanogram.size : game_stats.default_board_size
+  let size = Number(nonogram.size) > 0 ? nonogram.size : globalSettings.default_board_size
   return (
     <div className="tile" 
       style = {{minHeight: (400/size)+"px", minWidth: (400/size)+"px", fontSize: (320/size)+"px"}}

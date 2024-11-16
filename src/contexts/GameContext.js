@@ -15,6 +15,7 @@ export const GameProvider = ({ children }) => {
 		default_board_size: 4,
 		max_board_size: 25
 	});
+  
 
   // Local storage keys
   const LOCAL_STORAGE_KEYS = {
@@ -71,8 +72,8 @@ export const GameProvider = ({ children }) => {
   const startNewGame = (size) => {
     setGameState('playing');
     setScore(0);
-    clearBoard() // Clear the board
     setNonogram(generateNonogram(size,difficulty)); // New nonogram
+    clearBoard() // Clear the board
   };
 
   // Clear game board
@@ -129,6 +130,7 @@ export const GameProvider = ({ children }) => {
       score,
       setScore,
       globalSettings,
+      nonogram,
       currentBoard,
       setCurrentBoard,
       startNewGame,
@@ -141,5 +143,6 @@ export const GameProvider = ({ children }) => {
 };
 
 // Custom hook to use game context
-export const useGameContext = () => useContext(GameContext);
+const useGameContext = () => useContext(GameContext);
 
+export default useGameContext;
