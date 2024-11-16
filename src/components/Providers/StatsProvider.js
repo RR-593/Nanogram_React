@@ -14,7 +14,7 @@ const StatsProvider = ({ children }) => {
 		max_board_size: 25,
 		unlocks: {
 			version: false,
-			difficulty: [],
+			difficulty: ["normal"],
 			currencies: []
 		},
 		difficulty: "normal",
