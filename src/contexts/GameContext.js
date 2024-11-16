@@ -64,8 +64,8 @@ export const GameProvider = ({ children }) => {
   };
 
   // Clear players board
-  const clearBoard = () => {
-    setCurrentBoard(create2DArray(nonogram.size,0))
+  const clearBoard = (size = nonogram.size) => {
+    setCurrentBoard(create2DArray(size,0))
   }
 
   // Start a new game
@@ -73,7 +73,7 @@ export const GameProvider = ({ children }) => {
     setGameState('playing');
     setScore(0);
     setNonogram(generateNonogram(size,difficulty)); // New nonogram
-    clearBoard() // Clear the board
+    clearBoard(size) // Clear the board
   };
 
   // Clear game board

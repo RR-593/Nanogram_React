@@ -20,13 +20,13 @@ function TitlePage() {
   const [newGame, setnewGame] = useState(0);
 
   const newGameAction = () => {
-    startNewGame(4)
+    startNewGame(8)
   }
 
 
   return (
     <div className="title-page">
-      <h1>Nonogram Game</h1>
+      <h1 className="big-game-title">Nonogram Game</h1>
       <p>Welcome to the Nonogram puzzle game!</p>
       <Link to="/Game">
         <button onClick={newGameAction}>New Game</button>

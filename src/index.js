@@ -1,13 +1,13 @@
+import "./index.css";
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import "./index.css";
 import App from './App';
 import TitlePage from "./pages/TitlePage";
-import Game from './pages/Game'
+import Game from './pages/Game/Game'
 
 const router = createBrowserRouter([
   {

@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react'
-import '../components/NanoBoard/DisplayNanoBoard.css';
-import useGameContext from '../contexts/GameContext'
-import DisplayNanoBoard from '../components/NanoBoard/DisplayNanoBoard'
+import useGameContext from '../../contexts/GameContext'
+import DisplayNanoBoard from '../../components/NanoBoard/DisplayNanoBoard'
+import './Game.css'
 
 const GamePage = () => {
   const {
