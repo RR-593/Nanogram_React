@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function TitlePage() {
+  console.log("load")
   return (
     <div className="title-page">
       <h1>Nonogram Game</h1>
