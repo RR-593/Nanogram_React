@@ -25,6 +25,10 @@ export default function Tile(props){
   const [nanogram, setNewNanogram] = useNanogramContext();
   const [board, updateBoard] = useActiveBoardContext();
   const [selectedState, setSelect] = useState(0)
+  // -2 ?
+  // -1 X
+  //  0 blank
+  //  1 filled
 
 
   var onClickHandler = (e)=>{

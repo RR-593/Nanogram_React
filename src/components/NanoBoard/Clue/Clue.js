@@ -2,7 +2,7 @@ import "./Clue.css"
 import React, { useState, createContext, useEffect } from 'react';
 import {useNanogramContext} from '../../Providers/NanogramProvider'
 
-import {create2DArray} from '../../helper_funcs/arrayFunctions'
+import {create2DArray} from '../../Array_functions/arrayFunctions'
 
 export default function Clue(props){
 	const [nanogram, setNewNanogram] = useNanogramContext();

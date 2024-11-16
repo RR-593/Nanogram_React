@@ -5,7 +5,7 @@ import { useNanogramContext } from '../Providers/NanogramProvider.js'
 import { useActiveBoardContext } from '../Providers/ActiveBoardProvider.js'
 import './BoardButtons.css'
 
-import { compareNanograms, toString2DArray } from '../helper_funcs/arrayFunctions.js'
+import { compareNanograms, toString2DArray } from '../Array_functions/arrayFunctions.js'
 
 const BoardButtons = (props) => {
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Outlet, Link } from "react-router-dom";
 import './App.css';
 
 // import StatsProvider from './components/Providers/StatsProvider'
@@ -39,22 +40,15 @@ import './App.css';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { GameProvider } from './contexts/GameContext'; // Assuming GameContext is set up
-import TitlePage from './pages/TitlePage';
-import SettingsPage from './components/SettingsPage';
-import GamePage from './components/GamePage';
+// import SettingsPage from './components/SettingsPage';
+// import GamePage from './components/GamePage';
 
 function App() {
-  console.log("load")
+  // console.log("load")
   return (
-    <Router>
-      <GameProvider>
-        <Routes>
-          <Route path="/" element={<TitlePage />} />
-          {/* <Route path="/settings" element={<SettingsPage />} />
-          <Route path="/game" element={<GamePage />} /> */}
-        </Routes>
-      </GameProvider>
-    </Router>
+    <GameProvider>
+      <Outlet />
+    </GameProvider>
   );
 }
 
