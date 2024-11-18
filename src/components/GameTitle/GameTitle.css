@@ -1,0 +1,4 @@
+.game-title {
+    margin: var(--spacing-small) 0;
+    font-size: var(--font-size-large);
+}

@@ -1,6 +1,9 @@
 import React,{useState, useEffect} from 'react';
 import useGameContext from '../contexts/GameContext'
-import { Link } from 'react-router-dom';
+import { Link , Outlet} from 'react-router-dom';
+import './TitlePage.css'
+import GameTitle from '../components/GameTitle/GameTitle';
+import Home from '../components/Home';
 
 function TitlePage() {
   const {
@@ -26,14 +29,8 @@ function TitlePage() {
 
   return (
     <div className="title-page">
-      <h1 className="big-game-title">Nonogram Game</h1>
-      <p>Welcome to the Nonogram puzzle game!</p>
-      <Link to="/Game">
-        <button onClick={newGameAction}>New Game</button>
-      </Link>
-      <Link to="/game">
-        <button>Start Game</button>
-      </Link>
+      <GameTitle/>
+      <Home/>
     </div>
   );
 }
