@@ -23,4 +23,4 @@ COPY . .
 EXPOSE 3000
 # required for docker desktop port mapping
 
-# CMD ["npm","start"]
+CMD ["npm","start"]
