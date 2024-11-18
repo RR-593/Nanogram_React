@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import useGameContext from '../../contexts/GameContext'
+import './HomeButtons.css'
 
 function HomeButtons() {
   const {
@@ -17,11 +18,11 @@ function HomeButtons() {
 	} = useGameContext();
 
   return (
-    <div className="HomeButtons">
-        <button>Continue</button>
-        <button>New Board</button>
-        <button>Trophies</button>
-        <button>Settings</button>
+    <div className="HomeButtonBox">
+        <button className="HomeButton" id="continue">Continue</button>
+        <button className="HomeButton" id="new">New Board</button>
+        <button className="HomeButton" id="trophie">Trophies</button>
+        <button className="HomeButton" id="settings">Settings</button>
     </div>
   );
 }

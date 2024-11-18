@@ -1,7 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import useGameContext from '../contexts/GameContext'
 import { Link , Outlet} from 'react-router-dom';
-import './TitlePage.css'
 import GameTitle from '../components/GameTitle/GameTitle';
 import Home from '../components/Home';
 
