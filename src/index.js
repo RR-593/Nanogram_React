@@ -9,7 +9,7 @@ import App from './App';
 import TitlePage from "./pages/TitlePage";
 
 import Game from './pages/Game/Game'
-import Home from "./components/Home";
+import SelectBoard from "./pages/SelectBoard/SelectBoard";
 
 const router = createBrowserRouter([
   {
@@ -20,8 +20,8 @@ const router = createBrowserRouter([
         element: <TitlePage /> 
       },
       {
-        path: "/selectBoard",
-        element: <></>//<selectBoard />
+        path: "/SelectBoard",
+        element: <SelectBoard/>
       },
       {
         path: "/game",

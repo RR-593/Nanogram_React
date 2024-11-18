@@ -1,0 +1,115 @@
+.select-board-box{
+  border-style: solid;
+  border-width: 10px;
+  border-color: #76bfcb;
+  border-radius: 30px;
+  padding: 30px;
+}
+
+.board-selector-box{
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.board-size{
+  font-size: var(--font-size-large);
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.slider-container {
+  --slider-height: 16px;
+
+  position: relative;
+  width: 300px;
+}
+
+.slider-back{
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  width: 100%;
+  height: var(--slider-height);
+  background: var(--color-accent-2);
+  border-radius: 5px;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  -webkit-appearance: none;
+  width: 100%;
+  height: var(--slider-height);
+  background: var(--color-accent-2);
+  /* Background of the slider track */
+  border-radius: 5px;
+  outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 60px;
+  height: 60px;
+  background: #4CAF50;
+  /* Color of the slider thumb */
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.locked-section {
+  position: absolute;
+  width: 50%;
+  /* Half of the slider width */
+  height: var(--slider-height);
+  /* Same height as the slider */
+  background: var(--color-accent-1);
+  /* Color for the locked section */
+  top: 0;
+  right: 0;
+  /* Position it on the left half */
+  border-radius: 5px;
+  pointer-events: none;
+  /* Disable interactions with this section */
+}
+
+.board-select-submission{
+  font-size: 22px;
+  font-family: Verdana;
+  font-weight: bold;
+  width: 229px;
+  height: 58px;
+  border-radius: 121px;
+
+  border-width: 0;
+  background: #ffffff;
+  color: royalblue;
+}
+
+.board-select-submission:hover{
+  background: royalblue;
+  color: #ffffff;
+}
+
+.lock-box{
+  position: relative;
+}
+
+.circle{
+  border-radius: 50%;
+  position: absolute;
+  --magic-mult: 1.5;
+  top: calc((var(--slider-height)*var(--magic-mult))/-6);
+  height: calc(var(--slider-height)*var(--magic-mult));
+  width: calc(var(--slider-height)*var(--magic-mult));
+  background: var(--color-accent-2);
+}
+
+.lock{
+  position: absolute;
+  left: 6.5px;
+}
