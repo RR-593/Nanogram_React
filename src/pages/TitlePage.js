@@ -2,7 +2,7 @@ import React,{useState, useEffect} from 'react';
 import useGameContext from '../contexts/GameContext'
 import { Link , Outlet} from 'react-router-dom';
 import GameTitle from '../components/GameTitle/GameTitle';
-import Home from '../components/Home';
+import Home from '../components/Home/Home';
 
 function TitlePage() {
   const {

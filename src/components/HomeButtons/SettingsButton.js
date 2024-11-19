@@ -1,9 +1,10 @@
+import SettingsModal from '../Modals/SettingsModal/SettingsModal';
 import './HomeButtons.css'
 
 function SettingsButton() {
 
 	return (
-		<button className="HomeButton" id="settings">Settings</button>
+		<SettingsModal/>
 	);
 }
 

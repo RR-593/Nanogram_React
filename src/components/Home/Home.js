@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react';
-import useGameContext from '../contexts/GameContext'
-import HomeButtons from './HomeButtons/HomeButtons';
-import ScoreDisplay from './ScoreDisplay/ScoreDisplay';
+import useGameContext from '../../contexts/GameContext'
+import HomeButtons from '../HomeButtons/HomeButtons';
+import ScoreDisplay from '../ScoreDisplay/ScoreDisplay';
 import './Home.css';
 
 function Home() {
