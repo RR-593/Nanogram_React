@@ -86,6 +86,11 @@ export const GameProvider = ({ children }) => {
     updateStats()
   };
 
+  const updateBoard = (board = currentBoard) => {
+    setCurrentBoard(board)
+    localStorage.setItem(LOCAL_STORAGE_KEYS.currentBoard, JSON.stringify(board));
+  }
+
 
   useEffect(() => {
     // Initialize stats from localStorage when the app starts
@@ -180,13 +185,13 @@ export const GameProvider = ({ children }) => {
     <GameContext.Provider value={{
       gameState,
       setGameState,
-      score,
-      setScore,
+      rating,
+      setRating,
       globalSettings,
       nonogram,
       boardsUnlocked,
       currentBoard,
-      setCurrentBoard,
+      updateBoard,
       startNewGame,
        
       clearBoard,

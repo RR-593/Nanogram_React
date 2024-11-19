@@ -27,7 +27,7 @@ export default function Tile(props) {
     globalSettings,
     nonogram,
     currentBoard,
-    setCurrentBoard,
+    updateBoard,
     startNewGame,
     clearBoard
   } = useGameContext();
@@ -62,7 +62,7 @@ export default function Tile(props) {
   var updateSelect = () => {
     let boardCopy = currentBoard
     boardCopy[props.id[0]][props.id[1]] = MouseDrawTileStateContext === 1 ? 1 : 0
-    setCurrentBoard(boardCopy)
+    updateBoard(boardCopy)
     setSelect(MouseDrawTileStateContext)
   }
 

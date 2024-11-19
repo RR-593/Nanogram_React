@@ -13,12 +13,11 @@ function Home() {
 		currentBoard,
 		setCurrentBoard,
 		startNewGame,
-		 
 		clearBoard
 	} = useGameContext();
 
   return (
-    <div className="HomeBox">
+    <div className="home-container">
         <div className="scoreANDrecentBoard"> </div>
         <HomeButtons />
         <div className="BestBoards"></div>
