@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import generateNonogram from '../components/generateNonogram';
-import { compareNanograms, create2DArray } from '../components/Array_functions/arrayFunctions'
+import { compareNonograms, create2DArray } from '../components/Array_functions/arrayFunctions'
 
 // Create context for game state
 const GameContext = createContext();
@@ -96,7 +96,7 @@ export const GameProvider = ({ children }) => {
 
   // Check if all cells are correctly filled
   const checkWin = () => {
-    return compareNanograms(currentBoard, nonogram);
+    return compareNonograms(currentBoard, nonogram.nonogramArr);
   };
 
   // Handle the game won state
@@ -149,7 +149,8 @@ export const GameProvider = ({ children }) => {
       setCurrentBoard,
       startNewGame,
       clearGame,
-      clearBoard
+      clearBoard,
+      checkWin
     }}>
       {children}
     </GameContext.Provider>

@@ -2,7 +2,7 @@ import { create2DArray, createRowClues, createColumnClues} from './Array_functio
 
 const emptyBoard = {
 	size: 0,
-	nanogramArr: [],
+	nonogramArr: [],
 	clue: {
 		rows: [],
 		cols: []
@@ -18,13 +18,13 @@ const emptyBoard = {
  */
 const generateNonogram = (size,difficulty) => {
 	
-	const createNanogramArr = () => create2DArray(size, () => Math.round(Math.random()))
+	const createNonogramArr = () => create2DArray(size, () => Math.round(Math.random()))
 
 
 	//Create Nonogram
-	let nanoArr = createNanogramArr()
-	let clueRows = createRowClues(nanoArr)
-	let clueCols = createColumnClues(nanoArr)
+	let nonoArr = createNonogramArr()
+	let clueRows = createRowClues(nonoArr)
+	let clueCols = createColumnClues(nonoArr)
 
 	//Make Nonos easir
 	//Difficulty checker. intToFind = to minium number must exsist in 2d array
@@ -41,15 +41,15 @@ const generateNonogram = (size,difficulty) => {
 
 
 	while (!(isCluesEasy(clueRows, minimumClueTarget) && isCluesEasy(clueCols, minimumClueTarget))) {
-		nanoArr = createNanogramArr()
-		clueRows = createRowClues(nanoArr)
-		clueCols = createColumnClues(nanoArr)
+		nonoArr = createNonogramArr()
+		clueRows = createRowClues(nonoArr)
+		clueCols = createColumnClues(nonoArr)
 	}
 	// console.log(isCluesEasy(clueRows,minimumClueTarget) && isCluesEasy(clueCols,minimumClueTarget))
 
 	const nonogramBoard = {...emptyBoard,
 		size: size,
-		nanogramArr: nanoArr,
+		nonogramArr: nonoArr,
 		clue: {
 			rows: clueRows,
 			cols: clueCols

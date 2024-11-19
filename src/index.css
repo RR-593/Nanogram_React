@@ -4,7 +4,8 @@
   --color-dark-bg-2: #001319;
   --color-accent-1: #19424e;
   --color-accent-2: #417A80;
-  --color-light-bg: #d8ebf2;
+  --color-accent-3: #76bfcb;
+  --color-light-bg: #e9faff;
 
   /* Font Sizes */
   --font-size-base: 28px;
@@ -59,4 +60,14 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+button {
+  border-radius: var(--border-radius);
+  min-height: var(--min-height-vh);
+  min-width: var(--min-width-vh);
+  border: 0 solid var(--color-accent-1);
+  background-color: var(--color-accent-1);
+  font-size: var(--font-size-base);
+  color: var(--color-light-bg);
 }

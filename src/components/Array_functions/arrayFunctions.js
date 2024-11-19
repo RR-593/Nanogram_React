@@ -9,16 +9,16 @@
 export const create2DArray = (size,item) => Array.from({ length: size }, () => Array.from({ length: size }, () => typeof item === "function"? item() : item))
 
 /**
- * Generates column clues from a nanogram array.
+ * Generates column clues from a nonogram array.
  * A column clue is a list of consecutive filled cells (represented by 1s) in a column.
  * 
- * @param {Array<Array<number>>} nanogramArr - A 2D array of a nanogram grid.
+ * @param {Array<Array<number>>} nonogramArr - A 2D array of a nonogram grid.
  * @returns {Array<Array<number>>} A 2D array of column clues, where each array represents the consecutive 1s in the respective column.
  */
-export const createColumnClues = (nanogramArr) => nanogramArr[0].map((_, col) => {
+export const createColumnClues = (nonogramArr) => nonogramArr[0].map((_, col) => {
 	const counts = [];
 	let count = 0;
-	for (const row of nanogramArr) 
+	for (const row of nonogramArr) 
 		count = row[col] === 1 ? 
 		count + 1 : 
 		(count ? 
@@ -32,13 +32,13 @@ export const createColumnClues = (nanogramArr) => nanogramArr[0].map((_, col) =>
 });
 
 /**
- * Generates row clues from a nanogram array.
+ * Generates row clues from a nonogram array.
  * A row clue is a list of consecutive filled cells (represented by 1s) in a row.
  * 
- * @param {Array<Array<number>>} nanogramArr - A 2D array representing the nanogram grid.
+ * @param {Array<Array<number>>} nonogramArr - A 2D array representing the nonogram grid.
  * @returns {Array<Array<number>>} An array of row clues, where each array represents the consecutive 1s in the respective row.
  */
-export const createRowClues = (nanogramArr) => nanogramArr.map( row => {
+export const createRowClues = (nonogramArr) => nonogramArr.map( row => {
 	const counts = [];
 	let count = 0;
 
@@ -75,18 +75,18 @@ export const compare2DArrays = (array1, array2) => {
 /**
  * Compares two Nonograms and checks if they comply with the same clues.
  * 
- * @param {Array<Array<any>>} nanoArr1 
- * @param {Array<Array<any>>} nanoArr2 
+ * @param {Array<Array<any>>} nonoArr1 
+ * @param {Array<Array<any>>} nonoArr2 
  * @returns {boolean} Returns `true` if both nonos make up the same clues.
  */
-export const compareNanograms = (nanoArr1, nanoArr2) => {
+export const compareNonograms = (nonoArr1, nonoArr2) => {
 	let clueSet1 = {
-		rows: createRowClues(nanoArr1), 
-		cols: createColumnClues(nanoArr1)
+		rows: createRowClues(nonoArr1), 
+		cols: createColumnClues(nonoArr1)
 	}
 	let clueSet2 = {
-		rows: createRowClues(nanoArr2), 
-		cols: createColumnClues(nanoArr2)
+		rows: createRowClues(nonoArr2), 
+		cols: createColumnClues(nonoArr2)
 	}
 	
 	return compare2DArrays(clueSet1.rows,clueSet2.rows) && compare2DArrays(clueSet1.cols,clueSet2.cols)

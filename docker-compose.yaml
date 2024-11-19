@@ -1,7 +1,7 @@
 services:
-  my_nanograms_app:
+  my_nonograms_app:
     build: ./
-    container_name: nanograms_app
+    container_name: nonograms_app
     ports:
       - '3000:3000'
     stdin_open: true

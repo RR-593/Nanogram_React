@@ -1,19 +1,5 @@
 
 
-.App-header {
-  font-size: var(--font-size-small);
-}
-
-
-.GameInterface {
-  display: flex;
-  justify-content: center;
-  width: min-content;
-  background-color: var(--color-dark-bg-2);
-  border: var(--spacing-large) solid var(--color-dark-bg-2);
-  border-radius: var(--border-radius);
-}
-
 i[hidden=""] {
   visibility: hidden;
 }
@@ -24,13 +10,5 @@ i[hidden=""] {
   justify-content: flex-start;
 }
 
-button {
-  border-radius: var(--border-radius);
-  min-height: var(--min-height-vh);
-  min-width: var(--min-width-vh);
-  border: 0 solid var(--color-accent-1);
-  background-color: var(--color-accent-1);
-  font-size: var(--font-size-base);
-  color: var(--color-light-bg);
-}
+
 

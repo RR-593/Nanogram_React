@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react'
-import './DisplayNanoBoard.css';
+import './DisplayNonoBoard.css';
 import useGameContext from '../../contexts/GameContext'
 
 import $ from 'jquery'
@@ -29,7 +29,7 @@ const DisplayNanoBoard = () => {
 
 
   return (
-    <div className="nanogram-board">
+    <div className="nonogram-board">
       {[...Array(boardSize)].map((_, rowIndex) =>
         <div key={rowIndex} className="row">
           {[...Array(boardSize)].map((_, colIndex) => <Tile key={colIndex} id={[rowIndex, colIndex]} />)}

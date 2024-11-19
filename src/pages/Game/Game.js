@@ -1,33 +1,22 @@
 import { useEffect, useState, useContext } from 'react'
 import useGameContext from '../../contexts/GameContext'
-import DisplayNanoBoard from '../../components/NanoBoard/DisplayNanoBoard'
+import DisplayNonoBoard from '../../components/NonoBoard/DisplayNonoBoard'
 import './Game.css'
+import BoardControls from '../../components/BoardControls/BoardControls'
+import SettingsButton from '../../components/HomeButtons/SettingsButton'
 
 const GamePage = () => {
-  const {
-		gameState,
-		setGameState,
-		score,
-		setScore,
-		globalSettings,
-		nonogram,
-		currentBoard,
-		setCurrentBoard,
-		startNewGame,
-		clearGame,
-		clearBoard
-	} = useGameContext();
 
 	return (
 		<div className="GameInterface">
 			<div className="SidePannel">
-				{/* game name */}
-				{/* score */}
-				{/* timer */}
-				{/* board buttons */}
-				{/* setings */}
+				<h2>Nonograms</h2>
+				<div>Score</div>
+				<div>Timer</div>
+				<BoardControls/>
+				<SettingsButton/>
 			</div>
-			<DisplayNanoBoard/>
+			<DisplayNonoBoard/>
 		</div>
 	)
 

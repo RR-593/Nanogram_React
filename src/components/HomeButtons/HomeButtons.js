@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useGameContext from '../../contexts/GameContext'
 import { Link, Outlet } from 'react-router-dom';
 import './HomeButtons.css'
+import SettingsButton from './SettingsButton';
 
 function HomeButtons() {
   const {
@@ -25,7 +26,7 @@ function HomeButtons() {
         <button className="HomeButton" id="new">New Board</button>
       </Link>
       <button className="HomeButton" id="trophie">Trophies</button>
-      <button className="HomeButton" id="settings">Settings</button>
+      <SettingsButton/>
     </div>
   );
 }

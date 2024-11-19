@@ -5,7 +5,7 @@
 </h1>
 
 <p align="center">
-  <b>A simple and interactive Nanogram</b> <br />
+  <b>A simple and interactive Nonogram</b> <br />
   <b>Built with React • Really fun to play.</b> <br />
 </p>
 

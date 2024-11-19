@@ -1,16 +1,9 @@
-import { useEffect, useState, useContext } from 'react'
-import {useStatsContext} from '../Providers/StatsProvider'
 import './Confetti_Cone.css'
 
 const Confetti_Cone = () => {
-	const [game_stats, updateGStats] = useStatsContext();
-
-	const [svg, setSvg] = useState(<></>);
-
-	useEffect(()=>{
-		game_stats.complete_puzzle?
-		setSvg(
-			<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px"
+	return (
+		<div className="confetti-cone-box">
+			<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 				viewBox="0 0 400 400" >
 				<g className="confetti-cone">
 					<path className="conf0" d="M131.5,172.6L196,343c2.3,6.1,11,6.1,13.4,0l65.5-170.7L131.5,172.6z" />
@@ -66,20 +59,6 @@ const Confetti_Cone = () => {
 				<path className="conf8" id="yellow-strip" d="M290.7,215.4c0,0-14.4-3.4-22.6,2.7c-8.2,6.2-8.2,23.3-17.1,29.4c-8.9,6.2-19.8-2.7-32.2-4.1
 				c-12.3-1.4-19.2,5.5-20.5,10.9"/>
 			</svg>
-		):
-		setSvg(<></>)
-
-	},[game_stats.complete_puzzle])
-
-	// concept:
-	// Part of the social series
-	// colorful celebrating confetti
-	// technique
-	// # stroke animation
-	// # set transform-origin with exact x, y
-	return (
-		<div className="confetti-cone-box">
-			{svg}
 		</div>
 	)
 }
