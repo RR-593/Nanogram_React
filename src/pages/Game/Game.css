@@ -8,11 +8,14 @@
   border-radius: 30px;
 
 	padding: 30px;
+	gap: 30px
 }
 
 .SidePannel{
 	display: flex;
 	flex-direction: column;
   align-items: center;
+
+	justify-content: space-between;
 }
 

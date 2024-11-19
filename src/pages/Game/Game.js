@@ -8,16 +8,21 @@ import ScoreDisplay from '../../components/ScoreDisplay/ScoreDisplay'
 
 const GamePage = () => {
 
+
+	const { nonogram } = useGameContext();
+
 	return (
 		<div className="GameInterface">
 			<div className="SidePannel">
-				<h2>Nonograms</h2>
-				<ScoreDisplay/>
-				<div>Timer</div>
-				<BoardControls/>
-				<SettingsButton/>
+				<div style={{ width: "100%" }}>
+					<h1 style={{ marginTop: 0 }}>{nonogram.size}x{nonogram.size}</h1>
+					<ScoreDisplay />
+					<div>Timer</div>
+				</div>
+				<BoardControls />
+				<SettingsButton />
 			</div>
-			<DisplayNonoBoard/>
+			<DisplayNonoBoard />
 		</div>
 	)
 

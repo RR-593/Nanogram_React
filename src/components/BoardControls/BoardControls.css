@@ -1,4 +1,17 @@
-.board-controls-container button{
-
+.board-playing-controls-container button{
+  width: 100%;
   border-radius: 121px;
+}
+
+.board-playing-controls-container{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.board-won-controls-container{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }

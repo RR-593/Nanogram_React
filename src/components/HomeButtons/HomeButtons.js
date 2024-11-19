@@ -4,6 +4,7 @@ import { Link, Outlet } from 'react-router-dom';
 import './HomeButtons.css'
 import SettingsButton from './SettingsButton';
 import SelectBoardButton from './SelectBoardButton';
+import TrophieButton from './TrophieButton';
 
 
 function HomeButtons() {
@@ -27,7 +28,7 @@ function HomeButtons() {
         <button className="HomeButton" id="continue">Continue</button>
       </Link>
       <SelectBoardButton/>
-      <button className="HomeButton" id="trophie">Trophies</button>
+      <TrophieButton/>
       <SettingsButton />
     </div>
   );

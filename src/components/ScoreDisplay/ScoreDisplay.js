@@ -3,7 +3,7 @@ import './ScoreDisplay.css'
 
 const ScoreDisplay = () => {
 
-  const {
+	const {
 		gameState,
 		setGameState,
 		rating,

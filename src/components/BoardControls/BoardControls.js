@@ -55,23 +55,25 @@ const BoardControls = () => {
 
   const newBoardButton = (
     <div className="new-board-buton">
-      <SelectBoardButton/>
+      <SelectBoardButton />
     </div>
   )
 
 
   const playingControls = (
-    <div className="board-controls-container">
+    <div className="board-playing-controls-container">
       {checkBoardButton}
       {eraseBoardButton}
     </div>
   )
 
   const wonControls = (
-    <div>
+    <div className="board-won-controls-container">
       {newBoardButton}
-      <TrophieButton/>
-      <Confetti_Cone />
+      <TrophieButton />
+      <div className="confetti-container">
+        <Confetti_Cone />
+      </div>
     </div>
   )
 
@@ -80,11 +82,8 @@ const BoardControls = () => {
 
 
 
-  return (
-    <div>
-      {boardControllers}
-    </div>
-  )
+  return boardControllers
+
 }
 
 export default BoardControls
