@@ -9,7 +9,6 @@ const GameContext = createContext();
 // Provider component
 export const GameProvider = ({ children }) => {
   const [gameVersion, setGameVersion] = useState("V2.0.0"); // this is used to reset people data so nothing breaks, increment number for fresh reset
-  const [gameState, setGameState] = useState('paused'); // 'paused', 'playing', 'won'
   const [score, setScore] = useState(0);
 
   const [globalSettings, setGlobalSettings] = useState({
@@ -22,6 +21,7 @@ export const GameProvider = ({ children }) => {
   // Local storage keys
   const LOCAL_STORAGE_KEYS = {
     gameVersion: 'gameVersion',
+    gameState: 'gameState',
     boardsCompleted: 'boardsCompleted',
     boardsUnlocked: 'boardsUnlocked',
     fastestTime: 'fastestTime',
@@ -35,6 +35,7 @@ export const GameProvider = ({ children }) => {
   // Get stats from localStorage or initialize them if not found
   const getStoredStats = () => {
     const gameVersion = localStorage.getItem(LOCAL_STORAGE_KEYS.gameVersion) || "error";
+    const gameState = localStorage.getItem(LOCAL_STORAGE_KEYS.gameState) || "paused"; // 'paused', 'playing', 'won'
     const boardsCompleted = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.boardsCompleted)) || {};
     const boardsUnlocked = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.boardsUnlocked)) || [globalSettings.default_board_size, 8];
     const fastestTime = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.fastestTime)) || {};
@@ -43,10 +44,11 @@ export const GameProvider = ({ children }) => {
     const difficulty = localStorage.getItem(LOCAL_STORAGE_KEYS.difficulty) || "normal";
     const nonogram = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.nonogram)) || generateNonogram(globalSettings.default_board_size, difficulty);
     const currentBoard = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.currentBoard)) || create2DArray(globalSettings.default_board_size, 0);
-    return { gameVersion, boardsCompleted, fastestTime, rating, stageUnlocked, difficulty, currentBoard, boardsUnlocked, nonogram };
+    return { gameVersion,gameState, boardsCompleted, fastestTime, rating, stageUnlocked, difficulty, currentBoard, boardsUnlocked, nonogram };
   };
 
 
+  const [gameState, setGameState] = useState(getStoredStats().gameState); // 'paused', 'playing', 'won'
   const [boardsCompleted, setBoardsCompleted] = useState(getStoredStats().boardsCompleted);
   const [boardsUnlocked, setBoardsUnlocked] = useState(getStoredStats().boardsUnlocked);
   const [fastestTime, setFastestTime] = useState(getStoredStats().fastestTime);
@@ -62,6 +64,7 @@ export const GameProvider = ({ children }) => {
   const updateStats = () => {
     const stats = getStoredStats();
 
+    setGameState(stats.gameState)
     setCurrentBoard(stats.currentBoard);
     setBoardsCompleted(stats.boardsCompleted);
     setBoardsUnlocked(stats.boardsUnlocked)
@@ -74,6 +77,7 @@ export const GameProvider = ({ children }) => {
   // Update stats in localStorage
   const updateStatsInLocalStorage = (bC, rat) => {
     localStorage.setItem(LOCAL_STORAGE_KEYS.gameVersion, gameVersion);
+    localStorage.setItem(LOCAL_STORAGE_KEYS.gameState, gameState);
     localStorage.setItem(LOCAL_STORAGE_KEYS.boardsCompleted, JSON.stringify(bC));
     localStorage.setItem(LOCAL_STORAGE_KEYS.boardsUnlocked, JSON.stringify(boardsUnlocked));
     localStorage.setItem(LOCAL_STORAGE_KEYS.fastestTime, JSON.stringify(fastestTime));
@@ -98,6 +102,10 @@ export const GameProvider = ({ children }) => {
     updateStats()
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEYS.gameState, gameState);
+  }, [gameState]);
+
 
 
 
@@ -105,7 +113,9 @@ export const GameProvider = ({ children }) => {
   // Clear players board
   const clearBoard = (size = nonogram.size) => {
     globalSettings.clearBoard = !globalSettings.clearBoard;
-    setCurrentBoard(create2DArray(size, 0))
+    var cleanBoard = create2DArray(size, 0)
+    setCurrentBoard(cleanBoard)
+    return cleanBoard
   }
 
   /**
@@ -120,8 +130,12 @@ export const GameProvider = ({ children }) => {
   const startNewGame = (size) => {
     setGameState('playing');
     setScore(0);
-    setNonogram(generateNonogram(size, difficulty)); // New nonogram
-    clearBoard(size) // Clear the board
+    var newNonogram = generateNonogram(size, difficulty);
+    setNonogram(newNonogram); // New nonogram
+    var cleanBoard = clearBoard(size) // clear board
+    
+    localStorage.setItem(LOCAL_STORAGE_KEYS.nonogram, JSON.stringify(newNonogram));
+    localStorage.setItem(LOCAL_STORAGE_KEYS.currentBoard, JSON.stringify(cleanBoard));
   };
 
   // Check if all cells are correctly filled

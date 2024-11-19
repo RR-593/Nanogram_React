@@ -67,7 +67,7 @@ export default function Tile(props) {
   }
 
   useEffect(() => {
-    if (gameState !== "playing") return
+    if (gameState !== "playing" || !globalSettings.clearBoard) return
     setSelect(0)
   }, [globalSettings.clearBoard])
 

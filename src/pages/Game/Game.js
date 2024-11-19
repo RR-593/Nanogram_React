@@ -1,4 +1,5 @@
 import { useEffect, useState, useContext } from 'react'
+import { useParams } from 'react-router-dom';
 import useGameContext from '../../contexts/GameContext'
 import DisplayNonoBoard from '../../components/NonoBoard/DisplayNonoBoard'
 import './Game.css'
@@ -7,7 +8,6 @@ import SettingsButton from '../../components/HomeButtons/SettingsButton'
 import ScoreDisplay from '../../components/ScoreDisplay/ScoreDisplay'
 
 const GamePage = () => {
-
 
 	const { nonogram } = useGameContext();
 
