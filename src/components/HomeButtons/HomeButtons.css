@@ -8,7 +8,6 @@
 .HomeButton {
   font-size: 22px;
   font-family: Verdana;
-  font-weight: bold;
   width: 229px;
   height: 58px;
   border-radius: 121px;
@@ -56,4 +55,21 @@
 
 .HomeButton#continue:hover{
   background: rgba(22, 25, 31, 0.65)
+}
+
+.new-board-button-container{
+  display: flex;
+  gap: 5px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.select-from-menu{
+  width: revert;
+  padding: 10px;
+}
+
+
+.quick-select{
+  width: 6vh;
 }

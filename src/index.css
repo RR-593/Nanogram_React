@@ -64,8 +64,8 @@ code {
 
 button {
   border-radius: var(--border-radius);
-  min-height: var(--min-height-vh);
-  min-width: var(--min-width-vh);
+  height: var(--min-height-vh);
+  width: var(--min-width-vh);
   border: 0 solid var(--color-accent-1);
   background-color: var(--color-accent-1);
   font-size: var(--font-size-base);
