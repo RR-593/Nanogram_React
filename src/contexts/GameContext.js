@@ -128,11 +128,12 @@ export const GameProvider = ({ children }) => {
   * @returns {void} void
   */
   const startNewGame = (size) => {
-    setGameState('playing');
     setScore(0);
     var newNonogram = generateNonogram(size, difficulty);
     setNonogram(newNonogram); // New nonogram
     var cleanBoard = clearBoard(size) // clear board
+
+    setGameState('playing');
     
     localStorage.setItem(LOCAL_STORAGE_KEYS.nonogram, JSON.stringify(newNonogram));
     localStorage.setItem(LOCAL_STORAGE_KEYS.currentBoard, JSON.stringify(cleanBoard));
@@ -176,6 +177,7 @@ export const GameProvider = ({ children }) => {
   // Handle the game won state
   const handleGameWon = () => {
     var isCorrect = checkWin()
+    console.log('isCorrect: '+isCorrect+", gameState: "+gameState);
     if (!isCorrect || gameState === "won") return false
 
     setGameState('won');
