@@ -9,10 +9,11 @@ const GameContext = createContext();
 // Provider component
 export const GameProvider = ({ children }) => {
   const [gameVersion, setGameVersion] = useState("V2.0.0"); // this is used to reset people data so nothing breaks, increment number for fresh reset
-  const [gameState, setGameState] = useState('paused'); // 'paused', 'playing', 'won', 'blank'
+  const [gameState, setGameState] = useState('paused'); // 'paused', 'playing', 'won'
   const [score, setScore] = useState(0);
 
   const [globalSettings, setGlobalSettings] = useState({
+    clearBoard: false,
     default_board_size: 4,
     max_board_size: 25
   });
@@ -98,6 +99,7 @@ export const GameProvider = ({ children }) => {
 
   // Clear players board
   const clearBoard = (size = nonogram.size) => {
+    globalSettings.clearBoard = !globalSettings.clearBoard;
     setCurrentBoard(create2DArray(size, 0))
   }
 
@@ -115,12 +117,6 @@ export const GameProvider = ({ children }) => {
     setScore(0);
     setNonogram(generateNonogram(size, difficulty)); // New nonogram
     clearBoard(size) // Clear the board
-  };
-
-  // Clear game board
-  const clearGame = () => {
-    setGameState('blank');
-    clearBoard() // Clear the board
   };
 
   // Check if all cells are correctly filled
@@ -161,7 +157,7 @@ export const GameProvider = ({ children }) => {
   // Handle the game won state
   const handleGameWon = () => {
     var isCorrect = checkWin()
-    if (!isCorrect || gameState == "won") return false
+    if (!isCorrect || gameState === "won") return false
 
     setGameState('won');
 
@@ -192,7 +188,7 @@ export const GameProvider = ({ children }) => {
       currentBoard,
       setCurrentBoard,
       startNewGame,
-      clearGame,
+       
       clearBoard,
       handleGameWon
     }}>

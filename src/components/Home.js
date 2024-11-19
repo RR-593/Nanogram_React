@@ -13,7 +13,7 @@ function Home() {
 		currentBoard,
 		setCurrentBoard,
 		startNewGame,
-		clearGame,
+		 
 		clearBoard
 	} = useGameContext();
 

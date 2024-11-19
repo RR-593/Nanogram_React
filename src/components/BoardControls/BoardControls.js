@@ -16,7 +16,6 @@ const BoardControls = () => {
 		currentBoard,
 		setCurrentBoard,
 		startNewGame,
-		clearGame,
 		clearBoard,
     handleGameWon
 	} = useGameContext();
@@ -24,9 +23,12 @@ const BoardControls = () => {
   const [confetti, setConfetti] = useState(<></>);
 
   const checkBoardAction = () => {
-    var isWon = handleGameWon()
-    console.log(isWon);
-    if (isWon) setConfetti(<Confetti_Cone/>)
+    if (handleGameWon()) setConfetti(<Confetti_Cone/>)
+  }
+
+  const clearBoardAction = () => {
+    console.log(gameState);
+    if (gameState === "playing") clearBoard()
   }
 
   useEffect(() => {
@@ -43,7 +45,7 @@ const BoardControls = () => {
 
   const eraseBoardButton = (
     <div className="erase-board-buton">
-      <button>
+      <button onClick={clearBoardAction}>
         <i className="fa  fa-eraser"></i>
       </button>
     </div>

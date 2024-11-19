@@ -15,7 +15,6 @@ function TitlePage() {
 		currentBoard,
 		setCurrentBoard,
 		startNewGame,
-		clearGame,
 		clearBoard
 	} = useGameContext();
 

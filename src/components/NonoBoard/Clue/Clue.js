@@ -15,7 +15,7 @@ export default function Clue(props){
 		currentBoard,
 		setCurrentBoard,
 		startNewGame,
-		clearGame,
+		 
 		clearBoard
 	} = useGameContext();
 

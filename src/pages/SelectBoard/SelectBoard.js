@@ -17,7 +17,6 @@ function SelectBoard() {
     currentBoard,
     setCurrentBoard,
     startNewGame,
-    clearGame,
     clearBoard
   } = useGameContext();
 

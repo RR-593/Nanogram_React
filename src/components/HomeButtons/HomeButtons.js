@@ -15,7 +15,7 @@ function HomeButtons() {
     currentBoard,
     setCurrentBoard,
     startNewGame,
-    clearGame,
+     
     clearBoard
   } = useGameContext();
 

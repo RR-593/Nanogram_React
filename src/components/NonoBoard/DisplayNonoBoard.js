@@ -17,7 +17,7 @@ const DisplayNanoBoard = () => {
 		currentBoard,
 		setCurrentBoard,
 		startNewGame,
-		clearGame,
+		 
 		clearBoard
 	} = useGameContext();
 
