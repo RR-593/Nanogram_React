@@ -4,6 +4,8 @@ import $ from 'jquery'
 
 import './BoardControls.css'
 import Confetti_Cone from '../Confetti/Confetti_Cone'
+import SelectBoardButton from '../HomeButtons/SelectBoardButton'
+import TrophieButton from '../HomeButtons/TrophieButton'
 
 const BoardControls = () => {
   const {
@@ -51,6 +53,12 @@ const BoardControls = () => {
     </div>
   )
 
+  const newBoardButton = (
+    <div className="new-board-buton">
+      <SelectBoardButton/>
+    </div>
+  )
+
 
   const playingControls = (
     <div className="board-controls-container">
@@ -61,8 +69,8 @@ const BoardControls = () => {
 
   const wonControls = (
     <div>
-      {checkBoardButton}
-      {eraseBoardButton}
+      {newBoardButton}
+      <TrophieButton/>
       <Confetti_Cone />
     </div>
   )

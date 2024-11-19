@@ -3,6 +3,8 @@ import useGameContext from '../../contexts/GameContext'
 import { Link, Outlet } from 'react-router-dom';
 import './HomeButtons.css'
 import SettingsButton from './SettingsButton';
+import SelectBoardButton from './SelectBoardButton';
+
 
 function HomeButtons() {
   const {
@@ -24,9 +26,7 @@ function HomeButtons() {
       <Link to="Game">
         <button className="HomeButton" id="continue">Continue</button>
       </Link>
-      <Link to="SelectBoard">
-        <button className="HomeButton" id="new">New Board</button>
-      </Link>
+      <SelectBoardButton/>
       <button className="HomeButton" id="trophie">Trophies</button>
       <SettingsButton />
     </div>
