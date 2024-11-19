@@ -33,7 +33,9 @@ export default function Tile(props){
 		clearBoard
 	} = useGameContext();
 
-  const [selectedState, setSelect] = useState(0)
+  var sateFromCurrentBoard = currentBoard[props.id[0]][props.id[1]]? currentBoard[props.id[0]][props.id[1]] : 0
+
+  const [selectedState, setSelect] = useState(sateFromCurrentBoard)
   // -2 ?
   // -1 X
   //  0 blank

@@ -27,6 +27,7 @@ export const GameProvider = ({ children }) => {
     rating: 'rating',
     stageUnlocked: 'stageUnlocked',
     difficulty: "difficulty",
+    nonogram: "nonogram",
     currentBoard: "currentBoard"
   };
 
@@ -39,8 +40,9 @@ export const GameProvider = ({ children }) => {
     const rating = parseInt(localStorage.getItem(LOCAL_STORAGE_KEYS.rating), 10) || 0;
     const stageUnlocked = parseInt(localStorage.getItem(LOCAL_STORAGE_KEYS.stageUnlocked), 10) || 0;
     const difficulty = localStorage.getItem(LOCAL_STORAGE_KEYS.difficulty) || "normal";
+    const nonogram = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.nonogram)) || generateNonogram(globalSettings.default_board_size, difficulty);
     const currentBoard = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.currentBoard)) || create2DArray(globalSettings.default_board_size, 0);
-    return { gameVersion, boardsCompleted, fastestTime, rating, stageUnlocked, difficulty, currentBoard, boardsUnlocked };
+    return { gameVersion, boardsCompleted, fastestTime, rating, stageUnlocked, difficulty, currentBoard, boardsUnlocked, nonogram };
   };
 
 
@@ -50,10 +52,9 @@ export const GameProvider = ({ children }) => {
   const [rating, setRating] = useState(getStoredStats().rating);
   const [stageUnlocked, setStageUnlocked] = useState(getStoredStats().stageUnlocked);
   const [difficulty, setDifficulty] = useState(getStoredStats().difficulty);
+  const [nonogram, setNonogram] = useState(getStoredStats().nonogram);
   const [currentBoard, setCurrentBoard] = useState(getStoredStats().currentBoard);
 
-
-  const [nonogram, setNonogram] = useState(generateNonogram(globalSettings.default_board_size, difficulty));
 
 
 
@@ -78,6 +79,7 @@ export const GameProvider = ({ children }) => {
     localStorage.setItem(LOCAL_STORAGE_KEYS.rating, rat);
     localStorage.setItem(LOCAL_STORAGE_KEYS.stageUnlocked, stageUnlocked);
     localStorage.setItem(LOCAL_STORAGE_KEYS.difficulty, difficulty);
+    localStorage.setItem(LOCAL_STORAGE_KEYS.nonogram, JSON.stringify(nonogram));
     localStorage.setItem(LOCAL_STORAGE_KEYS.currentBoard, JSON.stringify(currentBoard));
 
     updateStats()
