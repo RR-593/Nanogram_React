@@ -7,23 +7,23 @@ import Confetti_Cone from '../Confetti/Confetti_Cone'
 
 const BoardControls = () => {
   const {
-		gameState,
-		setGameState,
-		score,
-		setScore,
-		globalSettings,
-		nonogram,
-		currentBoard,
-		setCurrentBoard,
-		startNewGame,
-		clearBoard,
+    gameState,
+    setGameState,
+    score,
+    setScore,
+    globalSettings,
+    nonogram,
+    currentBoard,
+    setCurrentBoard,
+    startNewGame,
+    clearBoard,
     handleGameWon
-	} = useGameContext();
+  } = useGameContext();
 
   const [confetti, setConfetti] = useState(<></>);
 
   const checkBoardAction = () => {
-    if (handleGameWon()) setConfetti(<Confetti_Cone/>)
+    if (handleGameWon()) setboardControllers(wonControls)
   }
 
   const clearBoardAction = () => {
@@ -51,11 +51,30 @@ const BoardControls = () => {
     </div>
   )
 
-  return (
+
+  const playingControls = (
     <div className="board-controls-container">
       {checkBoardButton}
       {eraseBoardButton}
-      {confetti}
+    </div>
+  )
+
+  const wonControls = (
+    <div>
+      {checkBoardButton}
+      {eraseBoardButton}
+      <Confetti_Cone />
+    </div>
+  )
+
+  const [boardControllers, setboardControllers] = useState(playingControls);
+
+
+
+
+  return (
+    <div>
+      {boardControllers}
     </div>
   )
 }
