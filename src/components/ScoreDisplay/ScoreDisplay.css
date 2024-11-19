@@ -1,0 +1,5 @@
+.score-container{
+	background-color: var(--color-accent-3);
+	border: 0px solid;
+	border-radius: 30px;
+}

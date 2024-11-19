@@ -15,18 +15,20 @@ function HomeButtons() {
     currentBoard,
     setCurrentBoard,
     startNewGame,
-     
+
     clearBoard
   } = useGameContext();
 
   return (
     <div className="HomeButtonBox">
-      <button className="HomeButton" id="continue">Continue</button>
+      <Link to="Game">
+        <button className="HomeButton" id="continue">Continue</button>
+      </Link>
       <Link to="SelectBoard">
         <button className="HomeButton" id="new">New Board</button>
       </Link>
       <button className="HomeButton" id="trophie">Trophies</button>
-      <SettingsButton/>
+      <SettingsButton />
     </div>
   );
 }
