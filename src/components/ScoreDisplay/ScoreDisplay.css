@@ -1,5 +1,25 @@
 .score-container{
 	background-color: var(--color-accent-3);
 	border: 0px solid;
+	border-radius: 34px;
+	color: var(--color-dark-bg-2);
+	font-weight: bold;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	font-size: 32px;
+
+	width: 80%;
+	height: min-content;
+
+	padding-bottom: 3px;
+	padding-top: 10px;
+}
+
+.score-total{
+	background-color: var(--color-dark-bg-2);
+	border: 0px solid;
 	border-radius: 30px;
+
+	color: var(--color-accent-3);
+	padding: 6px;
+	margin: 5px;
 }

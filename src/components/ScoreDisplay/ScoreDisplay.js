@@ -1,4 +1,5 @@
 import useGameContext from "../../contexts/GameContext"
+import './ScoreDisplay.css'
 
 const ScoreDisplay = () => {
 

@@ -10,3 +10,9 @@
 	padding: 30px;
 }
 
+.SidePannel{
+	display: flex;
+	flex-direction: column;
+  align-items: center;
+}
+

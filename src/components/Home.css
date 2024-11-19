@@ -1,0 +1,14 @@
+.home-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 600px;
+}
+
+.score-recentBoard-container {
+	width: 200px;
+}
+
+.BestBoards{
+	width: 200px;
+}
