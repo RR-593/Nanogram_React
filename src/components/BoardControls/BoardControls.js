@@ -18,15 +18,20 @@ const BoardControls = () => {
 		startNewGame,
 		clearGame,
 		clearBoard,
-    checkWin
+    handleGameWon
 	} = useGameContext();
 
   const [confetti, setConfetti] = useState(<></>);
 
   const checkBoardAction = () => {
-    if (checkWin()) setConfetti(<Confetti_Cone/>)
-    if (!checkWin()) setConfetti(<></>)
+    var isWon = handleGameWon()
+    console.log(isWon);
+    if (isWon) setConfetti(<Confetti_Cone/>)
   }
+
+  useEffect(() => {
+    setConfetti(<></>)
+  }, [nonogram]);
 
   const checkBoardButton = (
     <div className="check-board-buton">

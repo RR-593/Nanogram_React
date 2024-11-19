@@ -2,6 +2,7 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 import generateNonogram from '../components/generateNonogram';
 import { compareNonograms, create2DArray } from '../components/Array_functions/arrayFunctions'
 
+
 // Create context for game state
 const GameContext = createContext();
 
@@ -33,13 +34,13 @@ export const GameProvider = ({ children }) => {
   const getStoredStats = () => {
     const gameVersion = localStorage.getItem(LOCAL_STORAGE_KEYS.gameVersion) || "error";
     const boardsCompleted = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.boardsCompleted)) || {};
-    const boardsUnlocked = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.boardsUnlocked)) || [globalSettings.default_board_size,8];
+    const boardsUnlocked = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.boardsUnlocked)) || [globalSettings.default_board_size, 8];
     const fastestTime = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.fastestTime)) || {};
     const rating = parseInt(localStorage.getItem(LOCAL_STORAGE_KEYS.rating), 10) || 0;
     const stageUnlocked = parseInt(localStorage.getItem(LOCAL_STORAGE_KEYS.stageUnlocked), 10) || 0;
     const difficulty = localStorage.getItem(LOCAL_STORAGE_KEYS.difficulty) || "normal";
     const currentBoard = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.currentBoard)) || create2DArray(globalSettings.default_board_size, 0);
-    return { gameVersion, boardsCompleted, fastestTime, rating, stageUnlocked, difficulty, currentBoard , boardsUnlocked};
+    return { gameVersion, boardsCompleted, fastestTime, rating, stageUnlocked, difficulty, currentBoard, boardsUnlocked };
   };
 
 
@@ -55,17 +56,43 @@ export const GameProvider = ({ children }) => {
   const [nonogram, setNonogram] = useState(generateNonogram(globalSettings.default_board_size, difficulty));
 
 
+
+  const updateStats = () => {
+    const stats = getStoredStats();
+
+    setCurrentBoard(stats.currentBoard);
+    setBoardsCompleted(stats.boardsCompleted);
+    setBoardsUnlocked(stats.boardsUnlocked)
+    setFastestTime(stats.fastestTime);
+    setRating(stats.rating);
+    setStageUnlocked(stats.stageUnlocked);
+    setDifficulty(stats.difficulty);
+  }
+
   // Update stats in localStorage
-  const updateStatsInLocalStorage = () => {
+  const updateStatsInLocalStorage = (bC, rat) => {
     localStorage.setItem(LOCAL_STORAGE_KEYS.gameVersion, gameVersion);
-    localStorage.setItem(LOCAL_STORAGE_KEYS.boardsCompleted, boardsCompleted);
-    localStorage.setItem(LOCAL_STORAGE_KEYS.boardsUnlocked, boardsUnlocked);
-    localStorage.setItem(LOCAL_STORAGE_KEYS.fastestTime, fastestTime);
-    localStorage.setItem(LOCAL_STORAGE_KEYS.rating, rating);
+    localStorage.setItem(LOCAL_STORAGE_KEYS.boardsCompleted, JSON.stringify(bC));
+    localStorage.setItem(LOCAL_STORAGE_KEYS.boardsUnlocked, JSON.stringify(boardsUnlocked));
+    localStorage.setItem(LOCAL_STORAGE_KEYS.fastestTime, JSON.stringify(fastestTime));
+    localStorage.setItem(LOCAL_STORAGE_KEYS.rating, rat);
     localStorage.setItem(LOCAL_STORAGE_KEYS.stageUnlocked, stageUnlocked);
     localStorage.setItem(LOCAL_STORAGE_KEYS.difficulty, difficulty);
-    localStorage.setItem(LOCAL_STORAGE_KEYS.currentBoard, currentBoard);
+    localStorage.setItem(LOCAL_STORAGE_KEYS.currentBoard, JSON.stringify(currentBoard));
+
+    updateStats()
   };
+
+
+  useEffect(() => {
+    // Initialize stats from localStorage when the app starts
+    if (gameVersion !== getStoredStats().gameVersion) { }// clear data
+    updateStats()
+  }, []);
+
+
+
+
 
   // Clear players board
   const clearBoard = (size = nonogram.size) => {
@@ -99,42 +126,57 @@ export const GameProvider = ({ children }) => {
     return compareNonograms(currentBoard, nonogram.nonogramArr);
   };
 
-  // Handle the game won state
-  const handleGameWon = () => {
-    const currentTime = 1000; // You should implement the actual timer logic here
-    const currentScore = score;
+  const updateBoardsCompleted = () => {
+    var tempBC = { ...boardsCompleted }
 
-    // Increment the number of completed boards
-    const newBoardsCompleted = boardsCompleted + 1;
-    setBoardsCompleted(newBoardsCompleted);
-
-    // Update fastest time if applicable
-    if (!fastestTime || currentTime < fastestTime) {
-      setFastestTime(currentTime);
+    if (Array.isArray(tempBC[nonogram.size])) {
+      tempBC[nonogram.size].push(currentBoard);
+    } else {
+      tempBC[nonogram.size] = [currentBoard];
     }
 
-    // // Update high score if applicable
-    // if (currentScore > highScore) {
-    //   setHighScore(currentScore);
-    // }
+    setBoardsCompleted(tempBC)
+    return tempBC
+  }
+
+  const updateRating = () => {
+    
+    //Update rating
+    //     Formula for max score per board:
+    // x = board size
+    // 62.5x^2−125x = max score
+  
+    // Formula for score based on time:
+    // max = max score for board, s = seconds, steepness = number at which score halfs
+    // max * ((11/20)^(s/8))
+    // Needs to be tweaked for each board
+  
+    var max_possiable_score = 62.5 * Math.pow(nonogram.size, 2) - 125 * nonogram.size
+    var newRating = rating + max_possiable_score
+    return newRating
+  }
+
+  // Handle the game won state
+  const handleGameWon = () => {
+    var isCorrect = checkWin()
+    if (!isCorrect || gameState == "won") return false
+
+    setGameState('won');
+
+    // Update fastest time if applicable
 
     // Update stats in localStorage
-    updateStatsInLocalStorage();
+    updateStatsInLocalStorage(updateBoardsCompleted(), updateRating());
+    return true
   };
 
-  useEffect(() => {
-    // Initialize stats from localStorage when the app starts
-    const stats = getStoredStats();
-    if (gameVersion !== stats.gameVersion) { }// clear data
 
-    setCurrentBoard(stats.currentBoard);
-    setBoardsCompleted(stats.boardsCompleted);
-    setBoardsUnlocked(stats.boardsUnlocked)
-    setFastestTime(stats.fastestTime);
-    setRating(stats.rating);
-    setStageUnlocked(stats.stageUnlocked);
-    setDifficulty(stats.difficulty);
-  }, []);
+
+
+
+
+
+
 
   return (
     <GameContext.Provider value={{
@@ -150,7 +192,7 @@ export const GameProvider = ({ children }) => {
       startNewGame,
       clearGame,
       clearBoard,
-      checkWin
+      handleGameWon
     }}>
       {children}
     </GameContext.Provider>
