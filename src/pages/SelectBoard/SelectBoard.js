@@ -4,7 +4,6 @@ import useGameContext from '../../contexts/GameContext'
 import { Link, Outlet } from 'react-router-dom';
 import GameTitle from '../../components/GameTitle/GameTitle';
 import './SelectBoard.css';
-import NewGameAction from '../../components/NewGameAction';
 
 function SelectBoard() {
   const {
@@ -24,6 +23,10 @@ function SelectBoard() {
   const [selectedSize, setSelectedSize] = useState(globalSettings.default_board_size);
 
   const [newGame, setnewGame] = useState(0);
+
+  const newGameAction = () => {
+    startNewGame(selectedSize)
+  }
 
   const displayBoardSize = () => {
     var inVal = $('.slider').val()
@@ -58,8 +61,8 @@ function SelectBoard() {
               <i className="fa fa-lock lock"></i>
             </div>
           </div>
-          <Link to="/Game">
-            <button className="board-select-submission" onClick={NewGameAction(selectedSize)}>Start</button>
+          <Link to="/game">
+            <button className="board-select-submission" onClick={newGameAction}>Start</button>
           </Link>
         </div>
         <div className="example-board"></div>

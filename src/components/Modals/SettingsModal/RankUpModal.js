@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 
 
-import useGameContext from '../../contexts/GameContext'
+import useGameContext from '../../../contexts/GameContext'
 import { Link, useLocation } from 'react-router-dom';
 
 const modalStyle = {

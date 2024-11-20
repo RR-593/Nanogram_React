@@ -1,0 +1,36 @@
+.versionBox{
+	width: 14em;
+}
+
+.versionBox button{
+	opacity: 0.6;
+}
+
+.versionBox button:hover{
+	opacity: 1;
+}
+
+.versionBox span{
+	margin: 5px;
+}
+
+.versionDiv .verLogButt{
+	opacity: 1;
+	align-self: center;
+	width: -moz-available;
+}
+
+.versionDiv{
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+}
+
+.versionDiv h3{
+	text-align: center;
+}
+
+.versionDiv ul{
+	padding-left: 1.5em;
+}
+
