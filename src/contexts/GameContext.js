@@ -11,10 +11,41 @@ export const GameProvider = ({ children }) => {
   const [gameVersion, setGameVersion] = useState("V2.0.0"); // this is used to reset people data so nothing breaks, increment number for fresh reset
   const [score, setScore] = useState(0);
 
+  const unlockBoard = (newBoards) =>{
+    var newUnlockedBoards = boardsUnlocked
+    setBoardsUnlocked([...newUnlockedBoards,...newBoards])
+  }
+
   const [globalSettings, setGlobalSettings] = useState({
     clearBoard: false,
     default_board_size: 4,
-    max_board_size: 25
+    max_board_size: 25,
+    stages: [
+      {
+        name:"noob",
+        rankReq: 0,
+        action: () => {}
+      },      
+      {
+        name:"tin",
+        rankReq: 1,
+        action: () => {}
+      },
+      {
+        name:"iron",
+        rankReq: 500,
+        action: () => {}
+      },
+      {
+        name:"bronze",
+        rankReq: 2000,
+        action: () => {unlockBoard([6,8])}
+      },      {
+        name:"silver",
+        rankReq: 10000,
+        action: () => {}
+      },
+    ]
   });
 
 

@@ -12,6 +12,7 @@ function App() {
   return (
     <GameProvider>
       <Outlet />
+      
     </GameProvider>
   );
 }
