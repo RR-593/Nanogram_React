@@ -22,13 +22,26 @@ function HomeButtons() {
     clearBoard
   } = useGameContext();
 
+  const continueButton = (
+    <Link to="Game">
+      <button className="HomeButton" id="continue">Continue</button>
+    </Link>
+  )
+
+  const [continueBox, setContinueBox] = useState(continueButton);
+
+  useEffect(() => {
+    var cb = currentBoard
+    var isEmpty = cb.flat().every(element => element === 0);
+    if (isEmpty) setContinueBox(<></>)
+    else setContinueBox(continueButton)
+  }, []);
+
   return (
     <div className="HomeButtonBox">
-      <Link to="Game">
-        <button className="HomeButton" id="continue">Continue</button>
-      </Link>
-      <SelectBoardButton/>
-      <TrophieButton/>
+      {continueBox}
+      <SelectBoardButton />
+      <TrophieButton />
       <SettingsButton />
     </div>
   );

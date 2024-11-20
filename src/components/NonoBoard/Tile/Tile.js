@@ -32,9 +32,9 @@ export default function Tile(props) {
     clearBoard
   } = useGameContext();
 
-  var sateFromCurrentBoard = currentBoard[props.id[0]][props.id[1]] ? currentBoard[props.id[0]][props.id[1]] : 0
+  var sateFromCurrentBoard = () => currentBoard[props.id[0]][props.id[1]] ? currentBoard[props.id[0]][props.id[1]] : 0
 
-  const [selectedState, setSelect] = useState(sateFromCurrentBoard)
+  const [selectedState, setSelect] = useState(sateFromCurrentBoard())
   // -2 ?
   // -1 X
   //  0 blank
@@ -70,6 +70,10 @@ export default function Tile(props) {
     if (gameState !== "playing" || !globalSettings.clearBoard) return
     setSelect(0)
   }, [globalSettings.clearBoard])
+
+  useEffect(() => {
+    if (gameState === "playing") setSelect(sateFromCurrentBoard())
+  }, [gameState]);
 
 
 
