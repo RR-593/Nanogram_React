@@ -5,7 +5,7 @@ const TimerContext = createContext();
 
 export const TimerProvider = ({ children }) => {
   const [time, setTime] = useState(0);
-  const [isActive, setIsActive] = useState(true); // Timer is active by default
+  const [isActive, setIsActive] = useState(false); 
 
   // Effect to handle the timer update
   useEffect(() => {
@@ -34,8 +34,12 @@ export const TimerProvider = ({ children }) => {
     setTime(0);
   };
 
+  const getTime = () => {
+    return time
+  }
+
   return (
-    <TimerContext.Provider value={{ time, isActive, toggleTimer, resetTimer }}>
+    <TimerContext.Provider value={{ time, isActive, setIsActive, toggleTimer, resetTimer , getTime}}>
       {children}
     </TimerContext.Provider>
   );

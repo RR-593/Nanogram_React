@@ -1,28 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import $ from 'jquery';
 import useGameContext from '../../contexts/GameContext'
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import GameTitle from '../../components/GameTitle/GameTitle';
 import './SelectBoard.css';
 
 function SelectBoard() {
   const {
-    gameState,
-    setGameState,
-    score,
-    setScore,
     globalSettings,
-    nonogram,
     boardsUnlocked,
-    currentBoard,
-    setCurrentBoard,
-    startNewGame,
-    clearBoard
-  } = useGameContext();
+    startNewGame
+    } = useGameContext();
 
   const [selectedSize, setSelectedSize] = useState(globalSettings.default_board_size);
-
-  const [newGame, setnewGame] = useState(0);
 
   const newGameAction = () => {
     startNewGame(selectedSize)

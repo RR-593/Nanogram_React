@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import generateNonogram from '../components/generateNonogram';
 import { compareNonograms, create2DArray } from '../components/Array_functions/arrayFunctions'
+import useTimer from './TimerContext';
 
 
 // Create context for game state
@@ -9,7 +10,15 @@ const GameContext = createContext();
 // Provider component
 export const GameProvider = ({ children }) => {
   const [gameVersion, setGameVersion] = useState("V2.0.0"); // this is used to reset people data so nothing breaks, increment number for fresh reset
-  const [score, setScore] = useState(0);
+  
+  const {time, resetTimer, setIsActive, getTime} = useTimer()
+  const [gameTime, setGameTime] = useState(time);
+
+  const [scoreGained, setScoreGained] = useState(0);
+
+  useEffect(() => {
+    setGameTime(time)
+  }, [time]);
 
   const [globalSettings, setGlobalSettings] = useState({
     clearBoard: false,
@@ -166,7 +175,8 @@ export const GameProvider = ({ children }) => {
   * @returns {void} void
   */
   const startNewGame = (size) => {
-    setScore(0);
+    resetTimer()
+    setIsActive(true)
     var newNonogram = generateNonogram(size, difficulty);
     setNonogram(newNonogram); // New nonogram
     var cleanBoard = clearBoard(size) // clear board
@@ -186,9 +196,9 @@ export const GameProvider = ({ children }) => {
     var tempBC = { ...boardsCompleted }
 
     if (Array.isArray(tempBC[nonogram.size])) {
-      tempBC[nonogram.size].push(currentBoard);
+      tempBC[nonogram.size].push({board: currentBoard, time: gameTime});
     } else {
-      tempBC[nonogram.size] = [currentBoard];
+      tempBC[nonogram.size] = [{board: currentBoard, time: gameTime}];
     }
 
     setBoardsCompleted(tempBC)
@@ -208,7 +218,10 @@ export const GameProvider = ({ children }) => {
     // Needs to be tweaked for each board
   
     var max_possiable_score = 62.5 * Math.pow(nonogram.size, 2) - 125 * nonogram.size
-    var newRating = rating + max_possiable_score
+    var newScore = Math.floor(max_possiable_score * Math.pow((11/20),((gameTime/100)/8)))
+    setScoreGained(newScore)
+    var newRating = rating + newScore
+
     return newRating
   }
 
@@ -217,13 +230,14 @@ export const GameProvider = ({ children }) => {
     var isCorrect = checkWin()
     console.log('isCorrect: '+isCorrect+", gameState: "+gameState);
     if (!isCorrect || gameState === "won") return false
-
     setGameState('won');
 
     // Update fastest time if applicable
 
     // Update stats in localStorage
     updateStatsInLocalStorage(updateBoardsCompleted(), updateRating());
+
+    setIsActive(false)
     return true
   };
 
@@ -237,6 +251,7 @@ export const GameProvider = ({ children }) => {
 
   return (
     <GameContext.Provider value={{
+      scoreGained,
       gameState,
       setGameState,
       rating,
