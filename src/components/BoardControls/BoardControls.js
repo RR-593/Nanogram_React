@@ -6,6 +6,7 @@ import './BoardControls.css'
 import Confetti_Cone from '../Confetti/Confetti_Cone'
 import SelectBoardButton from '../HomeButtons/SelectBoardButton'
 import TrophieButton from '../HomeButtons/TrophieButton'
+import useTimerContext from '../../contexts/TimerContext'
 
 const BoardControls = () => {
   const {
@@ -22,9 +23,14 @@ const BoardControls = () => {
     handleGameWon
   } = useGameContext();
 
+  const {stopTimer} = useTimerContext()
+
 
   const checkBoardAction = () => {
-    if (handleGameWon()) setboardControllers(wonControls)
+    if (handleGameWon()) {
+      stopTimer()
+      setboardControllers(wonControls)
+    }
   }
 
   const clearBoardAction = () => {

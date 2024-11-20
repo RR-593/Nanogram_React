@@ -39,8 +39,15 @@ function SettingsModal() {
 
 	const [open, setOpen] = useState(false);
 
-	const handleOpen = () => setOpen(true);
-	const handleClose = () => setOpen(false);
+	const handleOpen = () => {
+		setGameState('pause')
+		setOpen(true)
+	};
+	const handleClose = () => {
+		console.log(location.pathname);
+		if(location.pathname === "/Game") setGameState('playing')
+		setOpen(false)
+	};
 
 	// console.log(location.pathname);
 
