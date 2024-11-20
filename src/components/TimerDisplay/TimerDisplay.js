@@ -1,9 +1,12 @@
 import React from 'react';
-import useTimer from '../../contexts/TimerContext'; // Import the useTimer hook from context
+import useTimer from '../../contexts/TimerContext'; 
+import useGameContext from '../../contexts/GameContext';
 import './TimerDisplay.css'
 
 function TimerDisplay() {
-	const { time, isActive } = useTimer(); // Destructure the state and functions from context
+	const { time, isActive } = useTimer(); 
+	const {gameState} = useGameContext()
+
 
 	// Function to format time as hh:mm:ss
 	const formatTime = (milliseconds) => {
@@ -18,6 +21,8 @@ function TimerDisplay() {
 			<span>{formatTime(time)}</span>
 		</div>
 	)
+
+
 
 	return display;
 }
