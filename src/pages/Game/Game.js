@@ -6,16 +6,14 @@ import './Game.css'
 import BoardControls from '../../components/BoardControls/BoardControls'
 import SettingsButton from '../../components/HomeButtons/SettingsButton'
 import ScoreDisplay from '../../components/ScoreDisplay/ScoreDisplay'
-import useTimer from '../../contexts/TimerContext';
-import Timer from '../../components/TimerDisplay/TimerDisplay.js';
+import TimerDisplay from '../../components/TimerDisplay/TimerDisplay.js';
 
 
 const GamePage = () => {
 	var location = useLocation()
 
 	const {
-		nonogram,
-		gameState
+		nonogram
 	} = useGameContext();
 
 
@@ -25,8 +23,10 @@ const GamePage = () => {
 				<div style={{ width: "100%" }}>
 					<h1 style={{ marginTop: 0 }}>{nonogram.size}x{nonogram.size}</h1>
 					<ScoreDisplay />
-					<Timer/>
+					<TimerDisplay />
+
 				</div>
+
 				<BoardControls />
 				<SettingsButton />
 			</div>

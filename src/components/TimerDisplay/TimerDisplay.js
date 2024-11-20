@@ -1,8 +1,9 @@
 import React from 'react';
 import useTimer from '../../contexts/TimerContext'; // Import the useTimer hook from context
+import './TimerDisplay.css'
 
-function Timer() {
-	const { time, isActive, toggleTimer } = useTimer(); // Destructure the state and functions from context
+function TimerDisplay() {
+	const { time, isActive } = useTimer(); // Destructure the state and functions from context
 
 	// Function to format time as hh:mm:ss
 	const formatTime = (milliseconds) => {
@@ -12,12 +13,13 @@ function Timer() {
 		return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}.${String(milli).padStart(2, '0')}`;
 	};
 
-	return (
-		<div>
-			<p>{formatTime(time)}</p>
-			<button onClick={toggleTimer}>{isActive ? 'Pause' : 'Resume'}</button>
+	const display = (
+		<div className='timer-box'>
+			<span>{formatTime(time)}</span>
 		</div>
-	);
+	)
+
+	return display;
 }
 
-export default Timer;
+export default TimerDisplay;

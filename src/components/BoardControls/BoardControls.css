@@ -1,17 +1,25 @@
-.board-playing-controls-container button{
+.playing button{
+
+  display: flex;
+  flex-direction: column;
   width: 100%;
   border-radius: 121px;
+  padding: 4px;
+  height: fit-content;
 }
 
-.board-playing-controls-container{
-  width: 50%;
+.playing span{
+  font-size: 18px;
+}
+
+.board-controls-container{
   display: flex;
   flex-direction: column;
   gap: 20px;
+  align-items: center;
+  width: 100%;
 }
 
-.board-won-controls-container{
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.control-button{
+  width: 85%;
 }

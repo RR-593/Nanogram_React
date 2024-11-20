@@ -1,6 +1,5 @@
-import { useEffect, useState, useContext } from 'react'
+import { useEffect, useState } from 'react'
 import useGameContext from '../../contexts/GameContext'
-import $ from 'jquery'
 
 import './BoardControls.css'
 import Confetti_Cone from '../Confetti/Confetti_Cone'
@@ -10,14 +9,7 @@ import TrophieButton from '../HomeButtons/TrophieButton'
 const BoardControls = () => {
   const {
     gameState,
-    setGameState,
-    score,
-    setScore,
-    globalSettings,
     nonogram,
-    currentBoard,
-    setCurrentBoard,
-    startNewGame,
     clearBoard,
     handleGameWon
   } = useGameContext();
@@ -33,37 +25,39 @@ const BoardControls = () => {
   }
 
   const checkBoardButton = (
-    <div className="check-board-buton">
+    <div className="check-board-buton control-button">
       <button onClick={checkBoardAction}>
-        <i className="fa fa-check-square-o"></i>
+        <i className="fa fa-check-square-o fa-2x"></i>
+        <span>Check Board</span>
       </button>
     </div>
   )
 
   const eraseBoardButton = (
-    <div className="erase-board-buton">
+    <div className="erase-board-button control-button">
       <button onClick={clearBoardAction}>
-        <i className="fa  fa-eraser"></i>
+        <i className="fa  fa-eraser fa-2x"></i>
+        <span>Earase Board</span>
       </button>
     </div>
   )
 
   const newBoardButton = (
-    <div className="new-board-buton">
+    <div className="new-board-button">
       <SelectBoardButton />
     </div>
   )
 
 
   const playingControls = (
-    <div className="board-playing-controls-container">
+    <div className="board-controls-container playing">
       {checkBoardButton}
       {eraseBoardButton}
     </div>
   )
 
   const wonControls = (
-    <div className="board-won-controls-container">
+    <div className="board-controls-container won">
       {newBoardButton}
       <TrophieButton />
       <div className="confetti-container">
