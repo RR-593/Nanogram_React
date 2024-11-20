@@ -31,17 +31,18 @@ export const GameProvider = ({ children }) => {
       {
         name:"iron",
         rankReq: 500,
-        newBoards: [6],
+        newBoards: [6,8],
         action: () => {}
       },
       {
         name:"bronze",
         rankReq: 2000,
-        newBoards: [8],
+        newBoards: [],
         action: () => {}
       },      {
         name:"silver",
         rankReq: 10000,
+        newBoards: [10,12],
         action: () => {}
       },
     ]

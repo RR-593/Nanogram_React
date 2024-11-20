@@ -30,6 +30,7 @@ function RankUpModal() {
 		rating,
 		setRating,
 		rank,
+		setRank,
 		globalSettings,
 		nonogram,
 		currentBoard,
@@ -50,10 +51,9 @@ function RankUpModal() {
 			if(stage.rankReq <= rating) newRank = stage
 		}
 
-		console.log(newRank);
 		var newUnlockedBoards = [...new Set([...boardsUnlocked, ...newRank.newBoards])].sort((a, b) => a - b)
-		console.log(newUnlockedBoards);
 		setBoardsUnlocked(newUnlockedBoards)
+		setRank(newRank)
 	}, [rating]);
 
 	return (
