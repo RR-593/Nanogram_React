@@ -11,11 +11,6 @@ export const GameProvider = ({ children }) => {
   const [gameVersion, setGameVersion] = useState("V2.0.0"); // this is used to reset people data so nothing breaks, increment number for fresh reset
   const [score, setScore] = useState(0);
 
-  const unlockBoard = (newBoards) =>{
-    var newUnlockedBoards = boardsUnlocked
-    setBoardsUnlocked([...newUnlockedBoards,...newBoards])
-  }
-
   const [globalSettings, setGlobalSettings] = useState({
     clearBoard: false,
     default_board_size: 4,
@@ -24,22 +19,26 @@ export const GameProvider = ({ children }) => {
       {
         name:"noob",
         rankReq: 0,
+        newBoards: [],
         action: () => {}
       },      
       {
         name:"tin",
         rankReq: 1,
+        newBoards: [],
         action: () => {}
       },
       {
         name:"iron",
         rankReq: 500,
+        newBoards: [6],
         action: () => {}
       },
       {
         name:"bronze",
         rankReq: 2000,
-        action: () => {unlockBoard([6,8])}
+        newBoards: [8],
+        action: () => {}
       },      {
         name:"silver",
         rankReq: 10000,
@@ -57,6 +56,7 @@ export const GameProvider = ({ children }) => {
     boardsUnlocked: 'boardsUnlocked',
     fastestTime: 'fastestTime',
     rating: 'rating',
+    rank: 'rank',
     stageUnlocked: 'stageUnlocked',
     difficulty: "difficulty",
     nonogram: "nonogram",
@@ -68,14 +68,15 @@ export const GameProvider = ({ children }) => {
     const gameVersion = localStorage.getItem(LOCAL_STORAGE_KEYS.gameVersion) || "error";
     const gameState = localStorage.getItem(LOCAL_STORAGE_KEYS.gameState) || "paused"; // 'paused', 'playing', 'won'
     const boardsCompleted = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.boardsCompleted)) || {};
-    const boardsUnlocked = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.boardsUnlocked)) || [globalSettings.default_board_size, 8];
+    const boardsUnlocked = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.boardsUnlocked)) || [globalSettings.default_board_size];
     const fastestTime = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.fastestTime)) || {};
     const rating = parseInt(localStorage.getItem(LOCAL_STORAGE_KEYS.rating), 10) || 0;
+    const rank = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.rank)) || globalSettings.stages[0];
     const stageUnlocked = parseInt(localStorage.getItem(LOCAL_STORAGE_KEYS.stageUnlocked), 10) || 0;
     const difficulty = localStorage.getItem(LOCAL_STORAGE_KEYS.difficulty) || "normal";
     const nonogram = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.nonogram)) || generateNonogram(globalSettings.default_board_size, difficulty);
     const currentBoard = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.currentBoard)) || create2DArray(globalSettings.default_board_size, 0);
-    return { gameVersion,gameState, boardsCompleted, fastestTime, rating, stageUnlocked, difficulty, currentBoard, boardsUnlocked, nonogram };
+    return { gameVersion,gameState, boardsCompleted, fastestTime, rating, stageUnlocked, difficulty, currentBoard, boardsUnlocked, nonogram , rank};
   };
 
 
@@ -84,6 +85,7 @@ export const GameProvider = ({ children }) => {
   const [boardsUnlocked, setBoardsUnlocked] = useState(getStoredStats().boardsUnlocked);
   const [fastestTime, setFastestTime] = useState(getStoredStats().fastestTime);
   const [rating, setRating] = useState(getStoredStats().rating);
+  const [rank, setRank] = useState(getStoredStats().rank);
   const [stageUnlocked, setStageUnlocked] = useState(getStoredStats().stageUnlocked);
   const [difficulty, setDifficulty] = useState(getStoredStats().difficulty);
   const [nonogram, setNonogram] = useState(getStoredStats().nonogram);
@@ -95,12 +97,13 @@ export const GameProvider = ({ children }) => {
   const updateStats = () => {
     const stats = getStoredStats();
 
-    setGameState(stats.gameState)
+    setGameState(stats.gameState);
     setCurrentBoard(stats.currentBoard);
     setBoardsCompleted(stats.boardsCompleted);
     setBoardsUnlocked(stats.boardsUnlocked)
     setFastestTime(stats.fastestTime);
     setRating(stats.rating);
+    setRank(stats.rank);
     setStageUnlocked(stats.stageUnlocked);
     setDifficulty(stats.difficulty);
   }
@@ -113,6 +116,7 @@ export const GameProvider = ({ children }) => {
     localStorage.setItem(LOCAL_STORAGE_KEYS.boardsUnlocked, JSON.stringify(boardsUnlocked));
     localStorage.setItem(LOCAL_STORAGE_KEYS.fastestTime, JSON.stringify(fastestTime));
     localStorage.setItem(LOCAL_STORAGE_KEYS.rating, rat);
+    localStorage.setItem(LOCAL_STORAGE_KEYS.rank, JSON.stringify(rank));
     localStorage.setItem(LOCAL_STORAGE_KEYS.stageUnlocked, stageUnlocked);
     localStorage.setItem(LOCAL_STORAGE_KEYS.difficulty, difficulty);
     localStorage.setItem(LOCAL_STORAGE_KEYS.nonogram, JSON.stringify(nonogram));
@@ -137,7 +141,9 @@ export const GameProvider = ({ children }) => {
     localStorage.setItem(LOCAL_STORAGE_KEYS.gameState, gameState);
   }, [gameState]);
 
-
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEYS.boardsUnlocked, JSON.stringify(boardsUnlocked));
+  }, [boardsUnlocked]);
 
 
 
@@ -234,9 +240,12 @@ export const GameProvider = ({ children }) => {
       setGameState,
       rating,
       setRating,
+      rank,
+      setRank,
       globalSettings,
       nonogram,
       boardsUnlocked,
+      setBoardsUnlocked,
       currentBoard,
       updateBoard,
       startNewGame,

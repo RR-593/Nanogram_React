@@ -27,14 +27,16 @@ function RankUpModal() {
 	const {
 		gameState,
 		setGameState,
-		score,
-		setScore,
+		rating,
+		setRating,
+		rank,
 		globalSettings,
 		nonogram,
 		currentBoard,
 		setCurrentBoard,
 		startNewGame,
-		clearBoard
+		boardsUnlocked,
+		setBoardsUnlocked
 	} = useGameContext();
 
 	const [open, setOpen] = useState(false);
@@ -43,8 +45,16 @@ function RankUpModal() {
 	const handleClose = () => setOpen(false);
 
 	useEffect(() => {
-		
-	}, []);
+		var newRank = globalSettings.stages[0]
+		for(let stage of globalSettings.stages){
+			if(stage.rankReq <= rating) newRank = stage
+		}
+
+		console.log(newRank);
+		var newUnlockedBoards = [...new Set([...boardsUnlocked, ...newRank.newBoards])].sort((a, b) => a - b)
+		console.log(newUnlockedBoards);
+		setBoardsUnlocked(newUnlockedBoards)
+	}, [rating]);
 
 	return (
 		<Box>
