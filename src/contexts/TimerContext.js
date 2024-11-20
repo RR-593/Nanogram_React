@@ -14,7 +14,7 @@ export const TimerProvider = ({ children }) => {
     if (isActive) {
       interval = setInterval(() => {
         setTime((prevTime) => prevTime + 1);
-      }, 1000); // Update every second
+      }, 10); // Update every second
     } else {
       clearInterval(interval);
     }
