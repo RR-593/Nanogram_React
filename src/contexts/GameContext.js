@@ -119,9 +119,9 @@ export const GameProvider = ({ children }) => {
   }
 
   // Update stats in localStorage
-  const updateStatsInLocalStorage = (bC, rat) => {
+  const updateStatsInLocalStorage = (bC, rat, gState) => {
     localStorage.setItem(LOCAL_STORAGE_KEYS.gameVersion, gameVersion);
-    localStorage.setItem(LOCAL_STORAGE_KEYS.gameState, gameState);
+    localStorage.setItem(LOCAL_STORAGE_KEYS.gameState, gState);
     localStorage.setItem(LOCAL_STORAGE_KEYS.boardsCompleted, JSON.stringify(bC));
     localStorage.setItem(LOCAL_STORAGE_KEYS.boardsUnlocked, JSON.stringify(boardsUnlocked));
     localStorage.setItem(LOCAL_STORAGE_KEYS.fastestTime, JSON.stringify(fastestTime));
@@ -230,12 +230,11 @@ export const GameProvider = ({ children }) => {
     var isCorrect = checkWin()
     console.log('isCorrect: '+isCorrect+", gameState: "+gameState);
     if (!isCorrect || gameState === "won") return false
-    setGameState('won');
 
-    // Update fastest time if applicable
+    // Update fastest time 
 
     // Update stats in localStorage
-    updateStatsInLocalStorage(updateBoardsCompleted(), updateRating());
+    updateStatsInLocalStorage(updateBoardsCompleted(), updateRating(), 'won');
 
     setIsActive(false)
     return true
@@ -244,16 +243,10 @@ export const GameProvider = ({ children }) => {
 
 
 
-
-
-
-
-
   return (
     <GameContext.Provider value={{
       scoreGained,
       gameState,
-      setGameState,
       rating,
       setRating,
       rank,

@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react'
+import { useEffect} from 'react'
 import './DisplayNonoBoard.css';
 import useGameContext from '../../contexts/GameContext'
 
@@ -8,18 +8,8 @@ import Clue from './Clue/Clue'
 
 const DisplayNanoBoard = () => {
   const {
-		gameState,
-		setGameState,
-		score,
-		setScore,
 		globalSettings,
-		nonogram,
-		currentBoard,
-		setCurrentBoard,
-		startNewGame,
-		 
-		clearBoard
-	} = useGameContext();
+		nonogram	} = useGameContext();
 
 	var boardSize = nonogram.size ? nonogram.size : globalSettings.default_board_size
 

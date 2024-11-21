@@ -6,8 +6,8 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 
 
-import useGameContext from '../../../contexts/GameContext'
-import { Link, useLocation } from 'react-router-dom';
+// import useGameContext from '../../../contexts/GameContext'
+import { Link } from 'react-router-dom';
 
 const modalStyle = {
 	position: 'absolute',
@@ -23,19 +23,6 @@ const modalStyle = {
 }
 
 function SettingsModal() {
-	const location = useLocation();
-	const {
-		gameState,
-		setGameState,
-		score,
-		setScore,
-		globalSettings,
-		nonogram,
-		currentBoard,
-		setCurrentBoard,
-		startNewGame,
-		clearBoard
-	} = useGameContext();
 
 	const [open, setOpen] = useState(false);
 

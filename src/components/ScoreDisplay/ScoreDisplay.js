@@ -4,17 +4,7 @@ import './ScoreDisplay.css'
 const ScoreDisplay = () => {
 
 	const {
-		gameState,
-		setGameState,
-		rating,
-		setRating,
-		globalSettings,
-		nonogram,
-		currentBoard,
-		setCurrentBoard,
-		startNewGame,
-		clearBoard
-	} = useGameContext();
+		rating	} = useGameContext();
 
 
 	return (

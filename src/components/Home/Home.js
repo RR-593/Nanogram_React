@@ -1,22 +1,10 @@
-import React,{useState, useEffect} from 'react';
-import useGameContext from '../../contexts/GameContext'
+// import React,{useState, useEffect} from 'react';
+// import useGameContext from '../../contexts/GameContext'
 import HomeButtons from '../HomeButtons/HomeButtons';
 import ScoreDisplay from '../ScoreDisplay/ScoreDisplay';
 import './Home.css';
 
 function Home() {
-  const {
-		gameState,
-		setGameState,
-		score,
-		setScore,
-		globalSettings,
-		nonogram,
-		currentBoard,
-		setCurrentBoard,
-		startNewGame,
-		clearBoard
-	} = useGameContext();
 
   return (
     <div className="home-container">

@@ -1,23 +1,10 @@
 import "./Clue.css"
-import React, { useState, createContext, useEffect } from 'react';
 import useGameContext from '../../../contexts/GameContext'
-
 import {create2DArray} from '../../Array_functions/arrayFunctions'
 
 export default function Clue(props){
 	const {
-		gameState,
-		setGameState,
-		score,
-		setScore,
-		globalSettings,
-		nonogram,
-		currentBoard,
-		setCurrentBoard,
-		startNewGame,
-		 
-		clearBoard
-	} = useGameContext();
+		nonogram	} = useGameContext();
 
 	let clueNumber = props.direction === "row" ? nonogram.clue.rows[props.index] : nonogram.clue.cols[props.index] 
 	clueNumber = typeof clueNumber === "undefined" ? create2DArray(nonogram.size,0) : clueNumber

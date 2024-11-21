@@ -21,16 +21,10 @@ document.body.onmouseup = () => {
 export default function Tile(props) {
   const {
     gameState,
-    setGameState,
-    score,
-    setScore,
     globalSettings,
     nonogram,
     currentBoard,
-    updateBoard,
-    startNewGame,
-    clearBoard
-  } = useGameContext();
+    updateBoard  } = useGameContext();
 
   var sateFromCurrentBoard = () => currentBoard[props.id[0]][props.id[1]] ? currentBoard[props.id[0]][props.id[1]] : 0
 
@@ -54,7 +48,7 @@ export default function Tile(props) {
     updateSelect()
   }
 
-  var onMouseHoverTile = (e) => {
+  var onMouseHoverTile = () => {
     if (!mouseDown) return
     updateSelect()
   }
