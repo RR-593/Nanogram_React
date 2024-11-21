@@ -31,7 +31,7 @@ function HomeButtons() {
     <div className="HomeButtonBox">
       {continueBox}
       <SelectBoardButton />
-      <TrophieButton />
+      {/* <TrophieButton /> */}
       <SettingsButton />
     </div>
   );

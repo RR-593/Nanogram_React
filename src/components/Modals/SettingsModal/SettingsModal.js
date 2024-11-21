@@ -43,7 +43,7 @@ function SettingsModal() {
 
 
 	const handleOpen = () => {
-		if (location.pathname === "/Game") setControlButtons(controlButtonsObj)
+		if (location.pathname !== "/") setControlButtons(controlButtonsObj)
 		else setControlButtons(<></>)
 		setOpen(true);
 	}
