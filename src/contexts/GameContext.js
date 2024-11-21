@@ -164,11 +164,6 @@ export const GameProvider = ({ children }) => {
     return cleanBoard
   }
 
-  const pauseGame = () => {
-    setIsActive(false)
-    setGameState('pause');
-  }
-
   const resumeGame = () => {
     setIsActive(true)
     setGameState('playing');
@@ -271,7 +266,6 @@ export const GameProvider = ({ children }) => {
       startNewGame,
       clearBoard,
       handleGameWon,
-      pauseGame,
       resumeGame
     }}>
       {children}

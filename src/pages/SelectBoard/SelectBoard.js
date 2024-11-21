@@ -51,7 +51,7 @@ function SelectBoard() {
               <i className="fa fa-lock lock"></i>
             </div>
           </div>
-          <Link to="/game">
+          <Link to="/Game">
             <button className="board-select-submission" onClick={newGameAction}>Start</button>
           </Link>
         </div>

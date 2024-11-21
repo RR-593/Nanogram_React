@@ -66,12 +66,17 @@ const BoardControls = () => {
     </div>
   )
 
-  const [boardControllers, setboardControllers] = useState(playingControls);
+  const wichControls = () => gameState !== "won" ? playingControls : wonControls;
+  
+  const [boardControllers, setboardControllers] = useState(wichControls());
 
 
   useEffect(() => {
-    setboardControllers(playingControls)
-  }, [nonogram]);
+    setboardControllers( wichControls())
+  }, [gameState]);
+
+
+
 
 
 
