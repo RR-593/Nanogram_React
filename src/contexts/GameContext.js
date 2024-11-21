@@ -186,7 +186,7 @@ export const GameProvider = ({ children }) => {
   */
   const startNewGame = (size) => {
     resetTimer()
-    pauseGame()
+    resumeGame()
     var newNonogram = generateNonogram(size, difficulty);
     setNonogram(newNonogram); // New nonogram
     var cleanBoard = clearBoard(size) // clear board
