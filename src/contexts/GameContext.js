@@ -14,11 +14,7 @@ export const GameProvider = ({ children }) => {
 
   const location = useLocation()
   const { time, resetTimer, setIsActive } = useTimer()
-  const [gameTime, setGameTime] = useState(time);
 
-  useEffect(() => {
-    setGameTime(time);
-  }, [time]);
 
   const [scoreGained, setScoreGained] = useState(0);
 
@@ -146,7 +142,7 @@ export const GameProvider = ({ children }) => {
   useEffect(() => {
     // Initialize stats from localStorage when the app starts
     if (gameVersion !== getStoredStats().gameVersion) { }// clear data
-    
+    localStorage.setItem('time', JSON.stringify(0));
     updateStats()
   }, []);
 
@@ -207,6 +203,8 @@ export const GameProvider = ({ children }) => {
   const updateBoardsCompleted = () => {
     var tempBC = { ...boardsCompleted }
 
+    var gameTime = parseInt(localStorage.getItem('time'))
+
     if (Array.isArray(tempBC[nonogram.size])) {
       tempBC[nonogram.size].push({ board: currentBoard, time: gameTime });
     } else {
@@ -228,7 +226,8 @@ export const GameProvider = ({ children }) => {
     // max = max score for board, s = seconds, steepness = number at which score halfs
     // max * ((11/20)^(s/8))
     // Needs to be tweaked for each board
-
+    var gameTime = parseInt(localStorage.getItem('time'))
+    if (gameTime == 0) return rating
     var max_possiable_score = 62.5 * Math.pow(nonogram.size, 2) - 125 * nonogram.size
     var newScore = Math.floor(max_possiable_score * Math.pow((11 / 20), ((gameTime / 100) / 8)))
     setScoreGained(newScore)

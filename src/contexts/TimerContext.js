@@ -10,10 +10,13 @@ export const TimerProvider = ({ children }) => {
   // Effect to handle the timer update
   useEffect(() => {
     let interval;
-
+    var prevTime = time
     if (isActive) {
+      
       interval = setInterval(() => {
-        setTime((prevTime) => prevTime + 1);
+        prevTime += 1
+        setTime(prevTime);
+        localStorage.setItem('time', JSON.stringify(prevTime));
       }, 10); // Update every second
     } else {
       clearInterval(interval);
