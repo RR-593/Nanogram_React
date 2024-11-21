@@ -31,6 +31,8 @@ function SettingsModal() {
 
 	// console.log(location.pathname);
 
+	
+
 	return (
 		<Box>
 			<button className="HomeButton" id="settings" onClick={handleOpen}>Settings</button>
@@ -47,9 +49,12 @@ function SettingsModal() {
 					<Typography id="modal-modal-description" sx={{ mt: 2 }}>
 						Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
 					</Typography>
-					<Link to="/">
-						<Button>Back to main</Button>
-					</Link>
+					<Box className="button-box">
+						<Link to="/">
+							<Button>Back to main</Button>
+						</Link>
+						<Button></Button>
+					</Box>
 				</Box>
 			</Modal>
 		</Box>
