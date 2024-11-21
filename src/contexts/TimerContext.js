@@ -34,12 +34,9 @@ export const TimerProvider = ({ children }) => {
     setTime(0);
   };
 
-  const getTime = () => {
-    return time
-  }
 
   return (
-    <TimerContext.Provider value={{ time, isActive, setIsActive, toggleTimer, resetTimer , getTime}}>
+    <TimerContext.Provider value={{ time, isActive, setIsActive, toggleTimer, resetTimer }}>
       {children}
     </TimerContext.Provider>
   );

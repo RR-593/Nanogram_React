@@ -2,6 +2,7 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 import generateNonogram from '../components/generateNonogram';
 import { compareNonograms, create2DArray } from '../components/Array_functions/arrayFunctions'
 import useTimer from './TimerContext';
+import { useLocation } from 'react-router-dom';
 
 
 // Create context for game state
@@ -11,14 +12,19 @@ const GameContext = createContext();
 export const GameProvider = ({ children }) => {
   const [gameVersion, setGameVersion] = useState("V2.0.0"); // this is used to reset people data so nothing breaks, increment number for fresh reset
 
-  const { time, resetTimer, setIsActive, getTime } = useTimer()
+  const location = useLocation()
+  const { time, resetTimer, setIsActive } = useTimer()
   const [gameTime, setGameTime] = useState(time);
+
+  useEffect(() => {
+    setGameTime(time);
+  }, [time]);
 
   const [scoreGained, setScoreGained] = useState(0);
 
   useEffect(() => {
-    setGameTime(time)
-  }, [time]);
+    if (location.pathname !=="/Game") resetTimer(); 
+  }, [location]);
 
   const [globalSettings, setGlobalSettings] = useState({
     clearBoard: false,
@@ -89,7 +95,6 @@ export const GameProvider = ({ children }) => {
     return { gameVersion, gameState, boardsCompleted, fastestTime, rating, stageUnlocked, difficulty, currentBoard, boardsUnlocked, nonogram, rank };
   };
 
-
   const [gameState, setGameState] = useState(getStoredStats().gameState); // 'paused', 'playing', 'won'
   const [boardsCompleted, setBoardsCompleted] = useState(getStoredStats().boardsCompleted);
   const [boardsUnlocked, setBoardsUnlocked] = useState(getStoredStats().boardsUnlocked);
@@ -100,9 +105,6 @@ export const GameProvider = ({ children }) => {
   const [difficulty, setDifficulty] = useState(getStoredStats().difficulty);
   const [nonogram, setNonogram] = useState(getStoredStats().nonogram);
   const [currentBoard, setCurrentBoard] = useState(getStoredStats().currentBoard);
-
-
-
 
   const updateStats = () => {
     const stats = getStoredStats();
@@ -144,6 +146,7 @@ export const GameProvider = ({ children }) => {
   useEffect(() => {
     // Initialize stats from localStorage when the app starts
     if (gameVersion !== getStoredStats().gameVersion) { }// clear data
+    
     updateStats()
   }, []);
 

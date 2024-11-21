@@ -1,5 +1,3 @@
-import { useEffect, useState, useContext } from 'react'
-import { useParams, useLocation } from 'react-router-dom';
 import useGameContext from '../../contexts/GameContext'
 import DisplayNonoBoard from '../../components/NonoBoard/DisplayNonoBoard'
 import './Game.css'
@@ -10,7 +8,6 @@ import TimerDisplay from '../../components/TimerDisplay/TimerDisplay.js';
 
 
 const GamePage = () => {
-	var location = useLocation()
 
 	const {
 		nonogram
