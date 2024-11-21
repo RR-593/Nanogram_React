@@ -199,7 +199,10 @@ export const GameProvider = ({ children }) => {
   };
 
   // Check if all cells are correctly filled
-  const checkWin = () => compareNonograms(currentBoard, nonogram.nonogramArr);
+  const checkWin = () => {
+    var storedCurrentBoard = getStoredStats().currentBoard
+    return compareNonograms(storedCurrentBoard, nonogram.nonogramArr)
+  };
 
   const updateBoardsCompleted = () => {
     var tempBC = { ...boardsCompleted }
