@@ -10,8 +10,8 @@ const GameContext = createContext();
 // Provider component
 export const GameProvider = ({ children }) => {
   const [gameVersion, setGameVersion] = useState("V2.0.0"); // this is used to reset people data so nothing breaks, increment number for fresh reset
-  
-  const {time, resetTimer, setIsActive, getTime} = useTimer()
+
+  const { time, resetTimer, setIsActive, getTime } = useTimer()
   const [gameTime, setGameTime] = useState(time);
 
   const [scoreGained, setScoreGained] = useState(0);
@@ -26,33 +26,33 @@ export const GameProvider = ({ children }) => {
     max_board_size: 25,
     stages: [
       {
-        name:"noob",
+        name: "noob",
         rankReq: 0,
         newBoards: [],
-        action: () => {}
-      },      
+        action: () => { }
+      },
       {
-        name:"tin",
+        name: "tin",
         rankReq: 1,
         newBoards: [],
-        action: () => {}
+        action: () => { }
       },
       {
-        name:"iron",
+        name: "iron",
         rankReq: 500,
-        newBoards: [6,8],
-        action: () => {}
+        newBoards: [6, 8],
+        action: () => { }
       },
       {
-        name:"bronze",
+        name: "bronze",
         rankReq: 2000,
         newBoards: [],
-        action: () => {}
-      },      {
-        name:"silver",
+        action: () => { }
+      }, {
+        name: "silver",
         rankReq: 10000,
-        newBoards: [10,12],
-        action: () => {}
+        newBoards: [10, 12],
+        action: () => { }
       },
     ]
   });
@@ -86,7 +86,7 @@ export const GameProvider = ({ children }) => {
     const difficulty = localStorage.getItem(LOCAL_STORAGE_KEYS.difficulty) || "normal";
     const nonogram = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.nonogram)) || generateNonogram(globalSettings.default_board_size, difficulty);
     const currentBoard = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.currentBoard)) || create2DArray(globalSettings.default_board_size, 0);
-    return { gameVersion,gameState, boardsCompleted, fastestTime, rating, stageUnlocked, difficulty, currentBoard, boardsUnlocked, nonogram , rank};
+    return { gameVersion, gameState, boardsCompleted, fastestTime, rating, stageUnlocked, difficulty, currentBoard, boardsUnlocked, nonogram, rank };
   };
 
 
@@ -165,6 +165,16 @@ export const GameProvider = ({ children }) => {
     return cleanBoard
   }
 
+  const pauseGame = () => {
+    setIsActive(false)
+    setGameState('pause');
+  }
+
+  const resumeGame = () => {
+    setIsActive(true)
+    setGameState('playing');
+  }
+
   /**
   * Starts a new game with the specified size.
   * Initializes the game state, resets the score, generates a new nonogram,
@@ -176,29 +186,25 @@ export const GameProvider = ({ children }) => {
   */
   const startNewGame = (size) => {
     resetTimer()
-    setIsActive(true)
+    pauseGame()
     var newNonogram = generateNonogram(size, difficulty);
     setNonogram(newNonogram); // New nonogram
     var cleanBoard = clearBoard(size) // clear board
 
-    setGameState('playing');
-    
     localStorage.setItem(LOCAL_STORAGE_KEYS.nonogram, JSON.stringify(newNonogram));
     localStorage.setItem(LOCAL_STORAGE_KEYS.currentBoard, JSON.stringify(cleanBoard));
   };
 
   // Check if all cells are correctly filled
-  const checkWin = () => {
-    return compareNonograms(currentBoard, nonogram.nonogramArr);
-  };
+  const checkWin = () => compareNonograms(currentBoard, nonogram.nonogramArr);
 
   const updateBoardsCompleted = () => {
     var tempBC = { ...boardsCompleted }
 
     if (Array.isArray(tempBC[nonogram.size])) {
-      tempBC[nonogram.size].push({board: currentBoard, time: gameTime});
+      tempBC[nonogram.size].push({ board: currentBoard, time: gameTime });
     } else {
-      tempBC[nonogram.size] = [{board: currentBoard, time: gameTime}];
+      tempBC[nonogram.size] = [{ board: currentBoard, time: gameTime }];
     }
 
     setBoardsCompleted(tempBC)
@@ -206,19 +212,19 @@ export const GameProvider = ({ children }) => {
   }
 
   const updateRating = () => {
-    
+
     //Update rating
     //     Formula for max score per board:
     // x = board size
     // 62.5x^2−125x = max score
-  
+
     // Formula for score based on time:
     // max = max score for board, s = seconds, steepness = number at which score halfs
     // max * ((11/20)^(s/8))
     // Needs to be tweaked for each board
-  
+
     var max_possiable_score = 62.5 * Math.pow(nonogram.size, 2) - 125 * nonogram.size
-    var newScore = Math.floor(max_possiable_score * Math.pow((11/20),((gameTime/100)/8)))
+    var newScore = Math.floor(max_possiable_score * Math.pow((11 / 20), ((gameTime / 100) / 8)))
     setScoreGained(newScore)
     var newRating = rating + newScore
 
@@ -228,7 +234,7 @@ export const GameProvider = ({ children }) => {
   // Handle the game won state
   const handleGameWon = () => {
     var isCorrect = checkWin()
-    console.log('isCorrect: '+isCorrect+", gameState: "+gameState);
+    console.log('isCorrect: ' + isCorrect + ", gameState: " + gameState);
     if (!isCorrect || gameState === "won") return false
 
     // Update fastest time 
@@ -258,9 +264,10 @@ export const GameProvider = ({ children }) => {
       currentBoard,
       updateBoard,
       startNewGame,
-       
       clearBoard,
-      handleGameWon
+      handleGameWon,
+      pauseGame,
+      resumeGame
     }}>
       {children}
     </GameContext.Provider>
