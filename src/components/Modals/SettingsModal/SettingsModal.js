@@ -6,6 +6,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 
+import './SettingsModal.css'
+
 
 // import useGameContext from '../../../contexts/GameContext'
 import { Link, useLocation } from 'react-router-dom';
@@ -21,6 +23,11 @@ const modalStyle = {
 	borderRadius: '8px',
 	boxShadow: 24,
 	p: 4,
+}
+
+const modalTitleStyle = {
+	fontSize: '2rem',
+  fontWeight: 'bold',
 }
 
 function SettingsModal() {
@@ -61,10 +68,10 @@ function SettingsModal() {
 			>
 				<Box sx={modalStyle}>
 					<Box className="modal-header">
-						<Typography id="modal-modal-settings" variant="h6" component="h2">
+						<Typography id="modal-modal-settings" varient="h1" sx={modalTitleStyle}>
 							Settings
 						</Typography>
-						{/* <button>delete data</button> */}
+						<button class="fa fa-trash-o"></button> 
 					</Box>
 					{controlButtons}
 				</Box>
